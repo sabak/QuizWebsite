@@ -20,6 +20,14 @@ body {
 	font-weight:600;
 }
 
+/* text normal */
+.tn{
+	font-family:Arial;
+	color: #660000;
+	font-weight:400;
+}
+
+
 #title{
 	text-align:center;
 	font-family:Arial;
@@ -108,7 +116,91 @@ input:focus {
 #user-image{
 	border-style:solid;
 	border-color:brown;
+	position:absolute;
+	top:0%;
+	left:0%;
+	height:250px;
+	width:200px;
 }
 
+#activity{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:251px;
+	left:0px;
+	width:200px;
+	height:200px;
+}
 
+#mq{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:452px;
+	left:0px;
+	width:200px;
+	height:200px;
+}
+#achievements{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:653px;
+	left:0px;
+	width:200px;
+	height:200px;
+}
 
+#Announcements{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:0px;
+	right:0px;
+	width:200px;
+	height:200px;
+}
+
+#fAct{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:201px;
+	right:0px;
+	width:200px;
+	height:200px;
+}
+
+#mess{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:402px;
+	right:0px;
+	width:200px;
+	height:451px;
+}
+
+#sbar{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:5px;
+	left:250px;
+	height:60px;
+	margin-right:200px;
+}
+
+/*button*/
+.srch{
+	height:40px;
+	position:relative;
+	top:4px;
+}
+
+#search{
+	height:40px;
+	width:600px;
+
+}

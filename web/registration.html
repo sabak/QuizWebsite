@@ -11,7 +11,7 @@
 		<form id="bob" action="" method="post">
 			<h2 id="bold-text2"> Fill Out The Registration Form</h2>
 			
-			<div class="tb"> Username: </div> <input type="text" name="user" placeholder="Username" id = "un" oninput="checkName()"/> 
+			<div class="tb"> Username: </div> <input type="text" name="user" placeholder="Username" id = "un" oninput="checkName()"/>
 			<div class ="tb" id="post-un"> </div> </br></br>
 			
 			<div class="tb"> Password: </div> <input type="password" name="password" placeholder="password" id = "pass" oninput="checkPass()"/> 
@@ -19,7 +19,9 @@
 			
 			<div class="tb"> Password confirmation: </div> <input type="password" name="password-confirm" placeholder="confirm password" id = "pConfirm" oninput="checkConfirm()"/> 
 			<div class="tb" id="post-confirm"> </div> </br></br>
-			<div class="tb"> E-mail: </div> <input type="text" name="e-mail" placeholder="E-mail"/> </br></br>
+			<div class="tb"> E-mail: </div> <input type="text" name="e-mail" placeholder="E-mail" id = "mail" oninput="checkMail()"/>
+			<div class ="tb" id="post-mail"> </div> </br></br>
+
 			<div class="tb"> Profile picture (optional): </div> <input type="file" name="e-mail"/> </br></br>
 			<button class="button sub" onclick="document.getElementById('bob').submit();"> Submit </button>
 		</form>	
@@ -27,7 +29,16 @@
 		<button class="button return" onclick="location.href='index.html'"> return </button>
 	
 		<script type="text/javascript">
-			
+			function checkName(){
+				var name = document.getElementById("un").value;
+				var bob = /^[0-9a-zA-Z]+$/;
+				if(!bob.test(name)) {
+					document.getElementById("post-un").innerHTML = "Username can contain only letters, numbers and underscores!";
+				} else {
+					document.getElementById("post-un").innerHTML = "";
+				}
+			}
+
 			function checkConfirm(){
 				if(document.getElementById('pass').value != document.getElementById('pConfirm').value){
 					document.getElementById("post-confirm").innerHTML = "Passwords don't match";
@@ -40,9 +51,9 @@
 				var pass = document.getElementById('pass').value;
 				var strength = 0;
 				
-				nums = /[0-9]/;
-				low = /[a-z]/;
-				upper = /[A-Z]/;
+				var nums = /[0-9]/;
+				var low = /[a-z]/;
+				var upper = /[A-Z]/;
 				if(nums.test(pass))
 					strength++;
 				if(low.test(pass))	
@@ -52,7 +63,7 @@
 				if(pass.length < 6)
 					strength = 0;
 				var target = document.getElementById("post-pass");
-				switch(strength){
+				switch(strength) {
 					case 0:
 						target.innerHTML = "Password is too short (must contain at least 6 elements)";
 						break;
@@ -67,7 +78,16 @@
 						break;
 				}
 			}
-		
+
+			function checkMail(){
+				var name = document.getElementById("mail").value;
+				var bob = /@/;
+				if(!bob.test(name)) {
+					document.getElementById("post-mail").innerHTML = "please enter a valid e-mail";
+				} else {
+					document.getElementById("post-mail").innerHTML = "";
+				}
+			}
 		</script>
 	
 	</body>
