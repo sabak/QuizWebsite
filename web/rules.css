@@ -1,0 +1,114 @@
+
+body {
+	font-family: Arial;
+	background-color: #3498DB;
+	background-image:url(wd.jpg);
+	padding-left: 30px;
+	padding-top:10px;
+}
+
+#inputs{
+	position:absolute;
+	left:40%;
+	top:20%;
+}
+
+/* text bold */
+.tb{
+	font-family:Arial;
+	color: #660000;
+	font-weight:600;
+}
+
+#title{
+	text-align:center;
+	font-family:Arial;
+	color: #660000;
+}
+
+.button {	
+    background-color: #660000; /* Green */
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+	width: 255px;
+	margin: 0 auto;
+	border-radius: 3px;
+	font-weight: 600;
+	margin-bottom:5px;
+	
+}
+
+.sub{
+	font-size: 125%;
+	margin-top:20px;
+	
+}
+
+.pass{
+	background-color: #ECF0F1;
+	width: 225px;
+}
+
+.return{
+	background-color:#ECF0F1;
+	margin-top:15px;
+}
+
+#bs{
+	position:absolute;
+	left:40%;
+	position:relative;
+	left:15px;
+}
+
+input {
+	text-align: center;
+	background-color: #ECF0F1;
+	border: 2px solid transparent;
+	border-radius: 3px;
+	font-size: 16px;
+	font-weight: 200;
+	padding: 10px 0;
+	width: 250px;
+	transition: border .5s;
+	margin-bottom:5px;
+}
+
+input:focus {
+	border: 2px solid #3498DB;
+	box-shadow: none;
+}
+
+#inputs-rec{
+	position:absolute;
+	top:20%;
+	left:40%
+}
+
+#bold-text{
+	position:relative;
+	left: -25px;
+	text-align:center;
+	font-family:Arial;
+	color: #660000;
+}
+
+#bold-text2{
+	text-align:Left;
+	font-family:Arial;
+	color: #660000;
+	margin-bottom:40px;
+}
+
+#user-image{
+	border-style:solid;
+	border-color:brown;
+}
+
+
+
