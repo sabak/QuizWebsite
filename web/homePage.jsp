@@ -6,9 +6,9 @@
 
 	<body>
 		<div id="user-image">
-			<img src="david.jpg"  style="width:180px;height:200px;position:relative; left:10px; top:10px;">
+			<img src="default.png"  style="width:180px;height:200px;position:relative; left:10px; top:10px;">
 			</br>
-			<div class="tn" style="text-align:center; position:relative; top:15px;"> David The Builder </div>
+			<div class="tn" style="text-align:center; position:relative; top:15px;"> Username </div>
 		</div>
 
 		<div id="activity">
