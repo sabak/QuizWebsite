@@ -1,0 +1,241 @@
+
+body {
+	font-family: Arial;
+	background-color: #3498DB;
+	background-image:url(wd.jpg);
+	padding-left: 30px;
+	padding-top:10px;
+}
+
+#inputs{
+	position:absolute;
+	left:40%;
+	top:20%;
+}
+
+/* text bold */
+.tb{
+	font-family:Arial;
+	color: #660000;
+	font-weight:600;
+}
+
+/* text normal */
+.tn{
+	font-family:Arial;
+	color: #660000;
+	font-weight:400;
+}
+
+
+#title{
+	text-align:center;
+	font-family:Arial;
+	color: #660000;
+}
+
+.button {	
+    background-color: #660000; /* Green */
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+	width: 255px;
+	margin: 0 auto;
+	border-radius: 3px;
+	font-weight: 600;
+	margin-bottom:5px;
+	
+}
+
+.sub{
+	font-size: 125%;
+	margin-top:20px;
+	
+}
+
+.pass{
+	background-color: #ECF0F1;
+	width: 225px;
+}
+
+.return{
+	background-color:#ECF0F1;
+	margin-top:15px;
+}
+
+#bs{
+	position:absolute;
+	left:40%;
+	position:relative;
+	left:15px;
+}
+
+input {
+	text-align: center;
+	background-color: #ECF0F1;
+	border: 2px solid transparent;
+	border-radius: 3px;
+	font-size: 16px;
+	font-weight: 200;
+	padding: 10px 0;
+	width: 250px;
+	transition: border .5s;
+	margin-bottom:5px;
+}
+
+input:focus {
+	border: 2px solid #3498DB;
+	box-shadow: none;
+}
+
+#inputs-rec{
+	position:absolute;
+	top:20%;
+	left:40%
+}
+
+#bold-text{
+	position:relative;
+	left: -25px;
+	text-align:center;
+	font-family:Arial;
+	color: #660000;
+}
+
+#bold-text2{
+	text-align:Left;
+	font-family:Arial;
+	color: #660000;
+	margin-bottom:40px;
+}
+
+#user-image{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:0%;
+	left:0%;
+	height:250px;
+	width:200px;
+}
+
+#activity{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:251px;
+	left:0px;
+	width:200px;
+	height:200px;
+}
+
+#mq{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:452px;
+	left:0px;
+	width:200px;
+	height:200px;
+}
+#achievements{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:653px;
+	left:0px;
+	width:200px;
+	height:200px;
+}
+
+#Announcements{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:0px;
+	right:0px;
+	width:200px;
+	height:200px;
+}
+
+#fAct{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:201px;
+	right:0px;
+	width:200px;
+	height:200px;
+}
+
+#mess{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:402px;
+	right:0px;
+	width:200px;
+	height:451px;
+}
+
+#sbar{
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:5px;
+	left:250px;
+	height:60px;
+	margin-right:200px;
+	padding-left:3px;
+	padding-right:3px;
+}
+
+/*button*/
+.srch{
+	height:40px;
+	position:relative;
+	top:4px;
+}
+
+#search{
+	height:40px;
+	width:600px;
+}
+
+.pr{
+	background-color:#ECF0F1;
+	margin-left:25px;
+}
+
+#poprec{
+	position:absolute;
+	top:85px;
+	left:18%;
+}
+
+#q-form{
+	border-style: solid;
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:500px;
+	height: 100%;
+}
+
+#q-types{
+	position:absolute;
+	top:25px;
+	left:520px;
+	width:300px;
+}
+
+#registration_submit_button{
+	margin-top:100px;
+	background-color:#660000;
+}
