@@ -1,4 +1,4 @@
-package model;
+package ge.freeuni.quizwebsite.model;
 
 import java.util.ArrayList;
 
@@ -36,14 +36,14 @@ public class MultipleChoice extends Question {
         this.options.remove(option);
     }
 
-    public boolean checkAnswer(String ans){
-        if(ans == answer)
+    public boolean checkAnswer(String ans) {
+        if (ans == answer)
             return true;
         return false;
     }
 
-    public boolean checkAnswer(int k){
-        if(options.get(k) == this.answer)
+    public boolean checkAnswer(int k) {
+        if (options.get(k) == this.answer)
             return true;
         return false;
     }

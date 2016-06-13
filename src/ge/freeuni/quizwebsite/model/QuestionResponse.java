@@ -1,4 +1,4 @@
-package model;
+package ge.freeuni.quizwebsite.model;
 
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * multiple correct answers
  * user enters single correct answer
  */
-public class QuestionResponse extends Question{
+public class QuestionResponse extends Question {
 
     //list of all the correct answers
     private ArrayList<String> Answers = new ArrayList<>();
@@ -22,15 +22,15 @@ public class QuestionResponse extends Question{
         this.Answers = Answers;
     }
 
-    public void addAnswer(String answer){
+    public void addAnswer(String answer) {
         this.Answers.add(answer);
     }
 
-    public void removeAnswer(String answer){
+    public void removeAnswer(String answer) {
         this.Answers.remove(answer);
     }
 
-    public boolean checkAnswer(String answer){
+    public boolean checkAnswer(String answer) {
         if (Answers.contains(answer))
             return true;
         return false;

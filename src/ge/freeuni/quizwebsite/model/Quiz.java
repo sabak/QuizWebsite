@@ -1,4 +1,4 @@
-package model;
+package ge.freeuni.quizwebsite.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,17 +92,17 @@ public class Quiz {
 
     private ArrayList<Score> scores = new ArrayList<>(); //always sorted by... well, score. highest first
 
-    public void addScore(Score score){
-        if(this.scores.size() == 0) {
+    public void addScore(Score score) {
+        if (this.scores.size() == 0) {
             scores.add(score);
-        } else{
-            for(int i=0; i<this.scores.size(); i++){
-                if(score.getScore() >= this.scores.get(i).getScore()){
+        } else {
+            for (int i = 0; i < this.scores.size(); i++) {
+                if (score.getScore() >= this.scores.get(i).getScore()) {
                     this.scores.add(i, score);
                     break;
                 }
             }
-            if(score.getScore() < this.scores.get(this.scores.size()-1).getScore()){
+            if (score.getScore() < this.scores.get(this.scores.size() - 1).getScore()) {
                 scores.add(score);
             }
         }
@@ -110,31 +110,31 @@ public class Quiz {
 
     private int nHighScore = 10; // number of highest scores to be returened. 10 by default
 
-    public void setnHighScore(int n){
+    public void setnHighScore(int n) {
         nHighScore = n;
     }
 
-    public int getnHighScore(){
+    public int getnHighScore() {
         return nHighScore;
     }
 
-    public ArrayList<Score> getScoresAllTime(){
+    public ArrayList<Score> getScoresAllTime() {
         if (this.scores.size() <= nHighScore)
             return this.scores;
 
         ArrayList<Score> hs = new ArrayList<>();
-        for (int i=0; i<nHighScore; i++){
+        for (int i = 0; i < nHighScore; i++) {
             hs.add(scores.get(i));
         }
         return hs;
     }
 
-    public ArrayList<Score> getScoresLastDay(){
+    public ArrayList<Score> getScoresLastDay() {
         ArrayList<Score> hs = new ArrayList<>();
         hs.addAll(this.scores);
         hs = removeOld(hs);
 
-        for(int i=nHighScore; i<hs.size(); i++){
+        for (int i = nHighScore; i < hs.size(); i++) {
             hs.remove(i);
         }
 
@@ -143,9 +143,9 @@ public class Quiz {
 
     private ArrayList<Score> removeOld(ArrayList<Score> hs) {
         Date date = new Date();//current time
-        date = new Date(date.getTime() - 1 * 24 * 3600 * 1000 );
+        date = new Date(date.getTime() - 1 * 24 * 3600 * 1000);
 
-        for (int i = 0; i < hs.size(); i++){
+        for (int i = 0; i < hs.size(); i++) {
             Date temp = hs.get(i).getDateOfQuiz();
             if (temp.before(date))
                 hs.remove(i);

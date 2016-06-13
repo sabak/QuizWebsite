@@ -1,4 +1,4 @@
-package model;
+package ge.freeuni.quizwebsite.model;
 
 import java.util.Date;
 

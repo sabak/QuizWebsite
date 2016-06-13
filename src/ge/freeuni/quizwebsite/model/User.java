@@ -1,4 +1,4 @@
-package model;
+package ge.freeuni.quizwebsite.model;
 
 import java.util.ArrayList;
 
@@ -12,15 +12,15 @@ public class User {
 
     private ArrayList<Score> scores = new ArrayList<>();
 
-    public void addScore(Score score){
+    public void addScore(Score score) {
         scores.add(score);
     }
 
-    public void setPassword(String pass){
+    public void setPassword(String pass) {
 
     }
 
-    public boolean checkPassword(String pass){
+    public boolean checkPassword(String pass) {
 
         return false;
     }
