@@ -26,14 +26,14 @@
 			<button class="button sub" onclick="document.getElementById('bob').submit();"> Submit </button>
 		</form>	
 	
-		<button class="button return" onclick="location.href='index.html'"> return </button>
+		<button class="button return" onclick="location.href='index.jsp'"> return </button>
 	
 		<script type="text/javascript">
 			function checkName(){
 				var name = document.getElementById("un").value;
 				var bob = /^[0-9a-zA-Z]+$/;
 				if(!bob.test(name)) {
-					document.getElementById("post-un").innerHTML = "Username can contain only letters, numbers and underscores!";
+					document.getElementById("post-un").innerHTML = "Username can't be empty and can contain only letters, numbers and underscores!";
 				} else {
 					document.getElementById("post-un").innerHTML = "";
 				}

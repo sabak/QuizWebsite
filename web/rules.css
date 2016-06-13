@@ -190,6 +190,8 @@ input:focus {
 	left:250px;
 	height:60px;
 	margin-right:200px;
+	padding-left:3px;
+	padding-right:3px;
 }
 
 /*button*/
@@ -202,5 +204,38 @@ input:focus {
 #search{
 	height:40px;
 	width:600px;
+}
 
+.pr{
+	background-color:#ECF0F1;
+	margin-left:25px;
+}
+
+#poprec{
+	position:absolute;
+	top:85px;
+	left:18%;
+}
+
+#q-form{
+	border-style: solid;
+	border-style:solid;
+	border-color:brown;
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:500px;
+	height: 100%;
+}
+
+#q-types{
+	position:absolute;
+	top:25px;
+	left:520px;
+	width:300px;
+}
+
+#registration_submit_button{
+	margin-top:100px;
+	background-color:#660000;
 }
