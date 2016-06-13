@@ -1,6 +1,7 @@
 package ge.freeuni.quizwebsite.controller.listener;
 
 import com.mysql.jdbc.AbandonedConnectionCleanupThread;
+import ge.freeuni.quizwebsite.manager.dao.AccountManager;
 import ge.freeuni.quizwebsite.manager.dao.db.DBInfo;
 
 import javax.naming.Context;
@@ -37,6 +38,7 @@ public class ContextListener implements ServletContextListener,
             DataSource dataSource = (DataSource) envContext.lookup("jdbc/"
                     + DBInfo.DB_NAME);
             sce.getServletContext().setAttribute("DataSource", dataSource);
+            sce.getServletContext().setAttribute(AccountManager.ATTRIBUTE_NAME, new AccountManager(dataSource));
         } catch (NamingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
