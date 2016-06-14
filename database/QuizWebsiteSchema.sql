@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS account (
   id              INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
   username        VARCHAR(64)  NOT NULL UNIQUE,
   hashed_password CHAR(64)     NOT NULL,
-  email_address   VARCHAR(254) NOT NULL,
+  email_address   VARCHAR(254),
   first_name      NVARCHAR(32),
   last_name       NVARCHAR(32),
   birthdate       DATE
@@ -48,7 +48,6 @@ CREATE TABLE IF NOT EXISTS question (
   id                  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   quiz_id             INT,
   type_id             INT,
-  is_picture_response BOOLEAN      DEFAULT FALSE,
   question_text       TEXT,
   question_index      INT,
   FOREIGN KEY (quiz_id) REFERENCES quiz (id)
@@ -166,10 +165,10 @@ CREATE TABLE IF NOT EXISTS announcements (
   COLLATE utf8_unicode_ci;
 
 # Inserting expected values for question types
-INSERT INTO achievement_type (name) VALUES ("Question-Response");
-INSERT INTO achievement_type (name) VALUES ("Fill in the Blank");
-INSERT INTO achievement_type (name) VALUES ("Multiple Choice");
-INSERT INTO achievement_type (name) VALUES ("Picture-Response");
+INSERT INTO question_type (type) VALUES ("Question-Response");
+INSERT INTO question_type (type) VALUES ("Fill in the Blank");
+INSERT INTO question_type (type) VALUES ("Multiple Choice");
+INSERT INTO question_type (type) VALUES ("Picture-Response");
 
 # Inserting expected values for achievement types
 INSERT INTO achievement_type (name) VALUES ("Amateur Author");
