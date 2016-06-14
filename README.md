@@ -17,8 +17,8 @@ Team: Nini Mumladze, Alexander Turdzeladze, Giorgi Kvantrishvili, Saba Kharabadz
     ![alt text](https://raw.githubusercontent.com/sabak/QuizWebsite/master/misc/run_config.png "Run Config")
     ![alt text](https://raw.githubusercontent.com/sabak/QuizWebsite/master/misc/server_config.png "Server Config")
 
-3. web/META-INF საქაღალდეში მყოფ context.xml ფაილში (რომელიც Connection Pool-ის პარამეტრებს წარმოადგენს) მონაცემთა ბაზის მომხმარებლის სახელი და/ან პაროლი სასურველი მონაცემებით უნდა შეცვალოთ. სასურველია ფაილს მიუთითოთ **git update-index --assume-unchanged <file>**, რათა სხვა კოლაბორატორებთან ამ ფაილზე მუდმივი კონფლიქტი არ მოხდეს.
+3. web/META-INF საქაღალდეში მყოფ context.xml ფაილში (რომელიც Connection Pool-ის პარამეტრებს წარმოადგენს) მონაცემთა ბაზის მომხმარებლის სახელი და/ან პაროლი სასურველი მონაცემებით უნდა შეცვალოთ. **აუცილებელია** ფაილს მიუთითოთ **git update-index --assume-unchanged <file>**, რათა სხვა კოლაბორატორებთან ამ ფაილზე მუდმივი კონფლიქტი არ მოხდეს.
 
-4. DBInfo.java ფაილში კონსტანტების მნიშვნელობები - მონაცემთა ბაზის მომხმარებლის სახელი და/ან პაროლი სასურველი მონაცემებით უნდა შეცვალოთ. სასურველია ფაილს მიუთითოთ **git update-index --assume-unchanged <file>**, რათა სხვა კოლაბორატორებთან ამ ფაილზე მუდმივი კონფლიქტი არ მოხდეს.
+4. DBInfo.java ფაილში კონსტანტების მნიშვნელობები - მონაცემთა ბაზის მომხმარებლის სახელი და/ან პაროლი სასურველი მონაცემებით უნდა შეცვალოთ. **აუცილებელია** ფაილს მიუთითოთ **git update-index --assume-unchanged <file>**, რათა სხვა კოლაბორატორებთან ამ ფაილზე მუდმივი კონფლიქტი არ მოხდეს.
 
 5. ბაზის სქემად გამოიყენეთ QuizWebsiteSchema.sql ფაილი (database დირექტორიიდან)
