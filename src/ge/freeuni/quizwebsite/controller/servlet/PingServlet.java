@@ -1,5 +1,8 @@
 package ge.freeuni.quizwebsite.controller.servlet;
 
+import ge.freeuni.quizwebsite.manager.dao.AccountManager;
+
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -20,5 +23,14 @@ public class PingServlet extends javax.servlet.http.HttpServlet {
         // Actual logic goes here.
         PrintWriter out = response.getWriter();
         out.println("<h1>Ping</h1>");
+
+        // getting account manager
+        AccountManager accManager = (AccountManager) getServletContext()
+                .getAttribute(AccountManager.ATTRIBUTE_NAME);
+
+        DataSource dataSource = (DataSource) getServletContext().getAttribute("DataSource");
+
+        out.println("<h1>DataSource: " + (dataSource != null) + "<h1>");
+        out.println("<h1>AccountManager: " + (accManager != null) + "<h1>");
     }
 }
