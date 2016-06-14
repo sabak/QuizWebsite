@@ -14,3 +14,5 @@ Team: Nini Mumladze, Alexander Turdzeladze, Giorgi Kvantrishvili, Saba Kharabadz
     ![alt text](https://raw.githubusercontent.com/sabak/QuizWebsite/master/misc/server_config.png "Server Config")
 
 2. IntelliJ IDEA-ს საშუალებით GitHub-იდან დაკლონეთ პროექტი
+
+3. ბაზის სქემად გამოიყენეთ QuizWebsiteSchema.sql ფაილი (database დირექტორიიდან)

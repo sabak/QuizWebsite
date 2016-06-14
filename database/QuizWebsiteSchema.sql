@@ -27,7 +27,8 @@ CREATE TABLE IF NOT EXISTS admin (
 CREATE TABLE IF NOT EXISTS quiz (
   id                      INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id                 INT,
-  create_date             DATETIME,
+  date_created            DATETIME     DEFAULT now(),
+  name                    NVARCHAR(256),
   description             TEXT,
   is_multiple_page        BOOL         DEFAULT FALSE,
   is_immediate_correction BOOL         DEFAULT FALSE
@@ -36,14 +37,23 @@ CREATE TABLE IF NOT EXISTS quiz (
   COLLATE utf8_unicode_ci;
 ;
 
-# Table for questions linked to quizz
+# Table for questions types (is supposed to have mostly fixed size of rows during lifetime)
+CREATE TABLE IF NOT EXISTS question_type (
+  id   INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  type NVARCHAR(64)
+);
+
+# Table for questions linked to quiz
 CREATE TABLE IF NOT EXISTS question (
   id                  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   quiz_id             INT,
+  type_id             INT,
   is_picture_response BOOLEAN      DEFAULT FALSE,
   question_text       TEXT,
   question_index      INT,
   FOREIGN KEY (quiz_id) REFERENCES quiz (id)
+    ON DELETE CASCADE,
+  FOREIGN KEY (type_id) REFERENCES question_type (id)
     ON DELETE CASCADE
 )
   DEFAULT CHARACTER SET utf8
@@ -53,7 +63,7 @@ CREATE TABLE IF NOT EXISTS question (
 CREATE TABLE IF NOT EXISTS answer (
   id          INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   question_id INT,
-  answer_text TEXT,
+  answer      TEXT,
   is_correct  BOOL         DEFAULT TRUE,
   FOREIGN KEY (question_id) REFERENCES question (id)
     ON DELETE CASCADE
@@ -85,7 +95,7 @@ CREATE TABLE IF NOT EXISTS friend (
     ON DELETE CASCADE
 );
 
-# Table for achievement types (will fixed size)
+# Table for achievement types (is supposed to have mostly fixed size of rows during lifetime)
 CREATE TABLE IF NOT EXISTS achievement_type (
   id   INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name TEXT
@@ -136,6 +146,7 @@ CREATE TABLE IF NOT EXISTS message (
   receiver_id  INT,
   send_date    DATETIME,
   message_text TEXT,
+  is_read      BOOLEAN      DEFAULT FALSE,
   FOREIGN KEY (sender_id) REFERENCES account (id)
     ON DELETE CASCADE,
   FOREIGN KEY (receiver_id) REFERENCES account (id)
@@ -154,6 +165,13 @@ CREATE TABLE IF NOT EXISTS announcements (
   DEFAULT CHARACTER SET utf8
   COLLATE utf8_unicode_ci;
 
+# Inserting expected values for question types
+INSERT INTO achievement_type (name) VALUES ("Question-Response");
+INSERT INTO achievement_type (name) VALUES ("Fill in the Blank");
+INSERT INTO achievement_type (name) VALUES ("Multiple Choice");
+INSERT INTO achievement_type (name) VALUES ("Picture-Response");
+
+# Inserting expected values for achievement types
 INSERT INTO achievement_type (name) VALUES ("Amateur Author");
 INSERT INTO achievement_type (name) VALUES ("Prolific Author");
 INSERT INTO achievement_type (name) VALUES ("Prodigious Author");
