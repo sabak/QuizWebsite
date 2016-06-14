@@ -10,8 +10,7 @@ CREATE TABLE IF NOT EXISTS account (
   hashed_password CHAR(64)     NOT NULL,
   email_address   VARCHAR(254),
   first_name      NVARCHAR(32),
-  last_name       NVARCHAR(32),
-  birthdate       DATE
+  last_name       NVARCHAR(32)
 )
   DEFAULT CHARACTER SET utf8
   COLLATE utf8_unicode_ci;
@@ -72,12 +71,12 @@ CREATE TABLE IF NOT EXISTS answer (
 ;
 
 # Table representing users' scoreboard
-CREATE TABLE IF NOT EXISTS score (
+CREATE TABLE IF NOT EXISTS quiz_result (
   id             INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   quiz_id        INT,
   account_id     INT,
   time_taken     TIME,
-  quiz_take_date DATETIME,
+  result_submit_date DATETIME,
   FOREIGN KEY (quiz_id) REFERENCES quiz (id)
     ON DELETE CASCADE,
   FOREIGN KEY (account_id) REFERENCES account (id)
