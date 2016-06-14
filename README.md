@@ -11,7 +11,8 @@ Team: Nini Mumladze, Alexander Turdzeladze, Giorgi Kvantrishvili, Saba Kharabadz
 1. IntelliJ IDEA-ში უკვე უნდა გქონდეთ დამატებული **Tomcat**, პროექტის კონფიგურაციაში ამჟამად გაწერილია **Tomcat 8** ვერსია. პროექტმა რომ სწორად იმუშაოს თქვენთან, ვალდებული ხართ, რომ IntelliJ IDEA-ზე გეყენოთ Tomcat 8.* ვერსია და სახელად ერქვას ზუსტად **Tomcat 8**, ისე როგორც აქ არის ნაჩვენები:
     ![alt text](https://raw.githubusercontent.com/sabak/QuizWebsite/master/misc/server_preferences.png "Server Preferences")
 
-2. IntelliJ IDEA-ს საშუალებით GitHub-იდან დაკლონეთ პროექტი. დარწმუნდით რომ პროექტის Tomcat-ით გაშვება შესაძლებელია:
+2. IntelliJ IDEA-ს საშუალებით GitHub-იდან დაკლონეთ პროექტი. დარწმუნდით, რომ პროექტის Tomcat-ით გაშვება შესაძლებელია:
+
     ![alt text](https://raw.githubusercontent.com/sabak/QuizWebsite/master/misc/run_options.png "Run Options")
     ![alt text](https://raw.githubusercontent.com/sabak/QuizWebsite/master/misc/run_config.png "Run Config")
     ![alt text](https://raw.githubusercontent.com/sabak/QuizWebsite/master/misc/server_config.png "Server Config")
