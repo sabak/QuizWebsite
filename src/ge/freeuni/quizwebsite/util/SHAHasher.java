@@ -3,7 +3,7 @@ package ge.freeuni.quizwebsite.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Hash {
+public class SHAHasher {
 
     public static String hashText(String text) throws NoSuchAlgorithmException {
         MessageDigest md;
