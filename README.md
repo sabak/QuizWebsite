@@ -4,8 +4,10 @@ Final project in OOP
 Repository created by sabak (Saba Kharabadze) 
 Team: Nini Mumladze, Alexander Turdzeladze, Giorgi Kvantrishvili, Saba Kharabadze
 
-[Wiki] [როგორ დავიწყოთ პროექტზე მუშაობა]
+###[**Wiki**] **როგორ დავიწყოთ პროექტზე მუშაობა**
 
-1. პროექტი დაკლონეთ GitHub-იდან და Eclipse-ში შექმენით იმავე სახელის (QuizWebsite) დინამიკური ვებ პროექტი (Dynamic Web Project) იმავე დირექტორიაში, სადაც დაკლონავთ. Runtime - ი მიუთითეთ Tomcat 8.0. თუ არ გთავაზობთ მაგას, მაშინ Eclipse-ში Window > Preferences > Server > Runtime Environment > Add და მიუთითეთ თქვენი Tomcat ის ფოლდერზე.
+1. პროექტზე სამუშაოდ ვიყენებთ **IntelliJ IDEA Ultimate**-ს (Community Edition-ს არ აქვს ვებ აპლიკაციების მხარდაჭერა)
 
-2. Tomcat ის ინსტალაციის დირექტორიაში lib ში ჩააგდეთ mysql-connector-java-5.1.34-bin.jar ან უფრო ახალი.
+1. IntelliJ IDEA-ში უკვე უნდა გქონდეთ დამატებული **Tomcat**, პროექტის კონფიგურაციაში ამჟამად გაწერილია **Tomcat 8** ვერსია. პროექტმა რომ სწორად იმუშაოს თქვენთან, ვალდებული ხართ, რომ IntelliJ IDEA-ზე გეყენოთ Tomcat 8.* ვერსია და სახელად ერქვას ზუსტად **Tomcat 8**, ისე როგორ აქ არის ნაჩვენები:
+
+2. IntelliJ IDEA-ს საშუალებით GitHub-იდან დაკლონეთ პროექტი
