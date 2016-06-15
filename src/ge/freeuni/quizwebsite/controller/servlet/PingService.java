@@ -1,6 +1,7 @@
 package ge.freeuni.quizwebsite.controller.servlet;
 
 import ge.freeuni.quizwebsite.manager.dao.AccountManager;
+import ge.freeuni.quizwebsite.util.SHAHasher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +37,9 @@ public class PingService extends HttpServlet {
 
         DataSource dataSource = (DataSource) getServletContext().getAttribute("DataSource");
 
-        out.println("<h1>DataSource: " + (dataSource != null) + "<h1>");
-        out.println("<h1>AccountManager: " + (accManager != null) + "<h1>");
+        out.println("<h2>DataSource: " + (dataSource != null) + "</h2>");
+        out.println("<h2>AccountManager: " + (accManager != null) + "</h2>");
+        out.println("<h3>SHA-256 Hash for \'humanlabrador\': " + SHAHasher.hashText("humanlabrador")
+                + ", should be 54b4427f1e21f7b79a0b656b259520ceb5f49055e47c1e84c6f3346b77d537a5</h3>");
     }
 }
