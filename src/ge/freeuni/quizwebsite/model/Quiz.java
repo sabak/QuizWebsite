@@ -37,7 +37,13 @@ public class Quiz {
         return id;
     }
 
-    public boolean isHasRandomOrder() {
+    /**
+     * Returns if the quiz is set to either randomize the order of the questions or
+     * to always present them in the same order.
+     *
+     * @return true if randomized, false otherwise.
+     */
+    public boolean hasHasRandomOrder() {
         return hasRandomOrder;
     }
 
