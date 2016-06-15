@@ -1,33 +1,35 @@
 package ge.freeuni.quizwebsite.model;
 
-
 import java.sql.Timestamp;
 import java.util.List;
 
 public class Quiz {
+
     private Integer id;
-    private boolean hasRandomOrder;
-    private Timestamp dateCreated;
     private String name;
-    private PageType pageType;
-    private boolean isImmediatelyCorrected;
     private String description;
+    private boolean hasRandomOrder;
+    private boolean isImmediatelyCorrected;
+    private PageType pageType;
+    private Timestamp dateCreated;
     private List<Question> questions;
 
-    public Quiz(boolean hasRandomOrder, Timestamp dateCreated, String name, PageType pageType,
-                boolean isImmediatelyCorrected, String description, List<Question> questions) {
-        this(null, hasRandomOrder, dateCreated, name, pageType, isImmediatelyCorrected, description, questions);
+    public Quiz(String name, String description, boolean hasRandomOrder,
+                boolean isImmediatelyCorrected, PageType pageType, Timestamp dateCreated,
+                List<Question> questions) {
+        this(null, name, description, hasRandomOrder, isImmediatelyCorrected, pageType, dateCreated, questions);
     }
 
-    public Quiz(Integer id, boolean hasRandomOrder, Timestamp dateCreated, String name, PageType pageType,
-                boolean isImmediatelyCorrected, String description, List<Question> questions) {
+    public Quiz(Integer id, String name, String description, boolean hasRandomOrder,
+                boolean isImmediatelyCorrected, PageType pageType, Timestamp dateCreated,
+                List<Question> questions) {
         this.id = id;
-        this.hasRandomOrder = hasRandomOrder;
-        this.dateCreated = dateCreated;
         this.name = name;
-        this.pageType = pageType;
-        this.isImmediatelyCorrected = isImmediatelyCorrected;
         this.description = description;
+        this.hasRandomOrder = hasRandomOrder;
+        this.isImmediatelyCorrected = isImmediatelyCorrected;
+        this.pageType = pageType;
+        this.dateCreated = dateCreated;
         this.questions = questions;
     }
 
@@ -61,6 +63,14 @@ public class Quiz {
 
     public List<Question> getQuestions() {
         return questions;
+    }
+
+    @Override
+    public String toString() {
+        return "Quiz: " + name + "; Description: " + description + "; " +
+                (hasRandomOrder ? "Is random ordered; " : "Is not random ordered; ") +
+                (isImmediatelyCorrected ? "Is immediately corrected; " : "Is not immediately corrected; ") +
+                "Page Type: " + pageType + "; Date created: " + dateCreated + "; Questions {" + questions + "};";
     }
 }
 

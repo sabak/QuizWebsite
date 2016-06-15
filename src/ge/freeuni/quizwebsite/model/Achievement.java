@@ -21,4 +21,11 @@ public class Achievement {
     public Timestamp getDateUnlocked() {
         return dateUnlocked;
     }
+
+    @Override
+    public String toString() {
+        return "Achievement: " + achievementType + "; "
+                + "Achievement unlocked at: " + dateUnlocked + ";";
+    }
+    
 }

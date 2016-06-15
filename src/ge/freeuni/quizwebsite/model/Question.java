@@ -46,4 +46,10 @@ public class Question {
         return index;
     }
 
+    @Override
+    public String toString() {
+        return "Question: " + text + "; Type: " + questionType +
+                "; Index: " + index + "; Answers {" + answers + "};";
+    }
+
 }

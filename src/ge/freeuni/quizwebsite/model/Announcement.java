@@ -31,4 +31,10 @@ public class Announcement {
     public Timestamp getDatePosted() {
         return datePosted;
     }
+
+    @Override
+    public String toString() {
+        return "Announcement: " + text + "; Date posted: " + datePosted + ";";
+    }
+    
 }

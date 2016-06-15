@@ -47,5 +47,14 @@ public class Account {
     public String getLastName() {
         return lastName;
     }
-}
 
+    @Override
+    public String toString() {
+        return "Username: " + username + "; "
+                + "Hashed Password: " + hashedPassword + "; "
+                + "E-mail: " + email + "; "
+                + "First Name: " + firstName + "; "
+                + "Last Name: " + lastName + ";";
+    }
+
+}

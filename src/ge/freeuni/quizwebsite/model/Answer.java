@@ -29,4 +29,10 @@ public class Answer {
     public boolean isCorrect() {
         return isCorrect;
     }
+
+    @Override
+    public String toString() {
+        return "Answer: " + text + "; " + (isCorrect ? "Correct answer;" : "Incorrect answer");
+    }
+    
 }

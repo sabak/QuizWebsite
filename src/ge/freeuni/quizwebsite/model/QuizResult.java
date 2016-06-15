@@ -32,4 +32,10 @@ public class QuizResult {
     public Timestamp getResultSubmitDate() {
         return resultSubmitDate;
     }
+
+    @Override
+    public String toString() {
+        return "Time taken to complete quiz: " + timeTaken + "; Submitted at: " + resultSubmitDate + ";";
+    }
+
 }

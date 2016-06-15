@@ -5,6 +5,8 @@ package ge.freeuni.quizwebsite.model;
  */
 
 public enum QuestionType {
-    QUESTION_RESPONSE, FILL_IN_THE_BLANK, MULTIPLE_CHOICE,
+    QUESTION_RESPONSE,
+    FILL_IN_THE_BLANK,
+    MULTIPLE_CHOICE,
     PICTURE_RESPONSE
 }

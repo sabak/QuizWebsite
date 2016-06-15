@@ -11,7 +11,7 @@ public class Message {
     private Timestamp dateSent;
     private boolean isRead;
 
-    public Message(Timestamp dateSent, String text, boolean isRead) {
+    public Message(String text, Timestamp dateSent, boolean isRead) {
         this(null, text, dateSent, isRead);
     }
 
@@ -37,4 +37,10 @@ public class Message {
     public boolean isRead() {
         return isRead;
     }
+
+    @Override
+    public String toString() {
+        return "Message: " + text + "; Sent at: " + dateSent + "; " + (isRead ? "Seen;" : "Unread;");
+    }
+
 }
