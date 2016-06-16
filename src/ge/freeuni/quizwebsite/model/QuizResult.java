@@ -8,21 +8,33 @@ import java.sql.Timestamp;
  */
 public class QuizResult {
     private Integer id;
+    private int score;
+    private String username;
     private Time timeTaken;
     private Timestamp resultSubmitDate;
 
-    public QuizResult(Time timeTaken, Timestamp resultSubmitDate) {
-        this(null, timeTaken, resultSubmitDate);
+    public QuizResult(int score, String username, Time timeTaken, Timestamp resultSubmitDate) {
+        this(null, score, username, timeTaken, resultSubmitDate);
     }
 
-    public QuizResult(Integer id, Time timeTaken, Timestamp resultSubmitDate) {
+    public QuizResult(Integer id, int score, String username, Time timeTaken, Timestamp resultSubmitDate) {
         this.id = id;
+        this.score = score;
+        this.username = username;
         this.timeTaken = timeTaken;
         this.resultSubmitDate = resultSubmitDate;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public Time getTimeTaken() {
@@ -35,7 +47,9 @@ public class QuizResult {
 
     @Override
     public String toString() {
-        return "Time taken to complete quiz: " + timeTaken + "; Submitted at: " + resultSubmitDate + ";";
+        return "Score: " + score + "; Completed by: " + username +
+                "; Time taken to complete quiz: " + timeTaken +
+                "; Submitted at: " + resultSubmitDate + ";";
     }
 
 }

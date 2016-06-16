@@ -37,6 +37,14 @@ public class Quiz {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     /**
      * Returns if the quiz is set to either randomize the order of the questions or
      * to always present them in the same order.
@@ -47,24 +55,27 @@ public class Quiz {
         return hasRandomOrder;
     }
 
-    public Timestamp getDateCreated() {
-        return dateCreated;
-    }
-
-    public String getName() {
-        return name;
+    /**
+     * For multiple page quizzes, this setting determines whether the user will receive
+     * immediate feedback on an answer, or if the quiz will only be graded once all the
+     * questions have been seen and responded to. The immediate correction option will
+     * work in conjunction with picture-response questions to create a flash- card type
+     * quiz. The computer will bring up a flash card (i.e., a picture) the user will
+     * respond with the answer and the computer will immediately provide feedback on
+     * whether the answer was correct or not.
+     *
+     * @return true if immediately corrected, false otherwise
+     */
+    public boolean isImmediatelyCorrected() {
+        return isImmediatelyCorrected;
     }
 
     public PageType getPageType() {
         return pageType;
     }
 
-    public boolean isImmediatelyCorrected() {
-        return isImmediatelyCorrected;
-    }
-
-    public String getDescription() {
-        return description;
+    public Timestamp getDateCreated() {
+        return dateCreated;
     }
 
     public List<Question> getQuestions() {
@@ -237,4 +248,3 @@ public class Quiz {
 //    }
 //
 //} Shame! Shame! Shame!
-

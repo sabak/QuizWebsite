@@ -5,9 +5,9 @@ USE quiz_db;
 
 # Table for user accounts
 CREATE TABLE IF NOT EXISTS account (
-  id              INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  username        VARCHAR(64)  NOT NULL UNIQUE,
-  hashed_password CHAR(64)     NOT NULL,
+  id              INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  username        VARCHAR(64) NOT NULL UNIQUE,
+  hashed_password CHAR(64)    NOT NULL,
   email_address   VARCHAR(254),
   first_name      NVARCHAR(32),
   last_name       NVARCHAR(32)
@@ -44,11 +44,11 @@ CREATE TABLE IF NOT EXISTS question_type (
 
 # Table for questions linked to quiz
 CREATE TABLE IF NOT EXISTS question (
-  id                  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  quiz_id             INT,
-  type_id             INT,
-  question_text       TEXT,
-  question_index      INT,
+  id             INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  quiz_id        INT,
+  type_id        INT,
+  question_text  TEXT,
+  question_index INT,
   FOREIGN KEY (quiz_id) REFERENCES quiz (id)
     ON DELETE CASCADE,
   FOREIGN KEY (type_id) REFERENCES question_type (id)
@@ -72,10 +72,11 @@ CREATE TABLE IF NOT EXISTS answer (
 
 # Table representing users' scoreboard
 CREATE TABLE IF NOT EXISTS quiz_result (
-  id             INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  quiz_id        INT,
-  account_id     INT,
-  time_taken     TIME,
+  id                 INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  quiz_id            INT,
+  account_id         INT,
+  score              INT,
+  time_taken         TIME,
   result_submit_date DATETIME,
   FOREIGN KEY (quiz_id) REFERENCES quiz (id)
     ON DELETE CASCADE,
