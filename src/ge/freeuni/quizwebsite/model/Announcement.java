@@ -8,15 +8,17 @@ import java.sql.Timestamp;
 public class Announcement {
     private Integer id;
     private String text;
+    private Account author;
     private Timestamp datePosted;
 
-    public Announcement(String text, Timestamp datePosted) {
-        this(null, text, datePosted);
+    public Announcement(String text, Account author, Timestamp datePosted) {
+        this(null, text, author, datePosted);
     }
 
-    public Announcement(Integer id, String text, Timestamp datePosted) {
+    public Announcement(Integer id, String text, Account author, Timestamp datePosted) {
         this.id = id;
         this.text = text;
+        this.author = author;
         this.datePosted = datePosted;
     }
 
@@ -28,6 +30,10 @@ public class Announcement {
         return text;
     }
 
+    public Account getAuthor() {
+        return author;
+    }
+
     public Timestamp getDatePosted() {
         return datePosted;
     }
@@ -36,5 +42,5 @@ public class Announcement {
     public String toString() {
         return "Announcement: " + text + "; Date posted: " + datePosted + ";";
     }
-    
+
 }
