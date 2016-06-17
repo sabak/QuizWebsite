@@ -6,10 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AccountManager extends AbstractManager {
+public class AccountManagerDAO extends AbstractManager {
     public static final String ATTRIBUTE_NAME = "account_manager";
 
-    public AccountManager(DataSource dataSource) {
+    public AccountManagerDAO(DataSource dataSource) {
         super(dataSource);
     }
 
