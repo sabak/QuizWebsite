@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 /**
- * Created by Reaper on 19-06-2016.
+ * Created by Saba on 19-06-2016.
  */
 public class ChallengeManagerDAO extends AbstractManagerDAO implements ChallengeManager {
 
