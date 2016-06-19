@@ -9,28 +9,101 @@ import java.util.List;
  */
 public interface AccountManager {
 
+    /**
+     * Returns account by given unique identifier.
+     *
+     * @param id Unique identifier
+     * @return Found account, null if not found
+     */
     public Account getAccount(Integer id);
 
+    /**
+     * Returns account by given unique username.
+     *
+     * @param username Unique username
+     * @return Found account, null if not found
+     */
     public Account getAccount(String username);
 
+    /**
+     * Checks whether given username already exists
+     *
+     * @param username Username
+     * @return true if exists, false otherwise
+     */
     public boolean usernameExists(String username);
 
-    public Account createAccount(Account acc);
 
-    public void removeAccount(Account acc);
+    /**
+     * Creates (registers) account and returns updated
+     * entry with unique identifier.
+     *
+     * @param account Account to be registered
+     * @return Registered account with unique id
+     */
+    public Account createAccount(Account account);
 
-    public void changeHashedPassword(Account acc, String newHashedPassword);
+    /**
+     * Removes account.
+     *
+     * @param account Account to be removed.
+     */
+    public void removeAccount(Account account);
 
-    public void changeEmail(Account acc, String newEmail);
+    /**
+     * Updates password for given user account.
+     *
+     * @param account           Target account
+     * @param newHashedPassword new hashed password
+     */
+    public void changeHashedPassword(Account account, String newHashedPassword);
 
-    public void changeFirstName(Account acc, String newFirstName);
+    /**
+     * Updates e-mail for given user account.
+     *
+     * @param account  Target account
+     * @param newEmail new e-mail
+     */
+    public void changeEmail(Account account, String newEmail);
 
-    public void changeLastName(Account acc, String newLastName);
+    /**
+     * Updates first name for given user account.
+     *
+     * @param account      Target account
+     * @param newFirstName new first name
+     */
+    public void changeFirstName(Account account, String newFirstName);
 
+    /**
+     * Updates last name for given user account.
+     *
+     * @param account     Target account
+     * @param newLastName new last name
+     */
+    public void changeLastName(Account account, String newLastName);
+
+    /**
+     * Returns list of user accounts, limited by given parameter.
+     *
+     * @param limit Number of consecutive accounts to return
+     * @return List of user accounts with length <code>limit</code>
+     */
     public List<Account> getAccounts(int limit);
 
+    /**
+     * Returns list of user accounts, limited by given parameters.
+     *
+     * @param limitFrom Index to get accounts from this point onwards
+     * @param limitTo   Stop index
+     * @return List of user accounts
+     */
     public List<Account> getAccounts(int limitFrom, int limitTo);
 
+    /**
+     * Returns total number of user accounts created.
+     *
+     * @return Number of total user accounts
+     */
     public int getAccountsQuantity();
 
 }

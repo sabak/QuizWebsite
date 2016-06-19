@@ -2,10 +2,10 @@ package ge.freeuni.quizwebsite.manager.dao;
 
 import javax.sql.DataSource;
 
-public abstract class AbstractManager {
+public abstract class AbstractManagerDAO {
     protected DataSource dataSource;
 
-    public AbstractManager(DataSource dataSource) {
+    public AbstractManagerDAO(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
