@@ -48,4 +48,5 @@ public class ChallengeManagerDAO extends AbstractManagerDAO implements Challenge
     public void declineChallenge(Challenge challenge) {
 
     }
+
 }

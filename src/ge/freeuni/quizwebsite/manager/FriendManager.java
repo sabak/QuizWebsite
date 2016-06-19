@@ -10,18 +10,58 @@ import java.util.List;
  */
 public interface FriendManager {
 
-    public FriendRequest getFriendRequest(Integer id);
+    /**
+     * Returns friend request by given unique identifier.
+     *
+     * @param id Unique identifier
+     * @return Found friend request, null if not found
+     */
+    FriendRequest getFriendRequest(Integer id);
 
-    public List<FriendRequest> getFriendRequests(Account account);
+    /**
+     * Returns all friend requests applicable to given user
+     *
+     * @param account Target user account
+     * @return List of friend requests
+     */
+    List<FriendRequest> getFriendRequests(Account account);
 
-    public void requestFriendship(Account sender, Account receiver);
+    /**
+     * Requests friendship between two user accounts.
+     *
+     * @param sender   User account who requested
+     * @param receiver Target user account
+     */
+    void requestFriendship(Account sender, Account receiver);
 
-    public void confirmFriendship(FriendRequest request);
+    /**
+     * Confirms friend request.
+     *
+     * @param request Request to be confirmed.
+     */
+    void confirmFriendship(FriendRequest request);
 
-    public void declineFriendship(FriendRequest request);
+    /**
+     * Declines friend request.
+     *
+     * @param request Request to be declined.
+     */
+    void declineFriendship(FriendRequest request);
 
-    public void removeFriend(Account acc, Account toRemove);
+    /**
+     * Removes friend.
+     *
+     * @param account  Given user account
+     * @param toRemove Friend to be removed
+     */
+    void removeFriend(Account account, Account toRemove);
 
-    public List<Account> getFriends(Account acc);
+    /**
+     * Returns all friends for given account
+     *
+     * @param account Target user account
+     * @return List of friends
+     */
+    List<Account> getFriends(Account account);
 
 }

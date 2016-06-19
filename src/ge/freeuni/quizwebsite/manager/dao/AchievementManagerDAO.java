@@ -19,23 +19,25 @@ public class AchievementManagerDAO extends AbstractManagerDAO implements Achieve
         super(dataSource);
     }
 
+
     @Override
     public Achievement getAchievementManager(Integer id) {
         return null;
     }
 
     @Override
-    public void unlockAchievement(Account acc, AchievementType type) {
+    public void unlockAchievement(Account account, AchievementType type) {
 
     }
 
     @Override
-    public void checkForAchievements(Account acc) {
+    public void checkForAchievements(Account account) {
 
     }
 
     @Override
-    public List<Account> getAchievements(Account acc) {
+    public List<Account> getAchievements(Account account) {
         return null;
     }
+
 }

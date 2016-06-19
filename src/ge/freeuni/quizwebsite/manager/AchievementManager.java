@@ -17,29 +17,29 @@ public interface AchievementManager {
      * @param id Unique identifier
      * @return Achievement object
      */
-    public Achievement getAchievementManager(Integer id);
+    Achievement getAchievementManager(Integer id);
 
     /**
      * Unlocks desired achievement for given account
      *
-     * @param acc  Target user account
-     * @param type Desired achievement
+     * @param account Target user account
+     * @param type    Desired achievement
      */
-    public void unlockAchievement(Account acc, AchievementType type);
+    void unlockAchievement(Account account, AchievementType type);
 
     /**
      * Checks whether user is eligible for any new achievements.
      *
-     * @param acc Target user account
+     * @param account Target user account
      */
-    public void checkForAchievements(Account acc);
+    void checkForAchievements(Account account);
 
     /**
      * Lists all achievements unlocked by given user account.
      *
-     * @param acc Target user account
+     * @param account Target user account
      * @return List of specified achievements
      */
-    public List<Account> getAchievements(Account acc);
+    List<Account> getAchievements(Account account);
 
 }

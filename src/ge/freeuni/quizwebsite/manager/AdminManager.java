@@ -15,21 +15,21 @@ public interface AdminManager {
      * @param account Target user account
      * @return true of account is admin, false otherwise
      */
-    public boolean isAdmin(Account account);
+    boolean isAdmin(Account account);
 
     /**
      * Gives admin privileges to given user account.
      *
      * @param account Target user account
      */
-    public void addAdmin(Account account);
+    void addAdmin(Account account);
 
     /**
      * Removes admin privileges from given user account.
      *
      * @param account Target user account
      */
-    public void removeAdmin(Account account);
+    void removeAdmin(Account account);
 
     /**
      * Returns the list of all admins limited by given size.
@@ -37,7 +37,7 @@ public interface AdminManager {
      * @param limit Number of consecutive admin accounts to return
      * @return List of admin accounts with the size <code>limit</code>
      */
-    public List<Account> getAdmins(int limit);
+    List<Account> getAdmins(int limit);
 
     /**
      * Returns the list of all admins, limited by given parameters.
@@ -46,6 +46,6 @@ public interface AdminManager {
      * @param limitTo   Stop index
      * @return List of admin acoounts
      */
-    public List<Account> getAdmins(int limitFrom, int limitTo);
+    List<Account> getAdmins(int limitFrom, int limitTo);
 
 }

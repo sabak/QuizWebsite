@@ -15,7 +15,7 @@ public interface AccountManager {
      * @param id Unique identifier
      * @return Found account, null if not found
      */
-    public Account getAccount(Integer id);
+    Account getAccount(Integer id);
 
     /**
      * Returns account by given unique username.
@@ -23,7 +23,7 @@ public interface AccountManager {
      * @param username Unique username
      * @return Found account, null if not found
      */
-    public Account getAccount(String username);
+    Account getAccount(String username);
 
     /**
      * Checks whether given username already exists
@@ -31,7 +31,7 @@ public interface AccountManager {
      * @param username Username
      * @return true if exists, false otherwise
      */
-    public boolean usernameExists(String username);
+    boolean usernameExists(String username);
 
 
     /**
@@ -41,14 +41,14 @@ public interface AccountManager {
      * @param account Account to be registered
      * @return Registered account with unique id
      */
-    public Account createAccount(Account account);
+    Account createAccount(Account account);
 
     /**
      * Removes account.
      *
      * @param account Account to be removed.
      */
-    public void removeAccount(Account account);
+    void removeAccount(Account account);
 
     /**
      * Updates password for given user account.
@@ -56,7 +56,7 @@ public interface AccountManager {
      * @param account           Target account
      * @param newHashedPassword new hashed password
      */
-    public void changeHashedPassword(Account account, String newHashedPassword);
+    void changeHashedPassword(Account account, String newHashedPassword);
 
     /**
      * Updates e-mail for given user account.
@@ -64,7 +64,7 @@ public interface AccountManager {
      * @param account  Target account
      * @param newEmail new e-mail
      */
-    public void changeEmail(Account account, String newEmail);
+    void changeEmail(Account account, String newEmail);
 
     /**
      * Updates first name for given user account.
@@ -72,7 +72,7 @@ public interface AccountManager {
      * @param account      Target account
      * @param newFirstName new first name
      */
-    public void changeFirstName(Account account, String newFirstName);
+    void changeFirstName(Account account, String newFirstName);
 
     /**
      * Updates last name for given user account.
@@ -80,7 +80,7 @@ public interface AccountManager {
      * @param account     Target account
      * @param newLastName new last name
      */
-    public void changeLastName(Account account, String newLastName);
+    void changeLastName(Account account, String newLastName);
 
     /**
      * Returns list of user accounts, limited by given parameter.
@@ -88,7 +88,7 @@ public interface AccountManager {
      * @param limit Number of consecutive accounts to return
      * @return List of user accounts with length <code>limit</code>
      */
-    public List<Account> getAccounts(int limit);
+    List<Account> getAccounts(int limit);
 
     /**
      * Returns list of user accounts, limited by given parameters.
@@ -97,13 +97,13 @@ public interface AccountManager {
      * @param limitTo   Stop index
      * @return List of user accounts
      */
-    public List<Account> getAccounts(int limitFrom, int limitTo);
+    List<Account> getAccounts(int limitFrom, int limitTo);
 
     /**
      * Returns total number of user accounts created.
      *
      * @return Number of total user accounts
      */
-    public int getAccountsQuantity();
+    int getAccountsQuantity();
 
 }

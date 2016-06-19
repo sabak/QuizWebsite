@@ -1,7 +1,7 @@
 package ge.freeuni.quizwebsite.controller.listener;
 
 import com.mysql.jdbc.AbandonedConnectionCleanupThread;
-import ge.freeuni.quizwebsite.manager.dao.AccountManager;
+import ge.freeuni.quizwebsite.manager.dao.*;
 import ge.freeuni.quizwebsite.manager.dao.db.DBInfo;
 
 import javax.naming.Context;
@@ -11,9 +11,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionAttributeListener;
+import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-import javax.servlet.http.HttpSessionBindingEvent;
 import javax.sql.DataSource;
 
 @WebListener()
@@ -38,7 +38,17 @@ public class ContextListener implements ServletContextListener,
             DataSource dataSource = (DataSource) envContext.lookup("jdbc/"
                     + DBInfo.DB_NAME);
             sce.getServletContext().setAttribute("DataSource", dataSource);
-            sce.getServletContext().setAttribute(AccountManager.ATTRIBUTE_NAME, new AccountManager(dataSource));
+            sce.getServletContext().setAttribute(AccountManagerDAO.ATTRIBUTE_NAME, new AccountManagerDAO(dataSource));
+            sce.getServletContext().setAttribute(AdminManagerDAO.ATTRIBUTE_NAME, new AdminManagerDAO(dataSource));
+            sce.getServletContext().setAttribute(AnnouncementManagerDAO.ATTRIBUTE_NAME, new AnnouncementManagerDAO(dataSource));
+            sce.getServletContext().setAttribute(AchievementManagerDAO.ATTRIBUTE_NAME, new AchievementManagerDAO(dataSource));
+            sce.getServletContext().setAttribute(ChallengeManagerDAO.ATTRIBUTE_NAME, new ChallengeManagerDAO(dataSource));
+            sce.getServletContext().setAttribute(FriendManagerDAO.ATTRIBUTE_NAME, new FriendManagerDAO(dataSource));
+            sce.getServletContext().setAttribute(TextMessageManagerDAO.ATTRIBUTE_NAME, new TextMessageManagerDAO(dataSource));
+            sce.getServletContext().setAttribute(HistoryManagerDAO.ATTRIBUTE_NAME, new HistoryManagerDAO(dataSource));
+            sce.getServletContext().setAttribute(QuizManagerDAO.ATTRIBUTE_NAME, new QuizManagerDAO(dataSource));
+            sce.getServletContext().setAttribute(StatsManagerDAO.ATTRIBUTE_NAME, new StatsManagerDAO(dataSource));
+
         } catch (NamingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

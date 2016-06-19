@@ -79,7 +79,7 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
 
     @Override
     public List<Account> getAccounts(int limit) {
-        return null;
+        return getAccounts(0, limit);
     }
 
     @Override

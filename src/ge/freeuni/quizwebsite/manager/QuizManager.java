@@ -2,6 +2,7 @@ package ge.freeuni.quizwebsite.manager;
 
 import ge.freeuni.quizwebsite.model.Account;
 import ge.freeuni.quizwebsite.model.Quiz;
+import ge.freeuni.quizwebsite.model.QuizResult;
 
 import java.util.List;
 
@@ -10,30 +11,125 @@ import java.util.List;
  */
 public interface QuizManager {
 
-    public Quiz getQuiz(Integer id);
+    /**
+     * Returns quiz by given unique identifier.
+     *
+     * @param id Unique identifier
+     * @return Found quiz, null if not found
+     */
+    Quiz getQuiz(Integer id);
 
-    public Quiz createQuiz(Quiz quiz);
+    /**
+     * Creates/saves given quiz and returns with unique
+     * identifier.
+     *
+     * @param quiz Quiz to be created.
+     * @return Created quiz with unique identifier
+     */
+    Quiz createQuiz(Quiz quiz);
 
-    public void removeQuiz(Quiz quiz);
+    /**
+     * Removes given quiz.
+     *
+     * @param quiz Quiz to be removed.
+     */
+    void removeQuiz(Quiz quiz);
 
-    public List<Quiz> getRecentlyCreatedQuizzes(int limit);
+    /**
+     * Returns all recently created quizzes, amount limited by given
+     * parameter.
+     *
+     * @param limit Number of consecutive recent quizzes to be returned.
+     * @return List of recently created quizzes
+     */
+    List<Quiz> getRecentlyCreatedQuizzes(int limit);
 
-    public List<Quiz> getRecentlyCreatedQuizzes(int limitFrom, int limitTo);
+    /**
+     * Returns all recently created quizzes, amount limited by given
+     * parameters.
+     *
+     * @param limitFrom Index to get quizzes from this point onwards
+     * @param limitTo   Stop index
+     * @return List of recently created quizzes
+     */
+    List<Quiz> getRecentlyCreatedQuizzes(int limitFrom, int limitTo);
 
-    public List<Quiz> getTakenQuizzes(Account acc, int limit);
+    /**
+     * Returns all taken quizzes for given user account, amount limited by
+     * specified parameter.
+     *
+     * @param account Target user account
+     * @param limit   Number of consecutive quizzes to be returned
+     * @return List of quizzes
+     */
+    List<Quiz> getTakenQuizzes(Account account, int limit);
 
-    public List<Quiz> getTakenQuizzes(Account acc, int limitFrom, int limitTo);
+    /**
+     * Returns all taken quizzes for given user account, amount limited by
+     * specified parameters.
+     *
+     * @param account   Target user account
+     * @param limitFrom Index to get quizzes from this point onwards
+     * @param limitTo   Stop index
+     * @return List of quizzes
+     */
+    List<Quiz> getTakenQuizzes(Account account, int limitFrom, int limitTo);
 
-    public List<Quiz> getCreatedQuizzes(Account acc, int limit);
+    /**
+     * Returns quizzes created by given user account, amount limited by
+     * specified parameter.
+     *
+     * @param account Target user account
+     * @param limit   Number of consecutive quizzes to be returned
+     * @return List of quizzes
+     */
+    List<Quiz> getCreatedQuizzes(Account account, int limit);
 
-    public List<Quiz> getCreatedQuizzes(Account acc, int limitFrom, int limitTo);
+    /**
+     * Returns quizzes created by given user account, amount limited by
+     * specified parameters.
+     *
+     * @param account   Target user account.
+     * @param limitFrom Index to get quizzes from this point onwards
+     * @param limitTo   Stop index
+     * @return List of quizzes
+     */
+    List<Quiz> getCreatedQuizzes(Account account, int limitFrom, int limitTo);
 
-    public List<Quiz> getRecentlyTakenResults(Quiz quiz, int limit);
+    /**
+     * Returns recently taken quiz results, amount limited by specified parameter.
+     *
+     * @param quiz  Target quiz
+     * @param limit Number of consecutive quiz results to be returned
+     * @return List of quiz results
+     */
+    List<QuizResult> getRecentlyTakenResults(Quiz quiz, int limit);
 
-    public List<Quiz> getRecentlyTakenResults(Quiz quiz, int limitFrom, int limitTo);
+    /**
+     * Returns recently taken quiz results, amount limited by specified parameters.
+     *
+     * @param quiz      Target quiz
+     * @param limitFrom Index to get quiz results from this point onwards
+     * @param limitTo   Stop index
+     * @return List of quiz results
+     */
+    List<QuizResult> getRecentlyTakenResults(Quiz quiz, int limitFrom, int limitTo);
 
-    public List<Quiz> getTakenQuizzes(int limit);
+    /**
+     * Returns all taken quizzes, amount limited by specified parameter.
+     *
+     * @param limit Number of consecutive quizzes to be returned
+     * @return List of quizzes
+     */
+    List<Quiz> getTakenQuizzes(int limit);
 
-    public List<Quiz> getTakenQuizzes(int limitFrom, int limitTo);
+    /**
+     * Returns all taken quizzes, amount limited by specified parameters.
+     *
+     * @param limitFrom Index to get quizzes from this point onwards
+     * @param limitTo   Stop index
+     * @return List of quizzes
+     */
+    List<Quiz> getTakenQuizzes(int limitFrom, int limitTo);
 
 }

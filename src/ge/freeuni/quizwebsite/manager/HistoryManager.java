@@ -11,12 +11,35 @@ import java.util.List;
  */
 public interface HistoryManager {
 
-    public List<QuizResult> getHistory(Account acc, Quiz quiz);
+    /**
+     * Returns all quiz result for given user account and quiz.
+     *
+     * @param acc  Target user account
+     * @param quiz Target quiz
+     * @return List of quiz results
+     */
+    List<QuizResult> getHistory(Account acc, Quiz quiz);
 
-    public void clearHistory(Quiz quiz);
+    /**
+     * Clears history for given quiz.
+     *
+     * @param quiz Target quiz
+     */
+    void clearHistory(Quiz quiz);
 
-    public void clearHistory(Account account);
+    /**
+     * Clears history for given user account.
+     *
+     * @param account Target user account
+     */
+    void clearHistory(Account account);
 
-    public void clearHistory(Quiz quiz, Account account);
+    /**
+     * Clears history for given quiz and user account.
+     *
+     * @param quiz    Target quiz.
+     * @param account Target user account.
+     */
+    void clearHistory(Quiz quiz, Account account);
 
 }

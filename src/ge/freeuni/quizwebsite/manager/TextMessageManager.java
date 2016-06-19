@@ -11,16 +11,50 @@ import java.util.List;
  */
 public interface TextMessageManager {
 
-    public TextMessage getMessage(Integer id);
+    /**
+     * Returns message by given unique identifier.
+     *
+     * @param id Unique identifier
+     * @return Found message, null if not found
+     */
+    TextMessage getMessage(Integer id);
 
-    public List<Message> getMessages(Account acc);
+    /**
+     * Returns all messages for given account (sent and received).
+     *
+     * @param acc Target user account.
+     * @return List of messages.
+     */
+    List<Message> getMessages(Account acc);
 
-    public List<Message> getMessages(Account to, Account from);
+    /**
+     * Returns a conversation between two accounts.
+     *
+     * @param to   First user account
+     * @param from Second user account
+     * @return List of messages between two accounts
+     */
+    List<Message> getMessages(Account to, Account from);
 
-    public void sendMessage(Message msg);
+    /**
+     * Sends message.
+     *
+     * @param msg Message to be sent
+     */
+    void sendMessage(Message msg);
 
-    public void markRead(Message msg);
+    /**
+     * Marks message as read.
+     *
+     * @param msg Message to be marked as read
+     */
+    void markRead(Message msg);
 
-    public void deleteMessage(Message msg);
+    /**
+     * Deletes message.
+     *
+     * @param msg Message to be deleted.
+     */
+    void deleteMessage(Message msg);
 
 }

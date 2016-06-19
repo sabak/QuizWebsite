@@ -34,7 +34,7 @@ public class AdminManagerDAO extends AbstractManagerDAO implements AdminManager 
 
     @Override
     public List<Account> getAdmins(int limit) {
-        return null;
+        return getAdmins(0, limit);
     }
 
     @Override

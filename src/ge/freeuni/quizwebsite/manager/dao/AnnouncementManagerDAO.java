@@ -30,7 +30,7 @@ public class AnnouncementManagerDAO extends AbstractManagerDAO implements Announ
 
     @Override
     public List<Announcement> getAnnouncements(Account admin, int limit) {
-        return null;
+        return getAnnouncements(admin, 0, limit);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class AnnouncementManagerDAO extends AbstractManagerDAO implements Announ
 
     @Override
     public List<Announcement> getAnnouncements(int limit) {
-        return null;
+        return getAnnouncements(0, limit);
     }
 
     @Override
@@ -52,4 +52,5 @@ public class AnnouncementManagerDAO extends AbstractManagerDAO implements Announ
     public void deleteAnnouncements(Announcement announcement) {
 
     }
+
 }

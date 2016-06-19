@@ -14,10 +14,10 @@ public interface ChallengeManager {
     /**
      * Returns challenge by given unique identifier.
      *
-     * @param id Unique indentifier.
+     * @param id Unique identifier.
      * @return Found challenge, null if not found
      */
-    public Challenge getChallenge(Integer id);
+    Challenge getChallenge(Integer id);
 
     /**
      * Sends quiz challenge to desired user account.
@@ -26,7 +26,7 @@ public interface ChallengeManager {
      * @param to   Challenged user account
      * @param quiz Challenged quiz
      */
-    public void challengeUser(Account from, Account to, Quiz quiz);
+    void challengeUser(Account from, Account to, Quiz quiz);
 
     /**
      * Return list of all challenges applicable to given user.
@@ -34,7 +34,7 @@ public interface ChallengeManager {
      * @param account Challenged user account
      * @return List of challenges
      */
-    public List<Challenge> getChallenges(Account account);
+    List<Challenge> getChallenges(Account account);
 
     /**
      * Return list of all challenges applicable to given user.
@@ -43,20 +43,20 @@ public interface ChallengeManager {
      *                either sent or received challenges
      * @return List of challenges
      */
-    public List<Challenge> getChallenges(Account account, boolean isChallenger);
+    List<Challenge> getChallenges(Account account, boolean isChallenger);
 
     /**
      * Accept incoming challenge.
      *
      * @param challenge Challenge to be accepted
      */
-    public void confirmChallenge(Challenge challenge);
+    void confirmChallenge(Challenge challenge);
 
     /**
      * Decline incoming challenge.
      *
      * @param challenge Challenge to be declined.
      */
-    public void declineChallenge(Challenge challenge);
+    void declineChallenge(Challenge challenge);
 
 }
