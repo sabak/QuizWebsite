@@ -17,15 +17,15 @@ CREATE TABLE IF NOT EXISTS account (
 
 # Table for admin accounts
 CREATE TABLE IF NOT EXISTS admin (
-  user_id INT,
-  FOREIGN KEY (user_id) REFERENCES account (id)
+  account_id INT,
+  FOREIGN KEY (account_id) REFERENCES account (id)
     ON DELETE CASCADE
 );
 
 # Table for quizzes
 CREATE TABLE IF NOT EXISTS quiz (
   id                      INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  user_id                 INT,
+  account_id              INT,
   date_created            DATETIME     DEFAULT now(),
   name                    NVARCHAR(256),
   description             TEXT,
