@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS message (
   COLLATE utf8_unicode_ci;
 
 # Table holding admin's announcements
-CREATE TABLE IF NOT EXISTS announcements (
+CREATE TABLE IF NOT EXISTS announcement (
   id                INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   account_id        INT,
   announcement_text TEXT,
