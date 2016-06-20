@@ -12,7 +12,7 @@ public final class DbContract {
     }
 
     /* Account table */
-    public abstract static class Contact {
+    public abstract static class Account {
         public static final String TABLE_NAME = "account";
         public static final String COLUMN_NAME_ACCOUNT_ID = "id";
         public static final String COLUMN_NAME_USERNAME = "username";
