@@ -2,6 +2,7 @@ package ge.freeuni.quizwebsite.manager;
 
 import ge.freeuni.quizwebsite.model.Account;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -31,7 +32,7 @@ public interface AccountManager {
      * @param username Username
      * @return true if exists, false otherwise
      */
-    boolean usernameExists(String username);
+    boolean usernameExists(String username) throws SQLException;
 
 
     /**
@@ -39,9 +40,9 @@ public interface AccountManager {
      * entry with unique identifier.
      *
      * @param account Account to be registered
-     * @return Registered account with unique id
+     * @return true if created, false otherwise
      */
-    Account createAccount(Account account);
+    boolean createAccount(Account account);
 
     /**
      * Removes account.
@@ -88,7 +89,7 @@ public interface AccountManager {
      * @param limit Number of consecutive accounts to return
      * @return List of user accounts with length <code>limit</code>
      */
-    List<Account> getAccounts(int limit);
+    List<Account> getAccounts(int limit) throws SQLException;
 
     /**
      * Returns list of user accounts, limited by given parameters.
@@ -97,7 +98,7 @@ public interface AccountManager {
      * @param limitTo   Stop index
      * @return List of user accounts
      */
-    List<Account> getAccounts(int limitFrom, int limitTo);
+    List<Account> getAccounts(int limitFrom, int limitTo) throws SQLException;
 
     /**
      * Returns total number of user accounts created.
