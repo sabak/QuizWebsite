@@ -1,6 +1,7 @@
 package ge.freeuni.quizwebsite.manager.dao;
 
 import ge.freeuni.quizwebsite.manager.AccountManager;
+import ge.freeuni.quizwebsite.manager.dao.db.DbContract;
 import ge.freeuni.quizwebsite.model.Account;
 
 import javax.sql.DataSource;
@@ -24,17 +25,19 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
         Account account = null;
         try {
             Connection con = dataSource.getConnection();
-            String query = "SELECT * FROM account WHERE id = ?;";
+            String query = "SELECT * FROM ? WHERE ? = ?;";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setInt(1, id);
+            statement.setString(1, DbContract.Account.TABLE_NAME);
+            statement.setString(2, DbContract.Account.COLUMN_NAME_ACCOUNT_ID);
+            statement.setInt(3, id);
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
-                String user = rs.getString("username");
-                String pwd = rs.getString("hashed_password");
-                String email = rs.getString("email_address");
-                String firstName = rs.getString("first_name");
-                String lastName = rs.getString("last_name");
+                String user = rs.getString(DbContract.Account.COLUMN_NAME_USERNAME);
+                String pwd = rs.getString(DbContract.Account.COLUMN_NAME_HASHED_PASSWORD);
+                String email = rs.getString(DbContract.Account.COLUMN_NAME_EMAIL);
+                String firstName = rs.getString(DbContract.Account.COLUMN_NAME_FIRST_NAME);
+                String lastName = rs.getString(DbContract.Account.COLUMN_NAME_LAST_NAME);
 
                 account = new Account(id, user, pwd, email, firstName, lastName);
             }
@@ -52,17 +55,19 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
         Account account = null;
         try {
             Connection con = dataSource.getConnection();
-            String query = "SELECT * FROM account WHERE username = ?;";
+            String query = "SELECT * FROM ? WHERE ? = ?;";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, username);
+            statement.setString(1, DbContract.Account.TABLE_NAME);
+            statement.setString(2, DbContract.Account.COLUMN_NAME_USERNAME);
+            statement.setString(3, username);
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
-                Integer id = rs.getInt("id");
-                String pwd = rs.getString("hashed_password");
-                String email = rs.getString("email_address");
-                String firstName = rs.getString("first_name");
-                String lastName = rs.getString("last_name");
+                Integer id = rs.getInt(DbContract.Account.COLUMN_NAME_ACCOUNT_ID);
+                String pwd = rs.getString(DbContract.Account.COLUMN_NAME_HASHED_PASSWORD);
+                String email = rs.getString(DbContract.Account.COLUMN_NAME_EMAIL);
+                String firstName = rs.getString(DbContract.Account.COLUMN_NAME_FIRST_NAME);
+                String lastName = rs.getString(DbContract.Account.COLUMN_NAME_LAST_NAME);
 
                 account = new Account(id, username, pwd, email, firstName, lastName);
             }
@@ -79,9 +84,11 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
     public boolean usernameExists(String username) {
         boolean exists = false;
         try (Connection con = dataSource.getConnection()) {
-            String query = "SELECT * FROM account WHERE username=?;";
+            String query = "SELECT * FROM ? WHERE ? = ?;";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, username);
+            statement.setString(1, DbContract.Account.TABLE_NAME);
+            statement.setString(2, DbContract.Account.COLUMN_NAME_USERNAME);
+            statement.setString(3, username);
 
             ResultSet result = statement.executeQuery();
             exists = result.next();
@@ -103,13 +110,14 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
             return false;
 
         try (Connection con = dataSource.getConnection()) {
-            String query = "INSERT INTO account VALUES(?, ?, ?, ?, ?);";
+            String query = "INSERT INTO ? VALUES(?, ?, ?, ?, ?);";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, account.getUsername());
-            statement.setString(2, account.getHashedPassword());
-            statement.setString(3, account.getEmail());
-            statement.setString(4, account.getFirstName());
-            statement.setString(4, account.getLastName());
+            statement.setString(1, DbContract.Account.TABLE_NAME);
+            statement.setString(2, account.getUsername());
+            statement.setString(3, account.getHashedPassword());
+            statement.setString(4, account.getEmail());
+            statement.setString(5, account.getFirstName());
+            statement.setString(6, account.getLastName());
             statement.executeUpdate();
 
             con.close();
@@ -125,9 +133,11 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
     @Override
     public void removeAccount(Account account) {
         try (Connection con = dataSource.getConnection()) {
-            String query = "DELETE FROM account WHERE username = ?;";
+            String query = "DELETE FROM ? WHERE ? = ?;";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, account.getUsername());
+            statement.setString(1, DbContract.Account.TABLE_NAME);
+            statement.setString(2, DbContract.Account.COLUMN_NAME_USERNAME);
+            statement.setString(3, account.getUsername());
             statement.executeUpdate();
 
             con.close();
@@ -140,10 +150,13 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
     @Override
     public void changeHashedPassword(Account account, String newHashedPassword) {
         try (Connection con = dataSource.getConnection()) {
-            String query = "UPDATE account SET hashed_password = ? WHERE username = ?;";
+            String query = "UPDATE ? SET ? = ? WHERE ? = ?;";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, newHashedPassword);
-            statement.setString(2, account.getUsername());
+            statement.setString(1, DbContract.Account.TABLE_NAME);
+            statement.setString(2, DbContract.Account.COLUMN_NAME_HASHED_PASSWORD);
+            statement.setString(3, newHashedPassword);
+            statement.setString(4, DbContract.Account.COLUMN_NAME_USERNAME);
+            statement.setString(5, account.getUsername());
             statement.executeUpdate();
 
             con.close();
@@ -156,10 +169,13 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
     @Override
     public void changeEmail(Account account, String newEmail) {
         try (Connection con = dataSource.getConnection()) {
-            String query = "UPDATE account SET email_address = ? WHERE username = ?;";
+            String query = "UPDATE ? SET ? = ? WHERE ? = ?;";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, newEmail);
-            statement.setString(2, account.getUsername());
+            statement.setString(1, DbContract.Account.TABLE_NAME);
+            statement.setString(2, DbContract.Account.COLUMN_NAME_EMAIL);
+            statement.setString(3, newEmail);
+            statement.setString(4, DbContract.Account.COLUMN_NAME_USERNAME);
+            statement.setString(5, account.getUsername());
             statement.executeUpdate();
 
             con.close();
@@ -172,10 +188,13 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
     @Override
     public void changeFirstName(Account account, String newFirstName) {
         try (Connection con = dataSource.getConnection()) {
-            String query = "UPDATE account SET first_name = ? WHERE username = ?;";
+            String query = "UPDATE ? SET ? = ? WHERE ? = ?;";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, newFirstName);
-            statement.setString(2, account.getUsername());
+            statement.setString(1, DbContract.Account.TABLE_NAME);
+            statement.setString(2, DbContract.Account.COLUMN_NAME_FIRST_NAME);
+            statement.setString(3, newFirstName);
+            statement.setString(4, DbContract.Account.COLUMN_NAME_USERNAME);
+            statement.setString(5, account.getUsername());
             statement.executeUpdate();
 
             con.close();
@@ -188,10 +207,13 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
     @Override
     public void changeLastName(Account account, String newLastName) {
         try (Connection con = dataSource.getConnection()) {
-            String query = "UPDATE account SET last_name = ? WHERE username = ?;";
+            String query = "UPDATE ? SET ? = ? WHERE ? = ?;";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, newLastName);
-            statement.setString(2, account.getUsername());
+            statement.setString(1, DbContract.Account.TABLE_NAME);
+            statement.setString(2, DbContract.Account.COLUMN_NAME_LAST_NAME);
+            statement.setString(3, newLastName);
+            statement.setString(4, DbContract.Account.COLUMN_NAME_USERNAME);
+            statement.setString(5, account.getUsername());
             statement.executeUpdate();
 
             con.close();
@@ -208,12 +230,14 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
 
     @Override
     public List<Account> getAccounts(int limitFrom, int limitTo) throws SQLException {
-        List<Account> accounts = new ArrayList<Account>();
+        List<Account> accounts = new ArrayList<>();
         Connection con = dataSource.getConnection();
-        String query = "SELECT username FROM Accounts LIMIT ?, ?;";
+        String query = "SELECT ? FROM ? LIMIT ?, ?;";
         PreparedStatement statement = con.prepareStatement(query);
-        statement.setInt(1, limitFrom);
-        statement.setInt(2, limitTo);
+        statement.setString(1, DbContract.Account.COLUMN_NAME_USERNAME);
+        statement.setString(2, DbContract.Account.TABLE_NAME);
+        statement.setInt(3, limitFrom);
+        statement.setInt(4, limitTo);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             Account acc = getAccount(rs.getString(1));
@@ -228,8 +252,10 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
         int result = 0;
         try {
             Connection con = dataSource.getConnection();
-            String query = "SELECT COUNT(username) FROM account";
+            String query = "SELECT COUNT(?) FROM ?";
             PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, DbContract.Account.COLUMN_NAME_USERNAME);
+            statement.setString(2, DbContract.Account.TABLE_NAME);
             ResultSet rs = statement.executeQuery();
             if (rs.next())
                 result = rs.getInt(1);
