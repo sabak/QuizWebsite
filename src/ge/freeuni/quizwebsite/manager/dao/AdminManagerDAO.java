@@ -31,11 +31,10 @@ public class AdminManagerDAO extends AbstractManagerDAO implements AdminManager 
     public boolean isAdmin(Account account) {
         boolean isAdmin = false;
         try (Connection con = dataSource.getConnection()) {
-            String query = "SELECT * FROM ? WHERE ? = ?;";
+            String query = "SELECT * FROM " + DbContract.Admin.TABLE_NAME + " WHERE ? = ?;";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, DbContract.Admin.TABLE_NAME);
-            statement.setString(2, DbContract.Admin.COLUMN_NAME_ADMIN_ID);
-            statement.setInt(3, account.getId());
+            statement.setString(1, DbContract.Admin.COLUMN_NAME_ADMIN_ID);
+            statement.setInt(2, account.getId());
 
             ResultSet result = statement.executeQuery();
             isAdmin = result.next();
@@ -50,10 +49,9 @@ public class AdminManagerDAO extends AbstractManagerDAO implements AdminManager 
     @Override
     public void addAdmin(Account account) {
         try (Connection con = dataSource.getConnection()) {
-            String query = "INSERT INTO ? VALUES(?);";
+            String query = "INSERT INTO " + DbContract.Admin.TABLE_NAME + " VALUES(?);";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, DbContract.Admin.TABLE_NAME);
-            statement.setInt(2, account.getId());
+            statement.setInt(1, account.getId());
             statement.executeUpdate();
 
             con.close();
@@ -66,11 +64,10 @@ public class AdminManagerDAO extends AbstractManagerDAO implements AdminManager 
     @Override
     public void removeAdmin(Account account) {
         try (Connection con = dataSource.getConnection()) {
-            String query = "DELETE FROM ? WHERE ? = ?;";
+            String query = "DELETE FROM " + DbContract.Admin.TABLE_NAME + " WHERE ? = ?;";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, DbContract.Admin.TABLE_NAME);
-            statement.setString(2, DbContract.Admin.COLUMN_NAME_ADMIN_ID);
-            statement.setInt(3, account.getId());
+            statement.setString(1, DbContract.Admin.COLUMN_NAME_ADMIN_ID);
+            statement.setInt(2, account.getId());
             statement.executeUpdate();
 
             con.close();
@@ -89,12 +86,11 @@ public class AdminManagerDAO extends AbstractManagerDAO implements AdminManager 
     public List<Account> getAdmins(int limitFrom, int limitTo) {
         List<Account> accounts = new ArrayList<>();
         try (Connection con = dataSource.getConnection();) {
-            String query = "SELECT ? FROM ? LIMIT ?, ?;";
+            String query = "SELECT ? FROM " + DbContract.Admin.TABLE_NAME + " LIMIT ?, ?;";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, DbContract.Admin.COLUMN_NAME_ADMIN_ID);
-            statement.setString(2, DbContract.Admin.TABLE_NAME);
-            statement.setInt(3, limitFrom);
-            statement.setInt(4, limitTo);
+            statement.setInt(2, limitFrom);
+            statement.setInt(3, limitTo);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Account acc = accountManager.getAccount(rs.getInt(DbContract.Admin.COLUMN_NAME_ADMIN_ID));
