@@ -94,7 +94,7 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+
         return exists;
     }
 
@@ -150,7 +150,7 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
     }
 
     @Override
-    public void changeHashedPassword(Account account, String newHashedPassword) {
+    public Account changeHashedPassword(Account account, String newHashedPassword) {
         try (Connection con = dataSource.getConnection()) {
             String query = "UPDATE " + DbContract.Account.TABLE_NAME + " SET "
                     + DbContract.Account.COLUMN_NAME_HASHED_PASSWORD + " = ? WHERE "
@@ -165,10 +165,12 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        return getAccount(account.getId());
     }
 
     @Override
-    public void changeEmail(Account account, String newEmail) {
+    public Account changeEmail(Account account, String newEmail) {
         try (Connection con = dataSource.getConnection()) {
             String query = "UPDATE " + DbContract.Account.TABLE_NAME + " SET "
                     + DbContract.Account.COLUMN_NAME_EMAIL + " = ? WHERE "
@@ -183,10 +185,12 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        return getAccount(account.getId());
     }
 
     @Override
-    public void changeFirstName(Account account, String newFirstName) {
+    public Account changeFirstName(Account account, String newFirstName) {
         try (Connection con = dataSource.getConnection()) {
             String query = "UPDATE " + DbContract.Account.TABLE_NAME + " SET "
                     + DbContract.Account.COLUMN_NAME_FIRST_NAME + " = ? WHERE "
@@ -201,10 +205,12 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        return getAccount(account.getId());
     }
 
     @Override
-    public void changeLastName(Account account, String newLastName) {
+    public Account changeLastName(Account account, String newLastName) {
         try (Connection con = dataSource.getConnection()) {
             String query = "UPDATE " + DbContract.Account.TABLE_NAME + " SET "
                     + DbContract.Account.COLUMN_NAME_LAST_NAME + " = ? WHERE "
@@ -219,6 +225,8 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        return getAccount(account.getId());
     }
 
     @Override

@@ -56,32 +56,36 @@ public interface AccountManager {
      *
      * @param account           Target account
      * @param newHashedPassword new hashed password
+     * @return Updated account
      */
-    void changeHashedPassword(Account account, String newHashedPassword);
+    Account changeHashedPassword(Account account, String newHashedPassword);
 
     /**
      * Updates e-mail for given user account.
      *
      * @param account  Target account
      * @param newEmail new e-mail
+     * @return Updated account
      */
-    void changeEmail(Account account, String newEmail);
+    Account changeEmail(Account account, String newEmail);
 
     /**
      * Updates first name for given user account.
      *
      * @param account      Target account
      * @param newFirstName new first name
+     * @return Updated account
      */
-    void changeFirstName(Account account, String newFirstName);
+    Account changeFirstName(Account account, String newFirstName);
 
     /**
      * Updates last name for given user account.
      *
      * @param account     Target account
      * @param newLastName new last name
+     * @return Updated account
      */
-    void changeLastName(Account account, String newLastName);
+    Account changeLastName(Account account, String newLastName);
 
     /**
      * Returns list of user accounts, limited by given parameter.
