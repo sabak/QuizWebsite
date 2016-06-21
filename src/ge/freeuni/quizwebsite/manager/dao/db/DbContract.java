@@ -25,14 +25,14 @@ public final class DbContract {
     /* Admin table */
     public abstract static class Admin {
         public static final String TABLE_NAME = "admin";
-        public static final String COLUMN_NAME_ADMIN_ID = "user_id";
+        public static final String COLUMN_NAME_ADMIN_ID = "account_id";
     }
 
     /* Quiz table */
     public abstract static class Quiz {
         public static final String TABLE_NAME = "quiz";
         public static final String COLUMN_NAME_QUIZ_ID = "id";
-        public static final String COLUMN_NAME_ACCOUNT_ID = "user_id";
+        public static final String COLUMN_NAME_ACCOUNT_ID = "account_id";
         public static final String COLUMN_NAME_DATE_CREATED = "date_created";
         public static final String COLUMN_NAME_NAME = "name";
         public static final String COLUMN_NAME_DESCRIPTION = "description";
