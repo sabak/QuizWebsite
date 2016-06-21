@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -67,6 +66,8 @@ public class PingService extends HttpServlet {
         out.println("<h2>StatsManager: " + (statsManager != null) + "</h2>");
         out.println("<h3>SHA-256 Hash for \'humanlabrador\': " + SHAHasher.hashText("humanlabrador")
                 + ", should be 54b4427f1e21f7b79a0b656b259520ceb5f49055e47c1e84c6f3346b77d537a5</h3>");
+
+        out.println(accManager != null ? accManager.getAccountsQuantity() : 0);
     }
 
 }
