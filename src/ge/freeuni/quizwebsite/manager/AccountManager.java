@@ -32,7 +32,7 @@ public interface AccountManager {
      * @param username Username
      * @return true if exists, false otherwise
      */
-    boolean usernameExists(String username) throws SQLException;
+    boolean usernameExists(String username);
 
 
     /**
@@ -93,7 +93,7 @@ public interface AccountManager {
      * @param limit Number of consecutive accounts to return
      * @return List of user accounts with length <code>limit</code>
      */
-    List<Account> getAccounts(int limit) throws SQLException;
+    List<Account> getAccounts(int limit);
 
     /**
      * Returns list of user accounts, limited by given parameters.
@@ -102,7 +102,7 @@ public interface AccountManager {
      * @param limitTo   Stop index
      * @return List of user accounts
      */
-    List<Account> getAccounts(int limitFrom, int limitTo) throws SQLException;
+    List<Account> getAccounts(int limitFrom, int limitTo);
 
     /**
      * Returns total number of user accounts created.

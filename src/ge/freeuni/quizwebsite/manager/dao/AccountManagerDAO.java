@@ -230,7 +230,7 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
     }
 
     @Override
-    public List<Account> getAccounts(int limit) throws SQLException {
+    public List<Account> getAccounts(int limit) {
         return getAccounts(0, limit);
     }
 
