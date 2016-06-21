@@ -229,21 +229,24 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
     }
 
     @Override
-    public List<Account> getAccounts(int limitFrom, int limitTo) throws SQLException {
+    public List<Account> getAccounts(int limitFrom, int limitTo) {
         List<Account> accounts = new ArrayList<>();
-        Connection con = dataSource.getConnection();
-        String query = "SELECT ? FROM ? LIMIT ?, ?;";
-        PreparedStatement statement = con.prepareStatement(query);
-        statement.setString(1, DbContract.Account.COLUMN_NAME_USERNAME);
-        statement.setString(2, DbContract.Account.TABLE_NAME);
-        statement.setInt(3, limitFrom);
-        statement.setInt(4, limitTo);
-        ResultSet rs = statement.executeQuery();
-        while (rs.next()) {
-            Account acc = getAccount(rs.getString(1));
-            accounts.add(acc);
+        try (Connection con = dataSource.getConnection();) {
+            String query = "SELECT ? FROM ? LIMIT ?, ?;";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, DbContract.Account.COLUMN_NAME_USERNAME);
+            statement.setString(2, DbContract.Account.TABLE_NAME);
+            statement.setInt(3, limitFrom);
+            statement.setInt(4, limitTo);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Account acc = getAccount(rs.getString(DbContract.Account.COLUMN_NAME_USERNAME));
+                accounts.add(acc);
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        con.close();
         return accounts;
     }
 

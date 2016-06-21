@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 
 @WebServlet("/ping")
 public class PingService extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -54,9 +55,6 @@ public class PingService extends HttpServlet {
         StatsManager statsManager = (StatsManager) getServletContext()
                 .getAttribute(StatsManagerDAO.ATTRIBUTE_NAME);
 
-        DataSource dataSource = (DataSource) getServletContext().getAttribute("DataSource");
-
-        out.println("<h2>DataSource: " + (dataSource != null) + "</h2>");
         out.println("<h2>AccountManager: " + (accManager != null) + "</h2>");
         out.println("<h2>AdminManager: " + (adminManager != null) + "</h2>");
         out.println("<h2>AchievementManager: " + (achievementManager != null) + "</h2>");
