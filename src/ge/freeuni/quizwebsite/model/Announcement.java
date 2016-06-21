@@ -6,6 +6,7 @@ import java.sql.Timestamp;
  * Created by Saba on 6/14/2016.
  */
 public class Announcement {
+
     private Integer id;
     private String text;
     private Account author;

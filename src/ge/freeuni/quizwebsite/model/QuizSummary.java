@@ -4,6 +4,7 @@ package ge.freeuni.quizwebsite.model;
  * Created by Saba on 16-06-2016.
  */
 public class QuizSummary {
+
     private int timesTaken;
     private float successPercentage;
 

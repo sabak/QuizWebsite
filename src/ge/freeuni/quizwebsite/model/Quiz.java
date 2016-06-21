@@ -84,11 +84,12 @@ public class Quiz {
 
     @Override
     public String toString() {
-        return "Quiz: " + name + "; Description: " + description + "; " +
+        return "ID: " + id + "; Quiz: " + name + "; Description: " + description + "; " +
                 (hasRandomOrder ? "Is random ordered; " : "Is not random ordered; ") +
                 (isImmediatelyCorrected ? "Is immediately corrected; " : "Is not immediately corrected; ") +
                 "Page Type: " + pageType + "; Date created: " + dateCreated + "; Questions {" + questions + "};";
     }
+
 }
 
 // Shame! Shame! Shame!

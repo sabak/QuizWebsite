@@ -48,7 +48,7 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question: " + text + "; Type: " + questionType +
+        return "ID: " + id + "; Question: " + text + "; Type: " + questionType +
                 "; Index: " + index + "; Answers {" + answers + "};";
     }
 

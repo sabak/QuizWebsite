@@ -4,6 +4,7 @@ package ge.freeuni.quizwebsite.model;
  * Created by Saba on 6/14/2016.
  */
 public class Answer {
+
     private Integer id;
     private String text;
     private boolean isCorrect;
@@ -32,7 +33,7 @@ public class Answer {
 
     @Override
     public String toString() {
-        return "Answer: " + text + "; " + (isCorrect ? "Correct answer;" : "Incorrect answer");
+        return "ID: " + id + "; Answer: " + text + "; " + (isCorrect ? "Correct answer;" : "Incorrect answer");
     }
-    
+
 }

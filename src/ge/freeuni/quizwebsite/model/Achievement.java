@@ -6,6 +6,7 @@ import java.sql.Timestamp;
  * Created by Saba on 6/14/2016.
  */
 public class Achievement {
+
     private AchievementType achievementType;
     private Timestamp dateUnlocked;
 
@@ -27,5 +28,5 @@ public class Achievement {
         return "Achievement: " + achievementType + "; "
                 + "Achievement unlocked at: " + dateUnlocked + ";";
     }
-    
+
 }

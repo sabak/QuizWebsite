@@ -7,6 +7,7 @@ import java.sql.Timestamp;
  * Created by Saba on 6/14/2016.
  */
 public class QuizResult {
+
     private Integer id;
     private int score;
     private Account account;
@@ -47,7 +48,7 @@ public class QuizResult {
 
     @Override
     public String toString() {
-        return "Score: " + score + "; Completed by {" + account +
+        return "ID: " + id + "; Score: " + score + "; Completed by {" + account.getUsername() +
                 "}; Time taken to complete quiz: " + timeTaken +
                 "; Submitted at: " + resultSubmitDate + ";";
     }
