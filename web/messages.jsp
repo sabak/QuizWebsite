@@ -8,10 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Messages</title>
+    <title>Your Messages</title>
     <link rel="stylesheet" type="text/css" href="rules.css"/>
 </head>
 <body>
+<div id="title">
+    <h1>Your Messages</h1>
+</div>
 
+<button class="button pr" onclick="location.href='homePage.jsp'" style="position:absolute; bottom: +40px;"> Return </button>
 </body>
 </html>

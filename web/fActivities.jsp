@@ -12,6 +12,10 @@
     <link rel="stylesheet" type="text/css" href="rules.css"/>
 </head>
 <body>
+    <div id="title">
+        <h1>Your Friend's Activity</h1>
+    </div>
 
+    <button class="button pr" onclick="location.href='homePage.jsp'" style="position:absolute; bottom: +40px;"> Return </button>
 </body>
 </html>
