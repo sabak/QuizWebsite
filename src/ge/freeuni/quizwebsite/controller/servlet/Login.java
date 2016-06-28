@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static ge.freeuni.quizwebsite.util.SHAHasher.hashText;
 /**
  * Created by Sandro on 6/28/2016.
  */
@@ -19,12 +20,14 @@ public class Login extends HttpServlet {
         String username = request.getParameter("user");
         String password = request.getParameter("password");
 
-        AccountManagerDAO accManager = new AccountManagerDAO();
+        AccountManagerDAO accManager = (AccountManagerDAO) getServletContext().getAttribute(
+                AccountManagerDAO.ATTRIBUTE_NAME);
+
         HttpSession session = request.getSession(true);
 
         if(accManager.usernameExists(username)){
             Account account = accManager.getAccount(username);
-            if(password.equals(account.getHashedPassword())){
+            if(hashText(password).equals(account.getHashedPassword())){
                 session.setAttribute("id", account.getId());
                 RequestDispatcher rd = request.getRequestDispatcher("homePage.jsp");
                 rd.forward(request, response);

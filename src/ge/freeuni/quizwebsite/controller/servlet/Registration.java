@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static ge.freeuni.quizwebsite.util.SHAHasher.hashText;
+
 /**
  * Created by Sandro on 6/27/2016.
  */
@@ -26,9 +28,10 @@ public class Registration extends HttpServlet {
         String password_confirm = request.getParameter("password_confirm");
         String e_mail = request.getParameter("e_mail");
 
+        AccountManagerDAO accManager = (AccountManagerDAO) getServletContext().getAttribute(
+                AccountManagerDAO.ATTRIBUTE_NAME);
 
 
-        AccountManagerDAO accManager = new AccountManagerDAO();
         HttpSession session = request.getSession(true);
         if(!checkParams(username, fn, ln, password, password_confirm, e_mail, accManager)){
             session.setAttribute("created", "false");
@@ -36,7 +39,7 @@ public class Registration extends HttpServlet {
             rd.forward(request, response);
         } else {
             session.setAttribute("created", "false");
-            Account account = new Account(username, password, e_mail, fn, ln);
+            Account account = new Account(username, hashText(password), e_mail, fn, ln);
             accManager.createAccount(account);
             response.sendRedirect("index.jsp");
         }
