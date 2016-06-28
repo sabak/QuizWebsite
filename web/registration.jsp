@@ -1,4 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+<%@ page import="java.util.Objects" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -13,6 +14,12 @@
 			
 			<div class="tb"> Username: </div> <input type="text" name="user" placeholder="Username" id = "un" oninput="checkName()"/>
 			<div class ="tb" id="post-un"> </div> </br></br>
+
+			<div class="tb"> First Name: </div> <input type="text" name="firstName" placeholder="First Name" id = "fn" oninput="checkName()"/>
+			<div class ="tb" id="post-firstName"> </div> </br></br>
+
+			<div class="tb"> Last Name: </div> <input type="text" name="lastName" placeholder="Last Name" id = "ln" oninput="checkName()"/>
+			<div class ="tb" id="post-lastName"> </div> </br></br>
 			
 			<div class="tb"> Password: </div> <input type="password" name="password" placeholder="password" id = "pass" oninput="checkPass()"/> 
 			<div class ="tb" id="post-pass"> </div> </br></br>
@@ -24,6 +31,15 @@
 
 			<div class="tb"> Profile picture (optional): </div> <input type="file" name="e-mail"/> </br></br>
 			<button class="button sub" onclick="document.getElementById('bob').submit();"> Submit </button>
+
+			<%
+				String n = null;
+				String k = (String) session.getAttribute("created");
+				if((!Objects.equals(k, n)) && k.equals("false")){%>
+					<h3 style="position:absolute; top: 110px; left: 300px;"> Incorrect Username or Password</h3>
+				<%}
+				%>
+
 		</form>	
 	
 		<button class="button return" onclick="location.href='index.jsp'"> return </button>

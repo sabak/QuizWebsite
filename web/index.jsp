@@ -23,7 +23,7 @@
     <div id="bs">                                           <!--link to password recovery-->
         <button class="button pass" onclick="location.href='prec.html'">Password Recovery</button>
         <br/>
-        <button class="button pass" onclick="location.href='registration.html'"> Registration</button>
+        <button class="button pass" onclick="location.href='registration.jsp'"> Registration</button>
     </div>
 </div>
 </body>

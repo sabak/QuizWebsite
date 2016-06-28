@@ -12,9 +12,6 @@
             <div class="tb" style="text-align:center; font-size:150%; position:absolute; top:20px; left:10%"> New Quiz </div>
             <input type="text" name="quiz-name" placeholder="Enter Quiz Name" id = "qName" style="position:absolute; left:10%; top:50px;"/>
         </div>
-
-
-
     </form>
 
     <div id="q-types">
