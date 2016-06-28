@@ -1,3 +1,6 @@
+<%@ page import="ge.freeuni.quizwebsite.model.Account" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.AccountManager" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO" %>
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="rules.css"/>
@@ -5,10 +8,17 @@
 	</head>
 
 	<body>
+
+	<%
+		Integer id = (Integer) session.getAttribute("id");
+		AccountManagerDAO accountManager = new AccountManagerDAO();
+		Account account = accountManager.getAccount(id);
+	%>
+
 		<div id="user-image">
 			<img src="default.png" href="changeProfPic" style="width:180px;height:180px;position:relative; left:10px; top:10px;">
 			</br>
-			<div class="tn" style="text-align:center; position:relative; top:15px;"> Username </div>
+			<div class="tn" style="text-align:center; position:relative; top:15px;"> <% account.getFirstName(); %> <% account.getLastName(); %> </div>
 			<div class="tn" style="text-align:center; font-weight:200; position:relative; top:25px;"><a href="index.jsp"> Sign out </a></div>
 		</div>
 		<!--user's activity-->

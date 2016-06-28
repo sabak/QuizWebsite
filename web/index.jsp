@@ -8,7 +8,7 @@
 
 <body>
 <div id="inputs">
-    <form id="inputs-form" action="" method="post">
+    <form id="inputs-form" action="/Login" method="post">
         <div id="title">
             <h1>Login</h1>
         </div>

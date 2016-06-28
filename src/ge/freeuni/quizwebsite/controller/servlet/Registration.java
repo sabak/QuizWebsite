@@ -1,9 +1,9 @@
 package ge.freeuni.quizwebsite.controller.servlet;
 
-import ge.freeuni.quizwebsite.manager.AccountManager;
+import ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO;
 import ge.freeuni.quizwebsite.model.Account;
-import ge.freeuni.quizwebsite.model.AccountManagerStub;
 
+import javax.activation.DataSource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Created by user on 6/27/2016.
+ * Created by Sandro on 6/27/2016.
  */
 @WebServlet("/Registration")
 public class Registration extends HttpServlet {
@@ -28,23 +28,21 @@ public class Registration extends HttpServlet {
 
 
 
-        AccountManagerStub accManager = new AccountManagerStub();
-
+        AccountManagerDAO accManager = new AccountManagerDAO();
+        HttpSession session = request.getSession(true);
         if(!checkParams(username, fn, ln, password, password_confirm, e_mail, accManager)){
-            HttpSession session = request.getSession(true);
             session.setAttribute("created", "false");
-            String k = (String)session.getAttribute("created");
             RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
             rd.forward(request, response);
         } else {
-            request.setAttribute("created", "false");
+            session.setAttribute("created", "false");
             Account account = new Account(username, password, e_mail, fn, ln);
             accManager.createAccount(account);
             response.sendRedirect("index.jsp");
         }
     }
 
-    private boolean checkParams(String username, String fn, String ln, String password, String password_confirm, String e_mail, AccountManagerStub accManager) {
+    private boolean checkParams(String username, String fn, String ln, String password, String password_confirm, String e_mail, AccountManagerDAO accManager) {
 
         //check username
         if(accManager.usernameExists(username))
