@@ -1,7 +1,6 @@
 package ge.freeuni.quizwebsite.model;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 public class Quiz {
 
@@ -12,17 +11,14 @@ public class Quiz {
     private boolean isImmediatelyCorrected;
     private PageType pageType;
     private Timestamp dateCreated;
-    private List<Question> questions;
 
     public Quiz(String name, String description, boolean hasRandomOrder,
-                boolean isImmediatelyCorrected, PageType pageType, Timestamp dateCreated,
-                List<Question> questions) {
-        this(null, name, description, hasRandomOrder, isImmediatelyCorrected, pageType, dateCreated, questions);
+                boolean isImmediatelyCorrected, PageType pageType, Timestamp dateCreated) {
+        this(null, name, description, hasRandomOrder, isImmediatelyCorrected, pageType, dateCreated);
     }
 
     public Quiz(Integer id, String name, String description, boolean hasRandomOrder,
-                boolean isImmediatelyCorrected, PageType pageType, Timestamp dateCreated,
-                List<Question> questions) {
+                boolean isImmediatelyCorrected, PageType pageType, Timestamp dateCreated) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -30,7 +26,6 @@ public class Quiz {
         this.isImmediatelyCorrected = isImmediatelyCorrected;
         this.pageType = pageType;
         this.dateCreated = dateCreated;
-        this.questions = questions;
     }
 
     public Integer getId() {
@@ -78,16 +73,12 @@ public class Quiz {
         return dateCreated;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
     @Override
     public String toString() {
         return "ID: " + id + "; Quiz: " + name + "; Description: " + description + "; " +
                 (hasRandomOrder ? "Is random ordered; " : "Is not random ordered; ") +
                 (isImmediatelyCorrected ? "Is immediately corrected; " : "Is not immediately corrected; ") +
-                "Page Type: " + pageType + "; Date created: " + dateCreated + "; Questions {" + questions + "};";
+                "Page Type: " + pageType + "; Date created: " + dateCreated + ";";
     }
 
 }

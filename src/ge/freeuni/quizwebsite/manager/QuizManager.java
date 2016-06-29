@@ -1,6 +1,7 @@
 package ge.freeuni.quizwebsite.manager;
 
 import ge.freeuni.quizwebsite.model.Account;
+import ge.freeuni.quizwebsite.model.Question;
 import ge.freeuni.quizwebsite.model.Quiz;
 import ge.freeuni.quizwebsite.model.QuizResult;
 
@@ -24,9 +25,33 @@ public interface QuizManager {
      * identifier.
      *
      * @param quiz Quiz to be created.
-     * @return Created quiz with unique identifier
+     * @return true if successfully created, false otherwise
      */
-    Quiz createQuiz(Quiz quiz);
+    boolean createQuiz(Quiz quiz);
+
+    /**
+     * Returns list of all questions in the given quiz
+     *
+     * @param quiz Target quiz
+     * @return List of all questions in the quiz
+     */
+    List<Question> getQuestions(Quiz quiz);
+
+    /**
+     * Adds questions to the given quiz
+     *
+     * @param quiz      Target quiz
+     * @param questions List of questions to be added
+     */
+    void addQuestions(Quiz quiz, List<Question> questions);
+
+    /**
+     * Adds single question to the given quiz
+     *
+     * @param quiz     Target quiz
+     * @param question Question to be added
+     */
+    void addQuestion(Quiz quiz, Question question);
 
     /**
      * Removes given quiz.

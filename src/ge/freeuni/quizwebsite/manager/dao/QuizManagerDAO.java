@@ -2,6 +2,7 @@ package ge.freeuni.quizwebsite.manager.dao;
 
 import ge.freeuni.quizwebsite.manager.QuizManager;
 import ge.freeuni.quizwebsite.model.Account;
+import ge.freeuni.quizwebsite.model.Question;
 import ge.freeuni.quizwebsite.model.Quiz;
 import ge.freeuni.quizwebsite.model.QuizResult;
 
@@ -25,8 +26,25 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
     }
 
     @Override
-    public Quiz createQuiz(Quiz quiz) {
+    public boolean createQuiz(Quiz quiz) {
+        return false;
+    }
+
+    @Override
+    public List<Question> getQuestions(Quiz quiz) {
         return null;
+    }
+
+    @Override
+    public void addQuestions(Quiz quiz, List<Question> questions) {
+        for (Question question : questions) {
+            addQuestion(quiz, question);
+        }
+    }
+
+    @Override
+    public void addQuestion(Quiz quiz, Question question) {
+
     }
 
     @Override
