@@ -1,11 +1,14 @@
 package ge.freeuni.quizwebsite.manager.dao;
 
 import ge.freeuni.quizwebsite.manager.AchievementManager;
+import ge.freeuni.quizwebsite.manager.dao.db.DbContract;
 import ge.freeuni.quizwebsite.model.Account;
 import ge.freeuni.quizwebsite.model.Achievement;
 import ge.freeuni.quizwebsite.model.AchievementType;
+import ge.freeuni.quizwebsite.model.message.TextMessage;
 
 import javax.sql.DataSource;
+import java.sql.*;
 import java.util.List;
 
 /**
@@ -17,11 +20,6 @@ public class AchievementManagerDAO extends AbstractManagerDAO implements Achieve
 
     public AchievementManagerDAO(DataSource dataSource) {
         super(dataSource);
-    }
-
-    @Override
-    public Achievement getAchievement(Integer id) {
-        return null;
     }
 
     @Override

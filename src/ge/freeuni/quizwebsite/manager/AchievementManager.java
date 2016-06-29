@@ -12,14 +12,6 @@ import java.util.List;
 public interface AchievementManager {
 
     /**
-     * Returns achievement by given unique identifier.
-     *
-     * @param id Unique identifier
-     * @return Achievement object
-     */
-    Achievement getAchievement(Integer id);
-
-    /**
      * Unlocks desired achievement for given account
      *
      * @param account Target user account
