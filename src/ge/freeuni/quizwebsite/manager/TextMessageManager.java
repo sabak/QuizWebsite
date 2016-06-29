@@ -1,7 +1,6 @@
 package ge.freeuni.quizwebsite.manager;
 
 import ge.freeuni.quizwebsite.model.Account;
-import ge.freeuni.quizwebsite.model.message.Message;
 import ge.freeuni.quizwebsite.model.message.TextMessage;
 
 import java.util.List;
@@ -22,26 +21,26 @@ public interface TextMessageManager {
     /**
      * Returns all sent messages for given account.
      *
-     * @param acc Target user account.
+     * @param account Target user account.
      * @return List of messages.
      */
-    List<TextMessage> getSentMessages(Account acc);
+    List<TextMessage> getSentMessages(Account account);
 
     /**
      * Returns all received messages for given account.
      *
-     * @param acc Target user account.
+     * @param account Target user account.
      * @return List of messages.
      */
-    List<TextMessage> getReceivedMessages(Account acc);
+    List<TextMessage> getReceivedMessages(Account account);
 
     /**
      * Returns conversation members for given account.
      *
-     * @param acc Target user account
+     * @param account Target user account
      * @return List if accounts having conversation with
      */
-    List<Account> getConversationsMember(Account acc);
+    List<Account> getConversationsMember(Account account);
 
     /**
      * Returns a conversation between two accounts.

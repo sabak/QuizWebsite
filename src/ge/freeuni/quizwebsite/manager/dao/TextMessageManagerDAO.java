@@ -58,24 +58,24 @@ public class TextMessageManagerDAO extends AbstractManagerDAO implements TextMes
     }
 
     @Override
-    public List<TextMessage> getSentMessages(Account acc) {
-        return getMessages(acc, true);
+    public List<TextMessage> getSentMessages(Account account) {
+        return getMessages(account, true);
     }
 
     @Override
-    public List<TextMessage> getReceivedMessages(Account acc) {
-        return getMessages(acc, false);
+    public List<TextMessage> getReceivedMessages(Account account) {
+        return getMessages(account, false);
     }
 
-    private List<TextMessage> getMessages(Account acc, boolean isSent) {
+    private List<TextMessage> getMessages(Account account, boolean isSender) {
         List<TextMessage> messages = new ArrayList<>();
         try (Connection con = dataSource.getConnection()) {
-            String col = isSent ? DbContract.Message.COLUMN_NAME_SENDER_ID : DbContract.Message.COLUMN_NAME_RECEIVER_ID;
+            String col = isSender ? DbContract.Message.COLUMN_NAME_SENDER_ID : DbContract.Message.COLUMN_NAME_RECEIVER_ID;
             String query = "SELECT " + DbContract.Message.COLUMN_NAME_MESSAGE_ID
                     + " FROM " + DbContract.Message.TABLE_NAME + " WHERE " +
-                    col + " = ?;";
+                    col + " = ? ORDER BY " + DbContract.Message.COLUMN_NAME_SEND_DATE + " DESC;";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setInt(1, acc.getId());
+            statement.setInt(1, account.getId());
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 TextMessage msg = getMessage(rs.getInt(DbContract.Message.COLUMN_NAME_MESSAGE_ID));
@@ -89,7 +89,7 @@ public class TextMessageManagerDAO extends AbstractManagerDAO implements TextMes
     }
 
     @Override
-    public List<Account> getConversationsMember(Account acc) {
+    public List<Account> getConversationsMember(Account account) {
         // SELECT DISTINCT (id) FROM ((SELECT sender_id AS id, send_date FROM message WHERE receiver_id = 2)
         // UNION (SELECT receiver_id AS id, send_date FROM message WHERE sender_id = 2) ORDER BY send_date DESC) AS unique_members;
         List<Account> accounts = new ArrayList<>();
@@ -110,8 +110,8 @@ public class TextMessageManagerDAO extends AbstractManagerDAO implements TextMes
                     DbContract.Message.COLUMN_NAME_SEND_DATE + " DESC) AS " + unionTableName + ";";
             String query = "SELECT DISTINCT (" + unionColName + ") FROM " + union;
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setInt(1, acc.getId());
-            statement.setInt(2, acc.getId());
+            statement.setInt(1, account.getId());
+            statement.setInt(2, account.getId());
             System.out.println(statement.toString());
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {

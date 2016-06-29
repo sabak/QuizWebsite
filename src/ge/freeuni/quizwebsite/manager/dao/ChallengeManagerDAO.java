@@ -11,6 +11,7 @@ import ge.freeuni.quizwebsite.model.message.TextMessage;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,17 +64,57 @@ public class ChallengeManagerDAO extends AbstractManagerDAO implements Challenge
 
     @Override
     public void challengeUser(Account from, Account to, Quiz quiz) {
+        try (Connection con = dataSource.getConnection()) {
+            String query = "INSERT INTO " + DbContract.Challenge.TABLE_NAME + " (" +
+                    DbContract.Challenge.COLUMN_NAME_SENDER_ID + ", " +
+                    DbContract.Challenge.COLUMN_NAME_RECEIVER_ID + ", " +
+                    DbContract.Challenge.COLUMN_NAME_SEND_DATE + ", " +
+                    DbContract.Challenge.COLUMN_NAME_QUIZ_ID + ") VALUES (?, ?, ?, ?);";
+            PreparedStatement statement = con.prepareStatement(query);
 
+            statement.setInt(1, from.getId());
+            statement.setInt(2, to.getId());
+            statement.setString(3, getCurrentTimestamp().toString());
+            statement.setInt(4, quiz.getId());
+            statement.executeUpdate();
+
+            con.close();
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @Override
     public List<Challenge> getSentChallenges(Account account) {
-        return null;
+        return getChallenges(account, true);
     }
 
     @Override
     public List<Challenge> getReceivedChallenges(Account account) {
-        return null;
+        return getChallenges(account, true);
+    }
+
+    private List<Challenge> getChallenges(Account account, boolean isChallenger) {
+        List<Challenge> challenges = new ArrayList<>();
+        try (Connection con = dataSource.getConnection()) {
+            String col = isChallenger ? DbContract.Challenge.COLUMN_NAME_SENDER_ID : DbContract.Challenge.COLUMN_NAME_RECEIVER_ID;
+            String query = "SELECT " + DbContract.Challenge.COLUMN_NAME_QUIZ_ID
+                    + " FROM " + DbContract.Challenge.TABLE_NAME + " WHERE " +
+                    col + " = ? ORDER BY " + DbContract.Challenge.COLUMN_NAME_SEND_DATE + " DESC;";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, account.getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Challenge challenge = getChallenge(rs.getInt(DbContract.Challenge.COLUMN_NAME_CHALLENGE_ID));
+                challenges.add(challenge);
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return challenges;
     }
 
     @Override
