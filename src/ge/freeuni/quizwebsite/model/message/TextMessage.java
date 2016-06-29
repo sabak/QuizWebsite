@@ -8,6 +8,7 @@ import java.sql.Timestamp;
  * Created by Saba on 6/14/2016.
  */
 public class TextMessage extends Message {
+
     private String text;
     private boolean isRead;
 
@@ -31,7 +32,8 @@ public class TextMessage extends Message {
 
     @Override
     public String toString() {
-        return "TextMessage: " + text + "; Sent at: " + dateSent + "; " + (isRead ? "Seen;" : "Unread;");
+        return "{ ID: " + id + ", Text: " + text + ", Sent from: " + from.getUsername() + ", Sent to: "
+                + to.getUsername() + ", Date sent: " + dateSent + ", Is read: " + isRead + " }";
     }
 
 }

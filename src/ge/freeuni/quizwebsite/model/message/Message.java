@@ -8,6 +8,7 @@ import java.sql.Timestamp;
  * Created by Saba on 6/16/2016.
  */
 public abstract class Message {
+
     protected Integer id;
     protected Account from;
     protected Account to;
@@ -42,7 +43,8 @@ public abstract class Message {
 
     @Override
     public String toString() {
-        return "Sent at: " + dateSent + ";";
+        return "{ ID: " + id + ", Sent from: " + from.getUsername() + ", Sent to: "
+                + to.getUsername() + ", Date sent: " + dateSent + " }";
     }
 
 }

@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 public class FriendRequest extends Message {
 
     public FriendRequest(Account from, Account to, Timestamp dateSent) {
-        this(null, from, to, dateSent);
+        super(from, to, dateSent);
     }
 
     public FriendRequest(Integer id, Account from, Account to, Timestamp dateSent) {
@@ -19,7 +19,8 @@ public class FriendRequest extends Message {
 
     @Override
     public String toString() {
-        return "Friend Request from: " + from + "; to: " + to + "; " + "Sent at: " + dateSent + ";";
+        return "{ ID: " + id + ", Friend request sent from: " + from.getUsername() + ", Sent to: "
+                + to.getUsername() + ", Date sent: " + dateSent + " }";
     }
 
 }
