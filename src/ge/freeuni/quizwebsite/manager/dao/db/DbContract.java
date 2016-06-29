@@ -93,7 +93,8 @@ public final class DbContract {
 
     /* Achievement table */
     public abstract static class Achievement {
-        public static final String TABLE_NAME = "account_id";
+        public static final String TABLE_NAME = "achievement";
+        public static final String COLUMN_NAME_ACCOUNT_ID = "account_id";
         public static final String COLUMN_NAME_TYPE_ID = "type_id";
         public static final String COLUMN_NAME_UNLOCK_DATE = "unlock_date";
     }
