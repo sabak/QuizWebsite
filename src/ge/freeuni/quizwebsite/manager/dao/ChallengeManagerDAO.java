@@ -92,14 +92,14 @@ public class ChallengeManagerDAO extends AbstractManagerDAO implements Challenge
 
     @Override
     public List<Challenge> getReceivedChallenges(Account account) {
-        return getChallenges(account, true);
+        return getChallenges(account, false);
     }
 
     private List<Challenge> getChallenges(Account account, boolean isChallenger) {
         List<Challenge> challenges = new ArrayList<>();
         try (Connection con = dataSource.getConnection()) {
             String col = isChallenger ? DbContract.Challenge.COLUMN_NAME_SENDER_ID : DbContract.Challenge.COLUMN_NAME_RECEIVER_ID;
-            String query = "SELECT " + DbContract.Challenge.COLUMN_NAME_QUIZ_ID
+            String query = "SELECT " + DbContract.Challenge.COLUMN_NAME_CHALLENGE_ID
                     + " FROM " + DbContract.Challenge.TABLE_NAME + " WHERE " +
                     col + " = ? ORDER BY " + DbContract.Challenge.COLUMN_NAME_SEND_DATE + " DESC;";
             PreparedStatement statement = con.prepareStatement(query);
@@ -129,7 +129,7 @@ public class ChallengeManagerDAO extends AbstractManagerDAO implements Challenge
     private void removeChallenge(Challenge challenge) {
         try (Connection con = dataSource.getConnection()) {
             String query = "DELETE FROM " + DbContract.Challenge.TABLE_NAME + " WHERE "
-                    + DbContract.Challenge.COLUMN_NAME_QUIZ_ID + " = ?;";
+                    + DbContract.Challenge.COLUMN_NAME_CHALLENGE_ID + " = ?;";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setInt(1, challenge.getId());
             statement.executeUpdate();
