@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS quiz (
   date_created            DATETIME     DEFAULT now(),
   name                    NVARCHAR(256),
   description             TEXT,
+  has_random_order        BOOL         DEFAULT FALSE,
   is_multiple_page        BOOL         DEFAULT FALSE,
   is_immediate_correction BOOL         DEFAULT FALSE
 )

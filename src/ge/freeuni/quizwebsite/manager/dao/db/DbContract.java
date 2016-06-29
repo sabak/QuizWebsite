@@ -36,6 +36,7 @@ public final class DbContract {
         public static final String COLUMN_NAME_DATE_CREATED = "date_created";
         public static final String COLUMN_NAME_NAME = "name";
         public static final String COLUMN_NAME_DESCRIPTION = "description";
+        public static final String COLUMN_NAME_HAS_RANDOM = "has_random_order";
         public static final String COLUMN_NAME_MULTIPLE_PAGE = "is_multiple_page";
         public static final String COLUMN_NAME_IMMEDIATE_CORRECTION = "is_immediate_correction";
     }
