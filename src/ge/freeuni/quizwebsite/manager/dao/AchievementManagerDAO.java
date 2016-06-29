@@ -1,5 +1,6 @@
 package ge.freeuni.quizwebsite.manager.dao;
 
+import ge.freeuni.quizwebsite.manager.AccountManager;
 import ge.freeuni.quizwebsite.manager.AchievementManager;
 import ge.freeuni.quizwebsite.manager.dao.db.DbContract;
 import ge.freeuni.quizwebsite.model.Account;
@@ -18,12 +19,15 @@ public class AchievementManagerDAO extends AbstractManagerDAO implements Achieve
 
     public static final String ATTRIBUTE_NAME = "achievement_manager";
 
-    public AchievementManagerDAO(DataSource dataSource) {
+    private AccountManager accountManager;
+
+    public AchievementManagerDAO(DataSource dataSource, AccountManager accountManager) {
         super(dataSource);
+        this.accountManager = accountManager;
     }
 
     @Override
-    public void unlockAchievement(Account account, AchievementType type) {
+    public void unlockAchievement(Account account, Achievement achievement) {
 
     }
 
@@ -35,6 +39,14 @@ public class AchievementManagerDAO extends AbstractManagerDAO implements Achieve
     @Override
     public List<Achievement> getAchievements(Account account) {
         return null;
+    }
+
+    private Integer achievementTypeToId(AchievementType type) {
+        return null;
+    }
+
+    private AchievementType achievementIdToType(Integer typeId) {
+        return AchievementType.AMATEUR_AUTHOR;
     }
 
 }

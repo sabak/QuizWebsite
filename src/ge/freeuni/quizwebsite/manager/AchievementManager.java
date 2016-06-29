@@ -14,10 +14,10 @@ public interface AchievementManager {
     /**
      * Unlocks desired achievement for given account
      *
-     * @param account Target user account
-     * @param type    Desired achievement
+     * @param account     Target user account
+     * @param achievement Desired achievement
      */
-    void unlockAchievement(Account account, AchievementType type);
+    void unlockAchievement(Account account, Achievement achievement);
 
     /**
      * Checks whether user is eligible for any new achievements.
