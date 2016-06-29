@@ -44,13 +44,13 @@ public class ChallengeManagerDAO extends AbstractManagerDAO implements Challenge
                 Integer senderId = rs.getInt(DbContract.Challenge.COLUMN_NAME_SENDER_ID);
                 Integer receiverId = rs.getInt(DbContract.Challenge.COLUMN_NAME_RECEIVER_ID);
                 Integer quizId = rs.getInt(DbContract.Challenge.COLUMN_NAME_QUIZ_ID);
-                String dateStr = rs.getString(DbContract.Challenge.COLUMN_NAME_SEND_DATE);
+                Timestamp date = rs.getTimestamp(DbContract.Challenge.COLUMN_NAME_SEND_DATE);
 
                 Account sender = accountManager.getAccount(senderId);
                 Account receiver = accountManager.getAccount(receiverId);
                 Quiz quiz = quizManager.getQuiz(quizId);
 
-                challenge = new Challenge(id, quiz, sender, receiver, Timestamp.valueOf(dateStr));
+                challenge = new Challenge(id, quiz, sender, receiver, date);
             }
             con.close();
         } catch (SQLException e) {
@@ -73,7 +73,7 @@ public class ChallengeManagerDAO extends AbstractManagerDAO implements Challenge
 
             statement.setInt(1, from.getId());
             statement.setInt(2, to.getId());
-            statement.setString(3, getCurrentTimestamp().toString());
+            statement.setTimestamp(3, getCurrentTimestamp());
             statement.setInt(4, quiz.getId());
             statement.executeUpdate();
 

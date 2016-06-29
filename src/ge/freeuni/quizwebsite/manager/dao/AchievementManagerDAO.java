@@ -57,7 +57,7 @@ public class AchievementManagerDAO extends AbstractManagerDAO implements Achieve
             statement.setInt(1, account.getId());
             statement.setInt(2, typeId);
             Timestamp dateUnlocked = achievement.getDateUnlocked();
-            statement.setString(3, dateUnlocked != null ? dateUnlocked.toString() : getCurrentTimestamp().toString());
+            statement.setTimestamp(3, dateUnlocked != null ? dateUnlocked : getCurrentTimestamp());
             statement.executeUpdate();
 
             con.close();

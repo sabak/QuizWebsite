@@ -39,12 +39,12 @@ public class FriendManagerDAO extends AbstractManagerDAO implements FriendManage
             if (rs.next()) {
                 Integer senderId = rs.getInt(DbContract.FriendRequest.COLUMN_NAME_SENDER_ID);
                 Integer receiverId = rs.getInt(DbContract.FriendRequest.COLUMN_NAME_RECEIVER_ID);
-                String dateStr = rs.getString(DbContract.FriendRequest.COLUMN_NAME_SEND_DATE);
+                Timestamp date = rs.getTimestamp(DbContract.FriendRequest.COLUMN_NAME_SEND_DATE);
 
                 Account sender = accountManager.getAccount(senderId);
                 Account receiver = accountManager.getAccount(receiverId);
 
-                friendRequest = new FriendRequest(id, sender, receiver, Timestamp.valueOf(dateStr));
+                friendRequest = new FriendRequest(id, sender, receiver, date);
             }
             con.close();
         } catch (SQLException e) {
@@ -88,7 +88,7 @@ public class FriendManagerDAO extends AbstractManagerDAO implements FriendManage
 
             statement.setInt(1, sender.getId());
             statement.setInt(2, receiver.getId());
-            statement.setString(3, getCurrentTimestamp().toString());
+            statement.setTimestamp(3, getCurrentTimestamp());
             statement.executeUpdate();
 
             con.close();

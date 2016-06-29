@@ -5,7 +5,6 @@ import ge.freeuni.quizwebsite.manager.AnnouncementManager;
 import ge.freeuni.quizwebsite.manager.dao.db.DbContract;
 import ge.freeuni.quizwebsite.model.Account;
 import ge.freeuni.quizwebsite.model.Announcement;
-import ge.freeuni.quizwebsite.model.message.TextMessage;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -40,11 +39,11 @@ public class AnnouncementManagerDAO extends AbstractManagerDAO implements Announ
             if (rs.next()) {
                 Integer authorId = rs.getInt(DbContract.Announcement.COLUMN_NAME_ACCOUNT_ID);
                 String text = rs.getString(DbContract.Announcement.COLUMN_NAME_ANNOUNCEMENT);
-                String postDate = rs.getString(DbContract.Announcement.COLUMN_NAME_POST_DATE);
+                Timestamp postDate = rs.getTimestamp(DbContract.Announcement.COLUMN_NAME_POST_DATE);
 
                 Account author = accountManager.getAccount(authorId);
 
-                announcement = new Announcement(id, text, author, Timestamp.valueOf(postDate));
+                announcement = new Announcement(id, text, author, postDate);
             }
             con.close();
         } catch (SQLException e) {
@@ -66,7 +65,7 @@ public class AnnouncementManagerDAO extends AbstractManagerDAO implements Announ
             statement.setInt(1, announcement.getAuthor().getId());
             statement.setString(2, announcement.getText());
             Timestamp datePosted = announcement.getDatePosted();
-            statement.setString(3, datePosted != null ? datePosted.toString() : getCurrentTimestamp().toString());
+            statement.setTimestamp(3, datePosted != null ? datePosted : getCurrentTimestamp());
             statement.executeUpdate();
 
             con.close();

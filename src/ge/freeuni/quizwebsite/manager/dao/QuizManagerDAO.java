@@ -33,14 +33,14 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
             if (rs.next()) {
                 String name = rs.getString(DbContract.Quiz.COLUMN_NAME_NAME);
                 String description = rs.getString(DbContract.Quiz.COLUMN_NAME_DESCRIPTION);
-                String dateCreated = rs.getString(DbContract.Quiz.COLUMN_NAME_DATE_CREATED);
+                Timestamp dateCreated = rs.getTimestamp(DbContract.Quiz.COLUMN_NAME_DATE_CREATED);
                 boolean hasRandomOrder = rs.getBoolean(DbContract.Quiz.COLUMN_NAME_HAS_RANDOM);
                 boolean isMultiplePage = rs.getBoolean(DbContract.Quiz.COLUMN_NAME_MULTIPLE_PAGE);
                 boolean isImmediatelyCorrected = rs.getBoolean(DbContract.Quiz.COLUMN_NAME_IMMEDIATE_CORRECTION);
 
                 quiz = new Quiz(id, name, description, hasRandomOrder,
                         isImmediatelyCorrected, isMultiplePage ? PageType.MULTI_PAGE : PageType.ONE_PAGE,
-                        Timestamp.valueOf(dateCreated));
+                        dateCreated);
             }
             con.close();
         } catch (SQLException e) {

@@ -39,11 +39,10 @@ public class HistoryManagerDAO extends AbstractManagerDAO implements HistoryMana
             while (rs.next()) {
                 Integer id = rs.getInt(DbContract.QuizResult.COLUMN_NAME_RESULT_ID);
                 int score = rs.getInt(DbContract.QuizResult.COLUMN_NAME_SCORE);
-                String timeTaken = rs.getString(DbContract.QuizResult.COLUMN_NAME_TIME_TAKEN);
-                String submitDate = rs.getString(DbContract.QuizResult.COLUMN_NAME_SUBMIT_DATE);
+                Time timeTaken = rs.getTime(DbContract.QuizResult.COLUMN_NAME_TIME_TAKEN);
+                Timestamp submitDate = rs.getTimestamp(DbContract.QuizResult.COLUMN_NAME_SUBMIT_DATE);
 
-                QuizResult quizResult = new QuizResult(id, score, account, Time.valueOf(timeTaken),
-                        Timestamp.valueOf(submitDate));
+                QuizResult quizResult = new QuizResult(id, score, account, timeTaken, submitDate);
                 quizResults.add(quizResult);
             }
             con.close();

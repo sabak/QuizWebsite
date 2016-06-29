@@ -40,13 +40,13 @@ public class TextMessageManagerDAO extends AbstractManagerDAO implements TextMes
                 Integer senderId = rs.getInt(DbContract.Message.COLUMN_NAME_SENDER_ID);
                 Integer receiverId = rs.getInt(DbContract.Message.COLUMN_NAME_RECEIVER_ID);
                 String text = rs.getString(DbContract.Message.COLUMN_NAME_MESSAGE_TEXT);
-                String dateStr = rs.getString(DbContract.Message.COLUMN_NAME_SEND_DATE);
+                Timestamp date = rs.getTimestamp(DbContract.Message.COLUMN_NAME_SEND_DATE);
                 boolean isRead = rs.getBoolean(DbContract.Message.COLUMN_NAME_IS_READ);
 
                 Account sender = accountManager.getAccount(senderId);
                 Account receiver = accountManager.getAccount(receiverId);
 
-                msg = new TextMessage(id, text, sender, receiver, Timestamp.valueOf(dateStr), isRead);
+                msg = new TextMessage(id, text, sender, receiver, date, isRead);
             }
             con.close();
         } catch (SQLException e) {
@@ -167,7 +167,7 @@ public class TextMessageManagerDAO extends AbstractManagerDAO implements TextMes
             statement.setInt(1, msg.getSender().getId());
             statement.setInt(2, msg.getTarget().getId());
             Timestamp dateSent = msg.getDateSent();
-            statement.setString(3, dateSent != null ? dateSent.toString() : getCurrentTimestamp().toString());
+            statement.setTimestamp(3, dateSent != null ? dateSent : getCurrentTimestamp());
             statement.setString(4, msg.getText());
             statement.setBoolean(5, msg.isRead());
             statement.executeUpdate();
