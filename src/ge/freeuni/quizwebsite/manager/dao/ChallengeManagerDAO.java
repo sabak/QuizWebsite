@@ -119,12 +119,27 @@ public class ChallengeManagerDAO extends AbstractManagerDAO implements Challenge
 
     @Override
     public void confirmChallenge(Challenge challenge) {
-
+        removeChallenge(challenge);
     }
 
     @Override
     public void declineChallenge(Challenge challenge) {
+        removeChallenge(challenge);
+    }
 
+    private void removeChallenge(Challenge challenge) {
+        try (Connection con = dataSource.getConnection()) {
+            String query = "DELETE FROM " + DbContract.Challenge.TABLE_NAME + " WHERE "
+                    + DbContract.Challenge.COLUMN_NAME_QUIZ_ID + " = ?;";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, challenge.getId());
+            statement.executeUpdate();
+
+            con.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }
