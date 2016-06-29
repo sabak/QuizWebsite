@@ -1,5 +1,6 @@
 package ge.freeuni.quizwebsite.manager.dao;
 
+import ge.freeuni.quizwebsite.manager.AccountManager;
 import ge.freeuni.quizwebsite.manager.FriendManager;
 import ge.freeuni.quizwebsite.model.Account;
 import ge.freeuni.quizwebsite.model.message.FriendRequest;
@@ -14,8 +15,11 @@ public class FriendManagerDAO extends AbstractManagerDAO implements FriendManage
 
     public static final String ATTRIBUTE_NAME = "friend_manager";
 
-    public FriendManagerDAO(DataSource dataSource) {
+    private AccountManager accountManager;
+
+    public FriendManagerDAO(DataSource dataSource, AccountManager accountManager) {
         super(dataSource);
+        this.accountManager = accountManager;
     }
 
     @Override

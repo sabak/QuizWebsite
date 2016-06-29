@@ -12,11 +12,11 @@ public class Challenge extends Message {
 
     private Quiz quiz;
 
-    public Challenge(Quiz quiz, Account from, Account to, Timestamp dateSent, boolean isRead) {
-        this(null, quiz, from, to, dateSent, isRead);
+    public Challenge(Quiz quiz, Account from, Account to, Timestamp dateSent) {
+        this(null, quiz, from, to, dateSent);
     }
 
-    public Challenge(Integer id, Quiz quiz, Account from, Account to, Timestamp dateSent, boolean isRead) {
+    public Challenge(Integer id, Quiz quiz, Account from, Account to, Timestamp dateSent) {
         super(id, from, to, dateSent);
         this.quiz = quiz;
     }

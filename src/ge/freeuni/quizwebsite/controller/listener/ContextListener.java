@@ -47,8 +47,8 @@ public class ContextListener implements ServletContextListener,
             QuizManager quizManager = new QuizManagerDAO(dataSource);
             StatsManager statsManager = new StatsManagerDAO(dataSource);
             AchievementManager achievementManager = new AchievementManagerDAO(dataSource, quizManager, statsManager);
-            ChallengeManager challengeManager = new ChallengeManagerDAO(dataSource, quizManager);
-            FriendManager friendManager = new FriendManagerDAO(dataSource);
+            ChallengeManager challengeManager = new ChallengeManagerDAO(dataSource, accountManager, quizManager);
+            FriendManager friendManager = new FriendManagerDAO(dataSource, accountManager);
             TextMessageManager textMessageManager = new TextMessageManagerDAO(dataSource, accountManager);
             HistoryManager historyManager = new HistoryManagerDAO(dataSource);
 
