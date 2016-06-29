@@ -237,7 +237,7 @@ public class AccountManagerDAO extends AbstractManagerDAO implements AccountMana
     @Override
     public List<Account> getAccounts(int limitFrom, int limitTo) {
         List<Account> accounts = new ArrayList<>();
-        try (Connection con = dataSource.getConnection();) {
+        try (Connection con = dataSource.getConnection()) {
             String query = "SELECT " + DbContract.Account.COLUMN_NAME_USERNAME
                     + " FROM " + DbContract.Account.TABLE_NAME + " LIMIT ?, ?;";
             PreparedStatement statement = con.prepareStatement(query);
