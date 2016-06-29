@@ -3,6 +3,7 @@ package ge.freeuni.quizwebsite.manager;
 import ge.freeuni.quizwebsite.model.Account;
 import ge.freeuni.quizwebsite.model.Achievement;
 import ge.freeuni.quizwebsite.model.AchievementType;
+import ge.freeuni.quizwebsite.model.Quiz;
 
 import java.util.List;
 
@@ -25,6 +26,14 @@ public interface AchievementManager {
      * @param account Target user account
      */
     void checkForAchievements(Account account);
+
+    /**
+     * Checks whether user is eligible for any new achievements for given completed quiz.
+     *
+     * @param account Target user account
+     * @param quiz    Newly completed quiz
+     */
+    void checkForAchievements(Account account, Quiz quiz);
 
     /**
      * Lists all achievements unlocked by given user account.
