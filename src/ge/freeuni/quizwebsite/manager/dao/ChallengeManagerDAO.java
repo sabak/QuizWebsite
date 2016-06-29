@@ -7,7 +7,6 @@ import ge.freeuni.quizwebsite.manager.dao.db.DbContract;
 import ge.freeuni.quizwebsite.model.Account;
 import ge.freeuni.quizwebsite.model.Quiz;
 import ge.freeuni.quizwebsite.model.message.Challenge;
-import ge.freeuni.quizwebsite.model.message.TextMessage;
 
 import javax.sql.DataSource;
 import java.sql.*;
