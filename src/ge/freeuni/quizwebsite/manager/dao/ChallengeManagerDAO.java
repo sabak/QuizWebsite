@@ -30,12 +30,12 @@ public class ChallengeManagerDAO extends AbstractManagerDAO implements Challenge
     }
 
     @Override
-    public List<Challenge> getChallenges(Account account) {
+    public List<Challenge> getSentChallenges(Account account) {
         return null;
     }
 
     @Override
-    public List<Challenge> getChallenges(Account account, boolean isChallenger) {
+    public List<Challenge> getReceivedChallenges(Account account) {
         return null;
     }
 

@@ -29,21 +29,20 @@ public interface ChallengeManager {
     void challengeUser(Account from, Account to, Quiz quiz);
 
     /**
-     * Return list of all challenges applicable to given user.
+     * Return list of all sent challenges applicable to given user.
+     *
+     * @param account Challenger user account
+     * @return List of challenges
+     */
+    List<Challenge> getSentChallenges(Account account);
+
+    /**
+     * Return list of all received challenges applicable to given user.
      *
      * @param account Challenged user account
      * @return List of challenges
      */
-    List<Challenge> getChallenges(Account account);
-
-    /**
-     * Return list of all challenges applicable to given user.
-     *
-     * @param account flag to determine if we want to query
-     *                either sent or received challenges
-     * @return List of challenges
-     */
-    List<Challenge> getChallenges(Account account, boolean isChallenger);
+    List<Challenge> getReceivedChallenges(Account account);
 
     /**
      * Accept incoming challenge.

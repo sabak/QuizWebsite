@@ -19,9 +19,8 @@ public class AchievementManagerDAO extends AbstractManagerDAO implements Achieve
         super(dataSource);
     }
 
-
     @Override
-    public Achievement getAchievementManager(Integer id) {
+    public Achievement getAchievement(Integer id) {
         return null;
     }
 
@@ -36,7 +35,7 @@ public class AchievementManagerDAO extends AbstractManagerDAO implements Achieve
     }
 
     @Override
-    public List<Account> getAchievements(Account account) {
+    public List<Achievement> getAchievements(Account account) {
         return null;
     }
 

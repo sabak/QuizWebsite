@@ -17,7 +17,7 @@ public interface AchievementManager {
      * @param id Unique identifier
      * @return Achievement object
      */
-    Achievement getAchievementManager(Integer id);
+    Achievement getAchievement(Integer id);
 
     /**
      * Unlocks desired achievement for given account
@@ -40,6 +40,6 @@ public interface AchievementManager {
      * @param account Target user account
      * @return List of specified achievements
      */
-    List<Account> getAchievements(Account account);
+    List<Achievement> getAchievements(Account account);
 
 }
