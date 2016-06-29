@@ -110,7 +110,7 @@ public final class DbContract {
     /* Challenge request table */
     public abstract static class Challenge {
         public static final String TABLE_NAME = "challenge_request";
-        public static final String COLUMN_NAME_REQUEST_ID = "id";
+        public static final String COLUMN_NAME_CHALLENGE_ID = "id";
         public static final String COLUMN_NAME_SENDER_ID = "sender_id";
         public static final String COLUMN_NAME_RECEIVER_ID = "receiver_id";
         public static final String COLUMN_NAME_SEND_DATE = "send_date";
@@ -120,7 +120,7 @@ public final class DbContract {
     /* Message table */
     public abstract static class Message {
         public static final String TABLE_NAME = "message";
-        public static final String COLUMN_NAME_REQUEST_ID = "id";
+        public static final String COLUMN_NAME_MESSAGE_ID = "id";
         public static final String COLUMN_NAME_SENDER_ID = "sender_id";
         public static final String COLUMN_NAME_RECEIVER_ID = "receiver_id";
         public static final String COLUMN_NAME_SEND_DATE = "send_date";
@@ -131,7 +131,7 @@ public final class DbContract {
     /* Announcement table */
     public abstract static class Announcement {
         public static final String TABLE_NAME = "announcement";
-        public static final String COLUMN_NAME_REQUEST_ID = "id";
+        public static final String COLUMN_NAME_ANNOUNCEMENT_ID = "id";
         public static final String COLUMN_NAME_ACCOUNT_ID = "account_id";
         public static final String COLUMN_NAME_ANNOUNCEMENT = "announcement_text";
         public static final String COLUMN_NAME_POST_DATE = "post_date";
