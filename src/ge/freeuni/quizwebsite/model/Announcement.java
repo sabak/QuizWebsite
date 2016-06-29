@@ -41,7 +41,7 @@ public class Announcement {
 
     @Override
     public String toString() {
-        return "Announcement: " + text + "; Date posted: " + datePosted + ";";
+        return "ID: " + id + "; Announcement: " + text + "; Date posted: " + datePosted + ";";
     }
 
 }

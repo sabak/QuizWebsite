@@ -22,8 +22,9 @@ public interface AnnouncementManager {
      * Saves given announcement.
      *
      * @param announcement Announcement to be saved
+     * @return returns true if successfully created, false otherwise
      */
-    void createAnnouncement(Announcement announcement);
+    boolean createAnnouncement(Announcement announcement);
 
     /**
      * Returns all announcements made by specified admin user account.

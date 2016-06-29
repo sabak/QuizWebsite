@@ -43,7 +43,7 @@ public class ContextListener implements ServletContextListener,
             // Creating DAO layers
             AccountManager accountManager = new AccountManagerDAO(dataSource);
             AdminManager adminManager = new AdminManagerDAO(dataSource, accountManager);
-            AnnouncementManager announcementManager = new AnnouncementManagerDAO(dataSource);
+            AnnouncementManager announcementManager = new AnnouncementManagerDAO(dataSource, accountManager);
             AchievementManager achievementManager = new AchievementManagerDAO(dataSource);
             ChallengeManager challengeManager = new ChallengeManagerDAO(dataSource);
             FriendManager friendManager = new FriendManagerDAO(dataSource);

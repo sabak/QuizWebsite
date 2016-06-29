@@ -166,7 +166,8 @@ public class TextMessageManagerDAO extends AbstractManagerDAO implements TextMes
 
             statement.setInt(1, msg.getSender().getId());
             statement.setInt(2, msg.getTarget().getId());
-            statement.setString(3, msg.getDateSent().toString());
+            Timestamp dateSent = msg.getDateSent();
+            statement.setString(3, dateSent != null ? dateSent.toString() : getCurrentTimestamp().toString());
             statement.setString(4, msg.getText());
             statement.setBoolean(5, msg.isRead());
             statement.executeUpdate();
