@@ -20,12 +20,28 @@ public interface TextMessageManager {
     TextMessage getMessage(Integer id);
 
     /**
-     * Returns all messages for given account (sent and received).
+     * Returns all sent messages for given account.
      *
      * @param acc Target user account.
      * @return List of messages.
      */
-    List<Message> getMessages(Account acc);
+    List<TextMessage> getSentMessages(Account acc);
+
+    /**
+     * Returns all received messages for given account.
+     *
+     * @param acc Target user account.
+     * @return List of messages.
+     */
+    List<TextMessage> getReceivedMessages(Account acc);
+
+    /**
+     * Returns conversation members for given account.
+     *
+     * @param acc Target user account
+     * @return List if accounts having conversation with
+     */
+    List<Account> getConversationsMember(Account acc);
 
     /**
      * Returns a conversation between two accounts.
@@ -34,27 +50,29 @@ public interface TextMessageManager {
      * @param from Second user account
      * @return List of messages between two accounts
      */
-    List<Message> getMessages(Account to, Account from);
+    List<TextMessage> getMessages(Account to, Account from);
 
     /**
      * Sends message.
      *
      * @param msg Message to be sent
+     * @return true if message was successfully sent, false otherwise
      */
-    void sendMessage(Message msg);
+    boolean sendMessage(TextMessage msg);
 
     /**
      * Marks message as read.
      *
      * @param msg Message to be marked as read
+     * @return updated text message
      */
-    void markRead(Message msg);
+    TextMessage markRead(TextMessage msg);
 
     /**
      * Deletes message.
      *
      * @param msg Message to be deleted.
      */
-    void deleteMessage(Message msg);
+    void deleteMessage(TextMessage msg);
 
 }
