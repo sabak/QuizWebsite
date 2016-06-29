@@ -1,6 +1,7 @@
 package ge.freeuni.quizwebsite.manager.dao;
 
 import ge.freeuni.quizwebsite.manager.ChallengeManager;
+import ge.freeuni.quizwebsite.manager.QuizManager;
 import ge.freeuni.quizwebsite.model.Account;
 import ge.freeuni.quizwebsite.model.Quiz;
 import ge.freeuni.quizwebsite.model.message.Challenge;
@@ -15,8 +16,11 @@ public class ChallengeManagerDAO extends AbstractManagerDAO implements Challenge
 
     public static final String ATTRIBUTE_NAME = "challenge_manager";
 
-    public ChallengeManagerDAO(DataSource dataSource) {
+    private QuizManager quizManager;
+
+    public ChallengeManagerDAO(DataSource dataSource, QuizManager quizManager) {
         super(dataSource);
+        this.quizManager = quizManager;
     }
 
     @Override
