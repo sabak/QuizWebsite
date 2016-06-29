@@ -43,8 +43,8 @@ public abstract class Message {
 
     @Override
     public String toString() {
-        return "{ ID: " + id + ", Sent from: " + from.getUsername() + ", Sent to: "
-                + to.getUsername() + ", Date sent: " + dateSent + " }";
+        return "{ ID: " + id + ", Sent From: " + from.getUsername() + ", Sent To: "
+                + to.getUsername() + ", Date Sent: " + dateSent + " }";
     }
 
 }

@@ -48,9 +48,9 @@ public class QuizResult {
 
     @Override
     public String toString() {
-        return "ID: " + id + "; Score: " + score + "; Completed by {" + account.getUsername() +
-                "}; Time taken to complete quiz: " + timeTaken +
-                "; Submitted at: " + resultSubmitDate + ";";
+        return "{ ID: " + id + ", Score: " + score + ", Completed By: " + account.getUsername() +
+                ", Time Taken To Complete: " + timeTaken +
+                ", Submitted At: " + resultSubmitDate + " }";
     }
 
 }

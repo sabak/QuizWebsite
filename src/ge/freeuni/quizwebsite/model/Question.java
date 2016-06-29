@@ -48,8 +48,8 @@ public class Question {
 
     @Override
     public String toString() {
-        return "ID: " + id + "; Question: " + text + "; Type: " + questionType +
-                "; Index: " + index + "; Answers {" + answers + "};";
+        return "{ ID: " + id + ", Question: " + text + ", Type: " + questionType +
+                ", Index: " + index + ", Answers: " + answers + " }";
     }
 
 }

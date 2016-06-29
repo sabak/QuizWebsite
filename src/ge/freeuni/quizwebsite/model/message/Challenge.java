@@ -27,8 +27,8 @@ public class Challenge extends Message {
 
     @Override
     public String toString() {
-        return "{ ID: " + id + ", Challenge sent from: " + from.getUsername() + ", Sent to: "
-                + to.getUsername() + ", Quiz: " + quiz.getName() + ", Date sent: " + dateSent + " }";
+        return "{ ID: " + id + ", Challenge Sent From: " + from.getUsername() + ", Sent To: "
+                + to.getUsername() + ", Quiz: " + quiz.getName() + ", Date Sent: " + dateSent + " }";
     }
 
 }

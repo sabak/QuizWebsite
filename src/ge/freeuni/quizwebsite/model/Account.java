@@ -4,7 +4,7 @@ package ge.freeuni.quizwebsite.model;
  * Created by Saba on 6/14/2016.
  */
 public class Account {
-    
+
     private Integer id;
     private String username;
     private String hashedPassword;
@@ -51,11 +51,11 @@ public class Account {
 
     @Override
     public String toString() {
-        return "ID: " + id + "; Username: " + username + "; "
-                + "Hashed Password: " + hashedPassword + "; "
-                + "E-mail: " + email + "; "
-                + "First Name: " + firstName + "; "
-                + "Last Name: " + lastName + ";";
+        return "{ ID: " + id + ", Username: " + username
+                + ", Hashed Password: " + hashedPassword
+                + ", E-mail: " + email
+                + ", First Name: " + firstName
+                + ", Last Name: " + lastName + " }";
     }
 
 }

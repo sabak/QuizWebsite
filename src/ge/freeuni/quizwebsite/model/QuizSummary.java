@@ -21,4 +21,9 @@ public class QuizSummary {
         return successPercentage;
     }
 
+    @Override
+    public String toString() {
+        return "{ Quiz Taken Number: " + timesTaken + ", Correct: " + successPercentage * 100 + "% }";
+    }
+
 }

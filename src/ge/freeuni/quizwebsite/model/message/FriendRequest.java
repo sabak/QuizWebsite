@@ -19,8 +19,8 @@ public class FriendRequest extends Message {
 
     @Override
     public String toString() {
-        return "{ ID: " + id + ", Friend request sent from: " + from.getUsername() + ", Sent to: "
-                + to.getUsername() + ", Date sent: " + dateSent + " }";
+        return "{ ID: " + id + ", Friend Request Sent From: " + from.getUsername() + ", Sent To: "
+                + to.getUsername() + ", Date Sent: " + dateSent + " }";
     }
 
 }

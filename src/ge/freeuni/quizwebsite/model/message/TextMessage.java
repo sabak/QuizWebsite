@@ -32,8 +32,8 @@ public class TextMessage extends Message {
 
     @Override
     public String toString() {
-        return "{ ID: " + id + ", Text: " + text + ", Sent from: " + from.getUsername() + ", Sent to: "
-                + to.getUsername() + ", Date sent: " + dateSent + ", Is read: " + isRead + " }";
+        return "{ ID: " + id + ", Text: " + text + ", Sent From: " + from.getUsername() + ", Sent To: "
+                + to.getUsername() + ", Date Sent: " + dateSent + ", Is Read: " + isRead + " }";
     }
 
 }

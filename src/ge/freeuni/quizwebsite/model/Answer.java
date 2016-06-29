@@ -33,7 +33,7 @@ public class Answer {
 
     @Override
     public String toString() {
-        return "ID: " + id + "; Answer: " + text + "; " + (isCorrect ? "Correct answer;" : "Incorrect answer");
+        return "{ ID: " + id + ", Answer: " + text + ", Is Correct Answer: " + isCorrect + " }";
     }
 
 }

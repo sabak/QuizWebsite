@@ -25,8 +25,8 @@ public class Achievement {
 
     @Override
     public String toString() {
-        return "Achievement: " + achievementType + "; "
-                + "Achievement unlocked at: " + dateUnlocked + ";";
+        return "{ Achievement: " + achievementType
+                + ", Achievement Unlocked At: " + dateUnlocked + " }";
     }
 
 }
