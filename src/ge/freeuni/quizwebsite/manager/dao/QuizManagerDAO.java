@@ -299,6 +299,34 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
     public List<Quiz> getTakenQuizzes(Account account, int limitFrom, int limitTo) {
         List<Quiz> quizzes = new ArrayList<>();
         try (Connection con = dataSource.getConnection()) {
+            String query = "SELECT DISTINCT (" + DbContract.QuizResult.COLUMN_NAME_QUIZ_ID
+                    + ") FROM " + DbContract.QuizResult.TABLE_NAME + " WHERE "
+                    + DbContract.QuizResult.COLUMN_NAME_ACCOUNT_ID + " = ? LIMIT ?, ?;";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, account.getId());
+            statement.setInt(2, limitFrom);
+            statement.setInt(3, limitTo);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Quiz quiz = getQuiz(rs.getInt(DbContract.QuizResult.COLUMN_NAME_QUIZ_ID));
+                quizzes.add(quiz);
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return quizzes;
+    }
+
+    @Override
+    public List<Quiz> getCreatedQuizzes(Account account, int limit) {
+        return getCreatedQuizzes(account, 0, limit);
+    }
+
+    @Override
+    public List<Quiz> getCreatedQuizzes(Account account, int limitFrom, int limitTo) {
+        List<Quiz> quizzes = new ArrayList<>();
+        try (Connection con = dataSource.getConnection()) {
             String query = "SELECT " + DbContract.Quiz.COLUMN_NAME_QUIZ_ID
                     + " FROM " + DbContract.Quiz.TABLE_NAME + " WHERE "
                     + DbContract.Quiz.COLUMN_NAME_ACCOUNT_ID + " = ? LIMIT ?, ?;";
@@ -316,16 +344,6 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
             e.printStackTrace();
         }
         return quizzes;
-    }
-
-    @Override
-    public List<Quiz> getCreatedQuizzes(Account account, int limit) {
-        return getCreatedQuizzes(account, 0, limit);
-    }
-
-    @Override
-    public List<Quiz> getCreatedQuizzes(Account account, int limitFrom, int limitTo) {
-        return null;
     }
 
     @Override
