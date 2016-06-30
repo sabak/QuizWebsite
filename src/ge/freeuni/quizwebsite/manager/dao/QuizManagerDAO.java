@@ -1,5 +1,6 @@
 package ge.freeuni.quizwebsite.manager.dao;
 
+import ge.freeuni.quizwebsite.manager.AccountManager;
 import ge.freeuni.quizwebsite.manager.QuizManager;
 import ge.freeuni.quizwebsite.manager.dao.db.DbContract;
 import ge.freeuni.quizwebsite.model.*;
@@ -19,12 +20,13 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
 
     public static final String ATTRIBUTE_NAME = "quiz_manager";
 
+    private AccountManager accountManager;
+
     private Map<QuestionType, String> questionTypes;
 
-    public QuizManagerDAO(DataSource dataSource) {
+    public QuizManagerDAO(DataSource dataSource, AccountManager accountManager) {
         super(dataSource);
-
-        //
+        this.accountManager = accountManager;
         questionTypes = new HashMap<>();
         questionTypes.put(QuestionType.FILL_IN_THE_BLANK, "Fill in the Blank");
         questionTypes.put(QuestionType.MULTIPLE_CHOICE, "Multiple Choice");
@@ -57,7 +59,6 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
             }
             con.close();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -66,9 +67,7 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
 
     @Override
     public boolean createQuiz(Quiz quiz, Account account) {
-        System.out.println("h1");
         try {
-            System.out.println("h2");
             Connection con = dataSource.getConnection();
             String query = "INSERT INTO " + DbContract.Quiz.TABLE_NAME + " (" +
                     DbContract.Quiz.COLUMN_NAME_ACCOUNT_ID + ", " +
@@ -92,11 +91,9 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
             con.close();
             return true;
 
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return false;
     }
 
@@ -144,7 +141,6 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
             }
             con.close();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -257,7 +253,6 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
             }
             con.close();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -288,8 +283,9 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
         List<Quiz> quizzes = new ArrayList<>();
         try {
             Connection con = dataSource.getConnection();
-            String query = "SELECT * FROM " + DbContract.Quiz.TABLE_NAME + " WHERE " +
-                    DbContract.Quiz.COLUMN_NAME_QUIZ_ID + " BETWEEN ? AND ?";
+            String query = "SELECT "+ DbContract.Quiz.COLUMN_NAME_QUIZ_ID +" FROM " + DbContract.Quiz.TABLE_NAME + " WHERE " +
+                    DbContract.Quiz.COLUMN_NAME_QUIZ_ID  +
+                    " ORDER BY " + DbContract.Quiz.COLUMN_NAME_DATE_CREATED + " DESC LIMIT ?, ? ;";
 
             PreparedStatement statement = con.prepareStatement(query);
             statement.setInt(1, limitFrom);
@@ -370,9 +366,65 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
     }
 
     @Override
-    public List<QuizResult> getRecentlyTakenResults(Quiz quiz, int limitFrom, int limitTo) {
-        return null;
+    public QuizResult getQuizResultById(Integer id) {
+        QuizResult quizResult = null;
+        try {
+            Connection con = dataSource.getConnection();
+            String query = "SELECT * FROM " + DbContract.QuizResult.TABLE_NAME + " WHERE "
+                    + DbContract.QuizResult.COLUMN_NAME_RESULT_ID + " = ? ;";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                Integer score = rs.getInt(DbContract.QuizResult.COLUMN_NAME_SCORE);
+                Integer accountId = rs.getInt(DbContract.QuizResult.COLUMN_NAME_ACCOUNT_ID);
+                Time timeTaken = rs.getTime(DbContract.QuizResult.COLUMN_NAME_TIME_TAKEN);
+                Timestamp submitDate = rs.getTimestamp(DbContract.QuizResult.COLUMN_NAME_SUBMIT_DATE);
+                Account account = accountManager.getAccount(accountId);
+                quizResult = new QuizResult(id, score, account, timeTaken, submitDate);
+            }
+
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return quizResult;
     }
+
+    @Override
+    public List<QuizResult> getRecentlyTakenResults(Quiz quiz, int limitFrom, int limitTo) {
+        List<QuizResult> quizResults = new ArrayList<>();
+        try {
+            Connection con = dataSource.getConnection();
+            String query = "SELECT " + DbContract.QuizResult.COLUMN_NAME_RESULT_ID + " FROM " +
+                    DbContract.QuizResult.TABLE_NAME + " WHERE "
+                    + DbContract.QuizResult.COLUMN_NAME_QUIZ_ID + " = ? " +
+                    "ORDER BY " + DbContract.QuizResult.COLUMN_NAME_SUBMIT_DATE + " DESC LIMIT ?, ?;";
+
+
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, quiz.getId());
+            statement.setInt(2, limitFrom);
+            statement.setInt(3, limitTo);
+
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Integer id = rs.getInt(DbContract.QuizResult.COLUMN_NAME_RESULT_ID);
+                QuizResult quizResult = getQuizResultById(id);
+                quizResults.add(quizResult);
+            }
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return quizResults;
+    }
+
 
     @Override
     public List<Quiz> getTakenQuizzes(int limit) {

@@ -122,6 +122,12 @@ public interface QuizManager {
     List<Quiz> getCreatedQuizzes(Account account, int limitFrom, int limitTo);
 
     /**
+     * @param id Unique identifier
+     * @return corresponding QuizResult
+     */
+    QuizResult getQuizResultById(Integer id);
+
+    /**
      * Returns recently taken quiz results, amount limited by specified parameter.
      *
      * @param quiz  Target quiz
