@@ -125,9 +125,9 @@ public class AchievementManagerDAO extends AbstractManagerDAO implements Achieve
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 Integer typeId = rs.getInt(DbContract.Achievement.COLUMN_NAME_TYPE_ID);
-                String unlockDate = rs.getString(DbContract.Achievement.COLUMN_NAME_UNLOCK_DATE);
+                Timestamp unlockDate = rs.getTimestamp(DbContract.Achievement.COLUMN_NAME_UNLOCK_DATE);
                 AchievementType type = achievementIdToType(typeId);
-                Achievement achievement = new Achievement(type, Timestamp.valueOf(unlockDate));
+                Achievement achievement = new Achievement(type, unlockDate);
                 achievements.add(achievement);
             }
             con.close();
