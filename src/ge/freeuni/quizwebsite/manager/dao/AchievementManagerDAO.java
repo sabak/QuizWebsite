@@ -8,6 +8,7 @@ import ge.freeuni.quizwebsite.model.Account;
 import ge.freeuni.quizwebsite.model.Achievement;
 import ge.freeuni.quizwebsite.model.AchievementType;
 import ge.freeuni.quizwebsite.model.Quiz;
+import ge.freeuni.quizwebsite.util.MapUtils;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -172,7 +173,7 @@ public class AchievementManagerDAO extends AbstractManagerDAO implements Achieve
 
             if (rs.next()) {
                 String achievementName = rs.getString(DbContract.AchievementType.COLUMN_NAME_ACHIEVEMENT);
-                type = getKeyByValue(achievementTypes, achievementName);
+                type = MapUtils.getKeyByValue(achievementTypes, achievementName);
             }
             con.close();
         } catch (SQLException e) {
@@ -202,15 +203,6 @@ public class AchievementManagerDAO extends AbstractManagerDAO implements Achieve
         }
 
         return unlocked;
-    }
-
-    public static <T, E> T getKeyByValue(Map<T, E> map, E value) {
-        for (Map.Entry<T, E> entry : map.entrySet()) {
-            if (Objects.equals(value, entry.getValue())) {
-                return entry.getKey();
-            }
-        }
-        return null;
     }
 
 }
