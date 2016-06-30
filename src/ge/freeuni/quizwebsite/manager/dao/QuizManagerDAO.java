@@ -433,7 +433,23 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
 
     @Override
     public List<Quiz> getTakenQuizzes(int limitFrom, int limitTo) {
-        return null;
+        List<Quiz> quizzes = new ArrayList<>();
+        try (Connection con = dataSource.getConnection()) {
+            String query = "SELECT DISTINCT (" + DbContract.QuizResult.COLUMN_NAME_QUIZ_ID
+                    + ") FROM " + DbContract.QuizResult.TABLE_NAME + " LIMIT ?, ?;";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, limitFrom);
+            statement.setInt(2, limitTo);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Quiz quiz = getQuiz(rs.getInt(DbContract.QuizResult.COLUMN_NAME_QUIZ_ID));
+                quizzes.add(quiz);
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return quizzes;
     }
 
 }

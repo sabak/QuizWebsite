@@ -45,12 +45,12 @@ public class ContextListener implements ServletContextListener,
             AdminManager adminManager = new AdminManagerDAO(dataSource, accountManager);
             AnnouncementManager announcementManager = new AnnouncementManagerDAO(dataSource, accountManager);
             QuizManager quizManager = new QuizManagerDAO(dataSource, accountManager);
-            StatsManager statsManager = new StatsManagerDAO(dataSource);
-            AchievementManager achievementManager = new AchievementManagerDAO(dataSource, quizManager, statsManager);
             ChallengeManager challengeManager = new ChallengeManagerDAO(dataSource, accountManager, quizManager);
             FriendManager friendManager = new FriendManagerDAO(dataSource, accountManager);
             TextMessageManager textMessageManager = new TextMessageManagerDAO(dataSource, accountManager);
             HistoryManager historyManager = new HistoryManagerDAO(dataSource);
+            StatsManager statsManager = new StatsManagerDAO(dataSource, quizManager, historyManager, accountManager);
+            AchievementManager achievementManager = new AchievementManagerDAO(dataSource, quizManager, statsManager);
 
             // Saving DAO layers to context for further use
             sce.getServletContext().setAttribute(AccountManagerDAO.ATTRIBUTE_NAME, accountManager);
