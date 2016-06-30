@@ -30,10 +30,9 @@ public class Login extends HttpServlet {
         if(accManager.usernameExists(username)){
             Account account = accManager.getAccount(username);
             if(password != null && hashText(password).equals(account.getHashedPassword())){
-                session.setAttribute("id", account.getId());
+                session.setAttribute("account", account);
                 RequestDispatcher rd = request.getRequestDispatcher("homePage.jsp");
                 rd.forward(request, response);
-                //reacaedc
                 response.sendRedirect("homePage.jsp");
                 System.out.println("shevida");
             } else{
