@@ -18,6 +18,16 @@
         </br>
         <button class="button sub" onclick="document.getElementById('inputs-form').submit();"> Submit</button>
         </br>
+        <%
+            String lUser =  (String)session.getAttribute("user");
+            if(lUser == null){
+                //do nothing
+            } else if(lUser == "password"){ %>
+                <h1 id="bold-text2">invalid password</h1>
+          <%  } else if(lUser == "username"){ %>
+                <h1 id="bold-text2">invalid username</h1>
+        <%    }
+        %>
     </form>
 
     <div id="bs">                                           <!--link to password recovery-->
