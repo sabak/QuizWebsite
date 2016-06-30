@@ -33,6 +33,7 @@ public class Login extends HttpServlet {
                 session.setAttribute("id", account.getId());
                 RequestDispatcher rd = request.getRequestDispatcher("homePage.jsp");
                 rd.forward(request, response);
+                response.sendRedirect("homePage.jsp");
                 System.out.println("shevida");
             } else{
                 System.out.println("ver shevida");
