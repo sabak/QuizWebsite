@@ -23,6 +23,8 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
 
     public QuizManagerDAO(DataSource dataSource) {
         super(dataSource);
+
+        //
         questionTypes = new HashMap<>();
         questionTypes.put(QuestionType.FILL_IN_THE_BLANK, "Fill in the Blank");
         questionTypes.put(QuestionType.MULTIPLE_CHOICE, "Multiple Choice");
@@ -64,7 +66,9 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
 
     @Override
     public boolean createQuiz(Quiz quiz, Account account) {
+        System.out.println("h1");
         try {
+            System.out.println("h2");
             Connection con = dataSource.getConnection();
             String query = "INSERT INTO " + DbContract.Quiz.TABLE_NAME + " (" +
                     DbContract.Quiz.COLUMN_NAME_ACCOUNT_ID + ", " +
@@ -93,9 +97,7 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
             e.printStackTrace();
         }
 
-
         return false;
-
     }
 
     @Override
@@ -116,7 +118,7 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
 
                 QuestionType type = getQuestionType(typeId);
                 List<Answer> answers = getAnswers(questionId);
-                Question question = new Question(type, questionText, questionIdx, answers);
+                Question question = new Question(questionId, type, questionText, questionIdx, answers);
                 questions.add(question);
             }
             con.close();
@@ -181,7 +183,85 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
 
     @Override
     public void addQuestion(Quiz quiz, Question question) {
+        Integer id = insertQuestion(quiz, question);
+        insertAnswers(id, question.getAnswers());
+    }
 
+    private Integer insertQuestion(Quiz quiz, Question question) {
+        Integer newId = null;
+        try {
+            Connection con = dataSource.getConnection();
+            String query = "INSERT INTO " + DbContract.Question.TABLE_NAME + " (" +
+                    DbContract.Question.COLUMN_NAME_QUIZ_ID + ", " +
+                    DbContract.Question.COLUMN_NAME_QUESTION_TEXT + ", " +
+                    DbContract.Question.COLUMN_NAME_QUESTION_IDX + ", " +
+                    DbContract.Question.COLUMN_NAME_TYPE_ID + ") VALUES (?, ?, ?, ?);";
+            PreparedStatement statement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+            statement.setInt(1, quiz.getId());
+            statement.setString(2, question.getText());
+            statement.setInt(3, question.getIndex());
+            statement.setInt(4, questionTypeToId(question.getType()));
+            statement.executeUpdate();
+            ResultSet generatedKeysResultSet = statement.getGeneratedKeys();
+            generatedKeysResultSet.next();
+            newId = generatedKeysResultSet.getInt(1);
+
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return newId;
+    }
+
+    private void insertAnswers(Integer id, List<Answer> answers) {
+        for (Answer answer : answers) {
+            insertAnswer(id, answer);
+        }
+    }
+
+    private void insertAnswer(Integer id, Answer answer) {
+        try {
+            Connection con = dataSource.getConnection();
+            String query = "INSERT INTO " + DbContract.Answer.TABLE_NAME + " (" +
+                    DbContract.Answer.COLUMN_NAME_QUESTION_ID + ", " +
+                    DbContract.Answer.COLUMN_NAME_ANSWER + ", " +
+                    DbContract.Answer.COLUMN_NAME_CORRECT + ") VALUES (?, ?, ?); ";
+            PreparedStatement statement = con.prepareStatement(query);
+
+
+            statement.setInt(1, id);
+            statement.setString(2, answer.getText());
+            statement.setBoolean(3, answer.isCorrect());
+            statement.executeUpdate();
+
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Integer questionTypeToId(QuestionType type) {
+        Integer id = null;
+        try {
+            Connection con = dataSource.getConnection();
+            String questionTypeStr = questionTypes.get(type);
+            String query = "SELECT * FROM " + DbContract.QuestionType.TABLE_NAME + " WHERE "
+                    + DbContract.QuestionType.COLUMN_NAME_TYPE + " = ?;";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, questionTypeStr);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                id = rs.getInt(DbContract.QuestionType.COLUMN_NAME_TYPE_ID);
+            }
+            con.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return id;
     }
 
     @Override
@@ -197,7 +277,6 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public List<Quiz> getRecentlyCreatedQuizzes(int limit) {
@@ -236,7 +315,25 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
 
     @Override
     public List<Quiz> getTakenQuizzes(Account account, int limitFrom, int limitTo) {
-        return null;
+        List<Quiz> quizzes = new ArrayList<>();
+        try (Connection con = dataSource.getConnection()) {
+            String query = "SELECT " + DbContract.Quiz.COLUMN_NAME_QUIZ_ID
+                    + " FROM " + DbContract.Quiz.TABLE_NAME + " WHERE "
+                    + DbContract.Quiz.COLUMN_NAME_ACCOUNT_ID + " = ? LIMIT ?, ?;";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, account.getId());
+            statement.setInt(2, limitFrom);
+            statement.setInt(3, limitTo);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Quiz quiz = getQuiz(rs.getInt(DbContract.Quiz.COLUMN_NAME_QUIZ_ID));
+                quizzes.add(quiz);
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return quizzes;
     }
 
     @Override
