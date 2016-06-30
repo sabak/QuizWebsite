@@ -33,7 +33,7 @@
             <button class="button pr" onclick="a(3)"> Multiple Choice </button>
             <button class="button pr" onclick="a(4)"> Picture-Response </button>
 
-            <button class="button pr" id="submit" onclick="sub()"> Submit </button>
+            <button class="button sub" id="submit" onclick="callServlet()"> Submit </button>
             <button class="button pr" onclick="location.href='homePage.jsp'"> Cancel </button>
         </div>
         <!-- this is where question forms are "inserted"-->
@@ -150,12 +150,12 @@
             }
 
 
-            function sub() {
+            function callServlet() {
                 var xhr = new XMLHttpRequest();
-                xhr.setAttribute("quizName", document.getElementById("qName").valueOf());
-                xhr.setAttribute("isRandom", document.getElementsByName("rand").valueOf());
-                xhr.setAttribute("isImCorrected", document.getElementsByName("immCorrected").valueOf());
-                xhr.setAttribute("isSinglePage", document.getElementsByName("sPage").valueOf());
+                xhr.setParameter("quizName", document.getElementById("qName").valueOf());
+                xhr.setParameter("isRandom", document.getElementsByName("rand").valueOf());
+                xhr.setParameter("isImCorrected", document.getElementsByName("immCorrected").valueOf());
+                xhr.setParameter("isSinglePage", document.getElementsByName("sPage").valueOf());
                 xhr.setAttribute("questions", questions);
 
                 xhr.open('POST', '/QuizCreation', true);
