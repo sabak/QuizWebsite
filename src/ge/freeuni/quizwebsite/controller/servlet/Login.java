@@ -36,10 +36,11 @@ public class Login extends HttpServlet {
                 System.out.println("shevida");
             } else{
                 System.out.println("ver shevida");
+                session.setAttribute("user", "password");
                 response.sendRedirect("index.jsp");
             }
         } else {
-            session.setAttribute("username", "false");
+            session.setAttribute("user", "username");
             response.sendRedirect("index.jsp");
         }
 
