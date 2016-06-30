@@ -11,12 +11,17 @@
 
 	<%
 		Account account = (Account) session.getAttribute("account");
+		String A_FNAME = (String)account.getFirstName();
+		String A_LNAME = (String)account.getLastName();
+		String A_MAIL = (String)account.getEmail();
+		String a_name = (String)account.getHashedPassword();
+		Integer a_id = (Integer) account.getId();
 	%>
 
 		<div id="user-image">
 			<img src="default.png" href="changeProfPic" style="width:180px;height:180px;position:relative; left:10px; top:10px;">
 			</br>
-			<div class="tn" style="text-align:center; position:relative; top:15px;"> <% account.getFirstName(); %> <% account.getLastName(); %> </div>
+			<div class="tn" style="text-align:center; position:relative; top:15px;"> <%=A_FNAME%> <%=A_LNAME%> </div>
 			<div class="tn" style="text-align:center; font-weight:200; position:relative; top:25px;"><a href="index.jsp"> Sign out </a></div>
 		</div>
 		<!--user's activity-->
