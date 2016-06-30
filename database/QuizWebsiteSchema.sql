@@ -35,7 +35,6 @@ CREATE TABLE IF NOT EXISTS quiz (
 )
   DEFAULT CHARACTER SET utf8
   COLLATE utf8_unicode_ci;
-;
 
 # Table for questions types (is supposed to have mostly fixed size of rows during lifetime)
 CREATE TABLE IF NOT EXISTS question_type (
@@ -69,7 +68,6 @@ CREATE TABLE IF NOT EXISTS answer (
 )
   DEFAULT CHARACTER SET utf8
   COLLATE utf8_unicode_ci;
-;
 
 # Table representing users' scoreboard
 CREATE TABLE IF NOT EXISTS quiz_result (
