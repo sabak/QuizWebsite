@@ -280,7 +280,6 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
         }
     }
 
-
     @Override
     public List<Quiz> getRecentlyCreatedQuizzes(int limit) {
         return getRecentlyCreatedQuizzes(0, limit);
@@ -298,7 +297,25 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
 
     @Override
     public List<Quiz> getTakenQuizzes(Account account, int limitFrom, int limitTo) {
-        return null;
+        List<Quiz> quizzes = new ArrayList<>();
+        try (Connection con = dataSource.getConnection()) {
+            String query = "SELECT " + DbContract.Quiz.COLUMN_NAME_QUIZ_ID
+                    + " FROM " + DbContract.Quiz.TABLE_NAME + " WHERE "
+                    + DbContract.Quiz.COLUMN_NAME_ACCOUNT_ID + " = ? LIMIT ?, ?;";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, account.getId());
+            statement.setInt(2, limitFrom);
+            statement.setInt(3, limitTo);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Quiz quiz = getQuiz(rs.getInt(DbContract.Quiz.COLUMN_NAME_QUIZ_ID));
+                quizzes.add(quiz);
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return quizzes;
     }
 
     @Override
