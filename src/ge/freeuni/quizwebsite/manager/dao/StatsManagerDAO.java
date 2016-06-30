@@ -1,7 +1,6 @@
 package ge.freeuni.quizwebsite.manager.dao;
 
-import ge.freeuni.quizwebsite.manager.OrderBy;
-import ge.freeuni.quizwebsite.manager.StatsManager;
+import ge.freeuni.quizwebsite.manager.*;
 import ge.freeuni.quizwebsite.model.Account;
 import ge.freeuni.quizwebsite.model.Quiz;
 import ge.freeuni.quizwebsite.model.QuizResult;
@@ -18,8 +17,16 @@ public class StatsManagerDAO extends AbstractManagerDAO implements StatsManager 
 
     public static final String ATTRIBUTE_NAME = "stats_manager";
 
-    public StatsManagerDAO(DataSource dataSource) {
+    private QuizManager quizManager;
+    private HistoryManager historyManager;
+    private AccountManager accountManager;
+
+    public StatsManagerDAO(DataSource dataSource, QuizManager quizManager,
+                           HistoryManager historyManager, AccountManager accountManager) {
         super(dataSource);
+        this.quizManager = quizManager;
+        this.historyManager = historyManager;
+        this.accountManager = accountManager;
     }
 
     @Override
