@@ -186,14 +186,12 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
 
     @Override
     public void removeQuiz(Quiz quiz) {
-        System.out.println("asdads");
         try (Connection con = dataSource.getConnection()) {
             String query = "DELETE FROM " + DbContract.Quiz.TABLE_NAME + " WHERE "
                     + DbContract.Quiz.COLUMN_NAME_QUIZ_ID + " = ?;";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setInt(1, quiz.getId());
             statement.executeUpdate();
-            System.out.println("bigdeckz");
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -208,7 +206,27 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
 
     @Override
     public List<Quiz> getRecentlyCreatedQuizzes(int limitFrom, int limitTo) {
-        return null;
+        List<Quiz> quizzes = new ArrayList<>();
+        try {
+            Connection con = dataSource.getConnection();
+            String query = "SELECT * FROM " + DbContract.Quiz.TABLE_NAME + " WHERE " +
+                    DbContract.Quiz.COLUMN_NAME_QUIZ_ID + " BETWEEN ? AND ?";
+
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, limitFrom);
+            statement.setInt(2, limitTo);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Quiz quiz = getQuiz(rs.getInt(DbContract.Quiz.COLUMN_NAME_QUIZ_ID));
+                quizzes.add(quiz);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return quizzes;
+
     }
 
     @Override
