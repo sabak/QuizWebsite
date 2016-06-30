@@ -10,9 +10,7 @@
 	<body>
 
 	<%
-		Integer id = (Integer) session.getAttribute("id");
-		AccountManagerDAO accountManager = new AccountManagerDAO();
-		Account account = accountManager.getAccount(id);
+		Account account = (Account) session.getAttribute("account");
 	%>
 
 		<div id="user-image">

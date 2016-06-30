@@ -63,8 +63,39 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
     }
 
     @Override
-    public boolean createQuiz(Quiz quiz) {
+    public boolean createQuiz(Quiz quiz, Account account) {
+        try {
+            Connection con = dataSource.getConnection();
+            String query = "INSERT INTO " + DbContract.Quiz.TABLE_NAME + " (" +
+                    DbContract.Quiz.COLUMN_NAME_ACCOUNT_ID + ", " +
+                    DbContract.Quiz.COLUMN_NAME_DATE_CREATED + ", " +
+                    DbContract.Quiz.COLUMN_NAME_NAME + ", " +
+                    DbContract.Quiz.COLUMN_NAME_DESCRIPTION + ", " +
+                    DbContract.Quiz.COLUMN_NAME_HAS_RANDOM + ", " +
+                    DbContract.Quiz.COLUMN_NAME_MULTIPLE_PAGE + ", " +
+                    DbContract.Quiz.COLUMN_NAME_IMMEDIATE_CORRECTION + ") VALUES ( ?, ?, ?, ?, ?, ?, ?); ";
+            PreparedStatement statement = con.prepareStatement(query);
+
+            statement.setInt(1, account.getId());
+            statement.setTimestamp(2, quiz.getDateCreated());
+            statement.setString(3, quiz.getName());
+            statement.setString(4, quiz.getDescription());
+            statement.setBoolean(5, quiz.hasHasRandomOrder());
+            statement.setBoolean(6, quiz.getPageType() == PageType.MULTI_PAGE);
+            statement.setBoolean(7, quiz.isImmediatelyCorrected());
+            statement.executeUpdate();
+
+            con.close();
+            return true;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
         return false;
+
     }
 
     @Override
