@@ -106,8 +106,20 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
 
     @Override
     public void removeQuiz(Quiz quiz) {
-
+        System.out.println("asdads");
+        try (Connection con = dataSource.getConnection()) {
+            String query = "DELETE FROM " + DbContract.Quiz.TABLE_NAME + " WHERE "
+                    + DbContract.Quiz.COLUMN_NAME_QUIZ_ID + " = ?;";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, quiz.getId());
+            statement.executeUpdate();
+            System.out.println("bigdeckz");
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public List<Quiz> getRecentlyCreatedQuizzes(int limit) {
