@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * Created by AVTO on 6/30/2016.
  */
-@WebServlet(name = "QuizCreation")
+@WebServlet("/QuizCreation")
 public class QuizCreation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = "quizName";

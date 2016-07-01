@@ -4,10 +4,65 @@
     <head>
         <title>Quiz Creator</title>
         <link rel="stylesheet" type="text/css" href="rules.css"/>
+
+        <script type="text/javascript">
+            function a(i){
+                if(i==1){
+                    document.getElementById("newQuestion").innerHTML = document.getElementById("Question-Response").innerHTML;
+                } else if(i==2){
+                    document.getElementById("newQuestion").innerHTML = document.getElementById("Fill in the Blanks").innerHTML;
+                } else if(i==3){
+                    document.getElementById("newQuestion").innerHTML = document.getElementById("Multiple Choice").innerHTML;
+                } else if(i==4){
+                    document.getElementById("newQuestion").innerHTML = document.getElementById("Picture-Response").innerHTML;
+                }
+            }
+
+            var questions = [];
+
+            function addQuestion(i){
+                if(i==1){//question-response
+                    var question;
+                    question.setAttribute("type", i);
+                    question.setAttribute("q", document.getElementById("q1"));
+                    question.setAttribute("a", document.getElementById("a1"));
+                    questions.add(question);
+                } else if(i==2){//fill in the blank
+                    var question;
+                    question.setAttribute("type", i);
+                    question.setAttribute("q", document.getElementById("q2"));
+                    question.setAttribute("a", document.getElementById("a2"));
+                    questions.add(question);
+                } else if(i==3){//multiple choice
+                    var question;
+                    question.setAttribute("type", i);
+                    question.setAttribute("q", document.getElementById("q3"));
+                    question.setAttribute("a", document.getElementById("a3"));
+                    question.setAttribute("o1", document.getElementById("o31"));//o1 stands for option 1
+                    question.setAttribute("o2", document.getElementById("o32"));
+                    question.setAttribute("o3", document.getElementById("o33"));
+                    questions.add(question);
+                } else if(i==4){//image
+                    var question;
+                    question.setAttribute("type", i);
+                    question.setAttribute("q", document.getElementById("q4"));
+                    question.setAttribute("url", document.getElementById("url"));
+                    question.setAttribute("a", document.getElementById("a4"));
+                    questions.add(question);
+                }
+            }
+
+
+            function customSubmit(){
+                document.getElementById("quiz-form").hiddenValue.value = questions;
+                document.getElementById("quiz-form").submit();
+            }
+        </script>
     </head>
 
     <body>
-        <form id="quiz-form" action="" method="post">
+        <form id="quiz-form" action="/QuizCreation" method="post">
+            <input type=hidden name="questions"/> <!-- before submitting, the value of this input becomes the list of questions -->
             <div id="q-form">
                 <div class="tb" style="text-align:center; font-size:150%; position:absolute; top:20px; left:10%"> New Quiz </div>
                 <input type="text" name="quiz-name" placeholder="Enter Quiz Name" id = "qName" style="position:absolute; left:10%; top:50px;"/>
@@ -33,7 +88,7 @@
             <button class="button pr" onclick="a(3)"> Multiple Choice </button>
             <button class="button pr" onclick="a(4)"> Picture-Response </button>
 
-            <button class="button sub" id="submit" onclick="callServlet()"> Submit </button>
+            <button class="button sub" id="submit" onclick="customSubmit()" style="margin-left: 25px;"> Submit </button>
             <button class="button pr" onclick="location.href='homePage.jsp'"> Cancel </button>
         </div>
         <!-- this is where question forms are "inserted"-->
@@ -99,68 +154,10 @@
             </form>
         </div>
 
-
-
-
-        <script type="text/javascript">
-            function a(i){
-                if(i==1){
-                    document.getElementById("newQuestion").innerHTML = document.getElementById("Question-Response").innerHTML;
-                } else if(i==2){
-                    document.getElementById("newQuestion").innerHTML = document.getElementById("Fill in the Blanks").innerHTML;
-                } else if(i==3){
-                    document.getElementById("newQuestion").innerHTML = document.getElementById("Multiple Choice").innerHTML;
-                } else if(i==4){
-                    document.getElementById("newQuestion").innerHTML = document.getElementById("Picture-Response").innerHTML;
-                }
-            }
-
-            var questions = [];
-
-            function addQuestion(i){
-                if(i==1){//question-response
-                    var question;
-                    question.setAttribute("type", i);
-                    question.setAttribute("q", document.getElementById("q1"));
-                    question.setAttribute("a", document.getElementById("a1"));
-                    questions.add(question);
-                } else if(i==2){//fill in the blank
-                    var question;
-                    question.setAttribute("type", i);
-                    question.setAttribute("q", document.getElementById("q2"));
-                    question.setAttribute("a", document.getElementById("a2"));
-                    questions.add(question);
-                } else if(i==3){//multiple choice
-                    var question;
-                    question.setAttribute("type", i);
-                    question.setAttribute("q", document.getElementById("q3"));
-                    question.setAttribute("a", document.getElementById("a3"));
-                    question.setAttribute("o1", document.getElementById("o31"));//o1 stands for option 1
-                    question.setAttribute("o2", document.getElementById("o32"));
-                    question.setAttribute("o3", document.getElementById("o33"));
-                    questions.add(question);
-                } else if(i==4){//image
-                    var question;
-                    question.setAttribute("type", i);
-                    question.setAttribute("q", document.getElementById("q4"));
-                    question.setAttribute("url", document.getElementById("url"));
-                    question.setAttribute("a", document.getElementById("a4"));
-                    questions.add(question);
-                }
-            }
-
-
-            function callServlet() {
-                var xhr = new XMLHttpRequest();
-                xhr.setParameter("quizName", document.getElementById("qName").valueOf());
-                xhr.setParameter("isRandom", document.getElementsByName("rand").valueOf());
-                xhr.setParameter("isImCorrected", document.getElementsByName("immCorrected").valueOf());
-                xhr.setParameter("isSinglePage", document.getElementsByName("sPage").valueOf());
-                xhr.setAttribute("questions", questions);
-
-                xhr.open('POST', '/QuizCreation', true);
-            }
-        </script>
+        <form name="myForm">
+            <input type=hidden name="hiddenValue"/>
+            <input type="submit" value="Submit" name="buttonSubmit" onclick="customSubmit(10)"/>
+        </form>
 
     </body>
 </html>
