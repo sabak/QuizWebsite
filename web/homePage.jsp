@@ -69,6 +69,29 @@
 			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"> <a href="fActivities.jsp">Show All </a> </div>
 		</div>
 
+		<div id="quiz-list" style="position:absolute; top:120px; left:20%;">
+			<!--
+				searched quizzes and users will appear here
+				as well as 5 most popular or more recent quizzes
+			-->
+		</div>
+
+		<div id="searched">
+			<%=session.getAttribute("racxa")%>
+			<h1 class="bold-text" style="margin-bottom: 20px;"> <a href="index.jsp"> take quiz </a></h1>
+		</div>
+
+		<div id="actual-quizzes" style="visibility: hidden">
+			<%
+				int N_QUIZZES = 5; //number of quizzes to display
+				for(int i=0; i<N_QUIZZES; i++){
+			%>
+				<h1 class="bold-text"> Name: <%=session.getAttribute("gela")%></h1>
+				<h1 class="bold-text"> Description: <%=session.getAttribute("gela")%></h1>
+				<h1 class="bold-text" style="margin-bottom: 20px;"> <a href="index.jsp"> take quiz </a></h1>
+			<%}%>
+		</div>
+
 		<script type="text/javascript">
 			function sortPopular(){
 
@@ -77,6 +100,15 @@
 			function sortRecent(){
 
 			}
+
+			function something(){
+				document.getElementById("quiz-list").innerHTML = document.getElementById("actual-quizzes").innerHTML;
+			}
+
+			function moreSomething(){
+				document.getElementById("quiz-list").innerHTML = document.getElementById("actual-quizzes").innerHTML;
+			}
+
 		</script>
 	</body>
 	
