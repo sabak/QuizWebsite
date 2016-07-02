@@ -40,8 +40,8 @@
 			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="achievements.jsp">Show All </a></div>
 		</div>
 
-		<form id="sbar" action="" method="post"><%--search bar--%>
-			<input type="text" name="password" placeholder="Search" id = "search"/>
+		<form id="sbar" action="/searchInfo" method="post"><%--search bar--%>
+			<input type="text" name="searchData" placeholder="Search" id = "search"/>
 			<button class="button srch" onclick="document.getElementById('sbar').submit();"> Search! </button>
 		</form>
 
