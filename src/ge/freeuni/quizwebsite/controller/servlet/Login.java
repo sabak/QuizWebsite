@@ -28,9 +28,8 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession(true);
 
         if(accManager.usernameExists(username)){
-            Account account = accManager.getAccount(username);
-            if(password != null && hashText(password).equals(account.getHashedPassword())){
-                session.setAttribute("account", account);
+            if(password != null && hashText(password).equals(accManager.getAccount(username).getHashedPassword())){
+                session.setAttribute("account_un", username);
                 RequestDispatcher rd = request.getRequestDispatcher("homePage.jsp");
                 rd.forward(request, response);
                 response.sendRedirect("homePage.jsp");

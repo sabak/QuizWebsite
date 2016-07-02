@@ -18,7 +18,7 @@ import static ge.freeuni.quizwebsite.util.SHAHasher.hashText;
 /**
  * Created by AVTO on 7/2/2016.
  */
-@WebServlet(name = "searchInfo")
+@WebServlet("/searchInfo")
 public class searchInfo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("searchData");

@@ -10,7 +10,10 @@
 	<body>
 
 	<%
-		Account account = (Account) session.getAttribute("account");
+		AccountManagerDAO accManager = (AccountManagerDAO) session.getServletContext().getAttribute(
+				AccountManagerDAO.ATTRIBUTE_NAME);
+
+		Account account = (Account) accManager.getAccount((String) session.getAttribute("account_un"));
 		String A_FNAME = (String)account.getFirstName();
 		String A_LNAME = (String)account.getLastName();
 		String A_MAIL = (String)account.getEmail();
@@ -71,7 +74,7 @@
 
 		<div id="quiz-list" style="position:absolute; top:120px; left:20%;">
 			<!--
-				searched quizzes and users will appear here
+				searched quizzes will appear here
 				as well as 5 most popular or more recent quizzes
 			-->
 		</div>
