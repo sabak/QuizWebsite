@@ -1,4 +1,8 @@
-<%@ page import="ge.freeuni.quizwebsite.model.Account" %>
+<%--suppress ALL --%>
+<%--suppress ALL --%>
+<%--suppress ALL --%>
+<%--suppress ALL --%>
+<%--suppress ALL --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -54,7 +58,7 @@
 
 
             function customSubmit(){
-                document.getElementById("quiz-form").hiddenValue.value = questions;
+                document.getElementById("quiz-form").questions.value = questions;
                 document.getElementById("quiz-form").submit();
             }
         </script>
@@ -91,9 +95,9 @@
             <button class="button sub" id="submit" onclick="customSubmit()" style="margin-left: 25px;"> Submit </button>
             <button class="button pr" onclick="location.href='homePage.jsp'"> Cancel </button>
         </div>
-        <!-- this is where question forms are "inserted"-->
+
         <div id="newQuestion" style="position: absolute; left: 65%; top: 20px;">
-            
+            <!-- this is where question forms are "inserted"-->
         </div>
 
         <div id="Question-Response" style="visibility: hidden">
@@ -153,11 +157,5 @@
                 </br>
             </form>
         </div>
-
-        <form name="myForm">
-            <input type=hidden name="hiddenValue"/>
-            <input type="submit" value="Submit" name="buttonSubmit" onclick="customSubmit(10)"/>
-        </form>
-
     </body>
 </html>
