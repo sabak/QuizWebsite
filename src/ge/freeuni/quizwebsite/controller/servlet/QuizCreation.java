@@ -20,27 +20,33 @@ import java.util.ArrayList;
 @WebServlet("/QuizCreation")
 public class QuizCreation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = "quizName";
+        //name of the quiz
+        String name = "quiz-name";
         String quizName = request.getParameter(name);
-        System.out.println(quizName);
-//        String descName = "";
-//        String description = request.getParameter(descName);
-        String randomName = "isRandom";
-        boolean isRandom;
-        if (request.getParameter(randomName) == "False") {
-            isRandom = false;
-        } else{
+
+        //description of the quiz
+        String descName = "quiz-description";
+        String description = request.getParameter(descName);
+
+
+        //whether or not the quiz should be in random order
+        //false by default
+        String randomName = "rand";
+        boolean isRandom = false;
+        if (request.getParameter(randomName) == "True")
             isRandom = true;
-        }
         System.out.println(isRandom);
-        String immediateName = "isImCorrected";
-        boolean immediate;
-        if (request.getParameter(immediateName) == "False") {
-            immediate = false;
+
+        //whether or not the quiz should be immediately corrected
+        //false by default
+        String immediateName = "immCorrected";
+        boolean immediate = false;
+        if (request.getParameter(immediateName) == "True") {
+            immediate = true;
         } else{
             immediate = true;
         }
-        String pageTypeName = "isSinglePage";
+        String pageTypeName = "sPage";
         PageType pageType = PageType.MULTI_PAGE;
         if (request.getParameter(pageTypeName) == null){
             pageType = PageType.ONE_PAGE;

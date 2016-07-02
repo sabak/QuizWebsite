@@ -26,36 +26,39 @@
 
             function addQuestion(i){
                 if(i==1){//question-response
-                    var question;
-                    question.setAttribute("type", i);
-                    question.setAttribute("q", document.getElementById("q1"));
-                    question.setAttribute("a", document.getElementById("a1"));
-                    questions.add(question);
+                    var question = {
+                        type:"1",
+                        q:document.getElementById("q1"),
+                        a:document.getElementById("a1")
+                    }
+                    questions.push(question);
                 } else if(i==2){//fill in the blank
-                    var question;
-                    question.setAttribute("type", i);
-                    question.setAttribute("q", document.getElementById("q2"));
-                    question.setAttribute("a", document.getElementById("a2"));
-                    questions.add(question);
+                    var question = {
+                        type:"2",
+                        q:document.getElementById("q2"),
+                        a:document.getElementById("a2")
+                    }
+                    questions.push(question);
                 } else if(i==3){//multiple choice
-                    var question;
-                    question.setAttribute("type", i);
-                    question.setAttribute("q", document.getElementById("q3"));
-                    question.setAttribute("a", document.getElementById("a3"));
-                    question.setAttribute("o1", document.getElementById("o31"));//o1 stands for option 1
-                    question.setAttribute("o2", document.getElementById("o32"));
-                    question.setAttribute("o3", document.getElementById("o33"));
-                    questions.add(question);
+                    var question = {
+                        type:"3",
+                        q:document.getElementById("q3"),
+                        a:document.getElementById("a3"),
+                        o1:document.getElementById("o31"),//o31 stands for option 1
+                        o2:document.getElementById("o32"),
+                        o3:document.getElementById("o33")
+                    }
+                    questions.push(question);
                 } else if(i==4){//image
-                    var question;
-                    question.setAttribute("type", i);
-                    question.setAttribute("q", document.getElementById("q4"));
-                    question.setAttribute("url", document.getElementById("url"));
-                    question.setAttribute("a", document.getElementById("a4"));
-                    questions.add(question);
+                    var question = {
+                        type:"4",
+                        q:document.getElementById("q4"),
+                        a:document.getElementById("a4"),
+                        url:document.getElementById("url")
+                    }
+                    questions.push(question);
                 }
             }
-
 
             function customSubmit(){
                 document.getElementById("quiz-form").questions.value = questions;
@@ -71,7 +74,9 @@
                 <div class="tb" style="text-align:center; font-size:150%; position:absolute; top:20px; left:10%"> New Quiz </div>
                 <input type="text" name="quiz-name" placeholder="Enter Quiz Name" id = "qName" style="position:absolute; left:10%; top:50px;"/>
 
-                <div style="position:absolute; left: 10%; top: 95px;">
+                <input type="text" name="quiz-description" placeholder="Enter Quiz Description" id = "qDesc" style="position:absolute; left:10%; top:95px;"/>
+
+                <div style="position:absolute; left: 10%; top: 140px;">
                     Is randomised</br>
                     <input type="radio" name="rand" value="true"> yes </br>
                     <input type="radio" name="rand" value="false"> no </br>
@@ -122,7 +127,7 @@
                 </br>
                 <input type="text" name="answer" id="a2" placeholder="answer(s)"/>
                 </br>
-                <button class="button sub" onclick="addQuestion(3)"> add </button>
+                <button class="button sub" onclick="addQuestion(2)"> add </button>
                 </br>
             </form>
         </div>
