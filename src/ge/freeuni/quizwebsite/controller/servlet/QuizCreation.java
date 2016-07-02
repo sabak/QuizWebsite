@@ -33,19 +33,16 @@ public class QuizCreation extends HttpServlet {
         //false by default
         String randomName = "rand";
         boolean isRandom = false;
-        if (request.getParameter(randomName) == "True")
+        if (request.getParameter(randomName) == "true")
             isRandom = true;
         System.out.println(isRandom);
-
+        System.out.println(request.getParameter(randomName));
         //whether or not the quiz should be immediately corrected
         //false by default
         String immediateName = "immCorrected";
         boolean immediate = false;
-        if (request.getParameter(immediateName) == "True") {
+        if (request.getParameter(immediateName) == "true")
             immediate = true;
-        } else{
-            immediate = true;
-        }
         String pageTypeName = "sPage";
         PageType pageType = PageType.MULTI_PAGE;
         if (request.getParameter(pageTypeName) == null){
@@ -53,7 +50,7 @@ public class QuizCreation extends HttpServlet {
         }
         HttpSession session = request.getSession(true);
         String questionName = "questions";
-        ArrayList quests = (ArrayList) session.getAttribute(questionName);
+        Object quests = session.getAttribute(questionName);
         java.util.Date utilDate = new java.util.Date();
         java.sql.Timestamp sqlTime = new java.sql.Timestamp(utilDate.getTime());
         QuizManagerDAO quizManager = (QuizManagerDAO) request.getServletContext().getAttribute(QuizManagerDAO.ATTRIBUTE_NAME);

@@ -1,8 +1,3 @@
-<%--suppress ALL --%>
-<%--suppress ALL --%>
-<%--suppress ALL --%>
-<%--suppress ALL --%>
-<%--suppress ALL --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -60,8 +55,12 @@
                 }
             }
 
+
             function customSubmit(){
                 document.getElementById("quiz-form").questions.value = questions;
+                <%
+                    session.setAttribute("questions", "'+ questions +'");
+                %>;
                 document.getElementById("quiz-form").submit();
             }
         </script>
@@ -69,7 +68,7 @@
 
     <body>
         <form id="quiz-form" action="/QuizCreation" method="post">
-            <input type=hidden name="questions"/> <!-- before submitting, the value of this input becomes the list of questions -->
+            <input type=hidden name="questions" value="nuthing"/> <!-- before submitting, the value of this input becomes the list of questions -->
             <div id="q-form">
                 <div class="tb" style="text-align:center; font-size:150%; position:absolute; top:20px; left:10%"> New Quiz </div>
                 <input type="text" name="quiz-name" placeholder="Enter Quiz Name" id = "qName" style="position:absolute; left:10%; top:50px;"/>
