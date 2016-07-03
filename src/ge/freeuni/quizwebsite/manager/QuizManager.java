@@ -25,9 +25,9 @@ public interface QuizManager {
      * identifier.
      *
      * @param quiz Quiz to be created.
-     * @return true if successfully created, false otherwise
+     * @return Newly created Quiz with unique identifier
      */
-    boolean createQuiz(Quiz quiz, Account account);
+    Quiz createQuiz(Quiz quiz, Account account);
 
     /**
      * Returns list of all questions in the given quiz

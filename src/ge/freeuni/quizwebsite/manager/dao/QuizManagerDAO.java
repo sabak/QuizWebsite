@@ -66,7 +66,7 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
     }
 
     @Override
-    public boolean createQuiz(Quiz quiz, Account account) {
+    public Quiz createQuiz(Quiz quiz, Account account) {
         try {
             Connection con = dataSource.getConnection();
             String query = "INSERT INTO " + DbContract.Quiz.TABLE_NAME + " (" +
@@ -77,7 +77,7 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
                     DbContract.Quiz.COLUMN_NAME_HAS_RANDOM + ", " +
                     DbContract.Quiz.COLUMN_NAME_MULTIPLE_PAGE + ", " +
                     DbContract.Quiz.COLUMN_NAME_IMMEDIATE_CORRECTION + ") VALUES ( ?, ?, ?, ?, ?, ?, ?); ";
-            PreparedStatement statement = con.prepareStatement(query);
+            PreparedStatement statement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
             statement.setInt(1, account.getId());
             statement.setTimestamp(2, quiz.getDateCreated());
@@ -88,13 +88,17 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
             statement.setBoolean(7, quiz.isImmediatelyCorrected());
             statement.executeUpdate();
 
+            ResultSet generatedKeysResultSet = statement.getGeneratedKeys();
+            generatedKeysResultSet.next();
+            Integer id = generatedKeysResultSet.getInt(1);
+
             con.close();
-            return true;
+            return getQuiz(id);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     @Override
@@ -283,8 +287,8 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
         List<Quiz> quizzes = new ArrayList<>();
         try {
             Connection con = dataSource.getConnection();
-            String query = "SELECT "+ DbContract.Quiz.COLUMN_NAME_QUIZ_ID +" FROM " + DbContract.Quiz.TABLE_NAME + " WHERE " +
-                    DbContract.Quiz.COLUMN_NAME_QUIZ_ID  +
+            String query = "SELECT " + DbContract.Quiz.COLUMN_NAME_QUIZ_ID + " FROM " + DbContract.Quiz.TABLE_NAME + " WHERE " +
+                    DbContract.Quiz.COLUMN_NAME_QUIZ_ID +
                     " ORDER BY " + DbContract.Quiz.COLUMN_NAME_DATE_CREATED + " DESC LIMIT ?, ? ;";
 
             PreparedStatement statement = con.prepareStatement(query);
