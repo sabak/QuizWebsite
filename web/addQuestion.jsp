@@ -9,7 +9,7 @@
 <html>
     <head>
         <title>Question</title>
-
+        <link rel="stylesheet" type="text/css" href="rules.css"/>
         <script type="text/javascript">
             function a(i){
                 if(i==1){
@@ -28,7 +28,7 @@
     <body>
 
         <!-- buttons with question types-->
-        <div id="q-types">
+        <form id="q-types">
             <button class="button pr" onclick="a(1)"> Question-Response </button>
             <button class="button pr" onclick="a(2)"> Fill in the Blanks </button>
             <button class="button pr" onclick="a(3)"> Multiple Choice </button>
@@ -36,7 +36,7 @@
 
             <button class="button sub" id="submit" onclick="" style="margin-left: 25px;"> Submit </button>
             <button class="button pr" onclick="location.href='homePage.jsp'"> Cancel Quiz Creation </button>
-        </div>
+        </form>
 
         <div id="newQuestion" style="position: absolute; left: 65%; top: 20px;">
             <!-- this is where question forms are "inserted"-->

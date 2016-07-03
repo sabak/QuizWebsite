@@ -147,15 +147,18 @@
 			<%
 				if (friendManager.getFriendRequests(account) != null){
 					List<FriendRequest> friendRequests = friendManager.getFriendRequests(account);
-					for (int i = 0; i < friendRequests.size(); i++){
+					for (int i = 0; i < friendRequests.size(); i++) {
 						FriendRequest req = friendRequests.get(i);
 						Account sender = req.getSender();
-						%>
+					%>
 
-						sender.getUsername()
-								sender.getFirstName()
-										sender.getLastName()
-			<&
+					<p>
+						<%=sender.getUsername()%> ( <%=sender.getFirstName()%> <%=sender.getLastName()%> ) </br>
+						wants to be your friend!
+						<a onclick="<%session.setAttribute("accepted", true);%>; form.action='FriendRequest';"> accept! </a>
+						<a onclick="<%session.setAttribute("accepted", false);%>; form.action='FriendRequest';"> deny! </a>
+					</p>
+			<%
 					}
 
 				}

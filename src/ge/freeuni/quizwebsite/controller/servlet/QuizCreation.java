@@ -4,6 +4,7 @@ import ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO;
 import ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO;
 import ge.freeuni.quizwebsite.model.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,18 +46,23 @@ public class QuizCreation extends HttpServlet {
 
             String[] boxes = request.getParameterValues("cBox");
 
-            for(int i=0; i<3; i++){
-                if(boxes[i] != null && boxes[i].equals("random")){
+            for(int i=0; i<boxes.length; i++){
+                if(boxes[i].equals("random")){
                     isRandomized = true;
-                } else if(boxes[i] != null && boxes[i].equals("isImmediate")){
+                } else if(boxes[i].equals("isImmediate")){
                     isImmediatelyCorrected = true;
-                } else if(boxes[i] != null && boxes[i].equals("sPage")){
+                } else if(boxes[i].equals("sPage")){
                     pageType = PageType.ONE_PAGE;
                 }
                 java.util.Date utilDate = new java.util.Date();
                 java.sql.Timestamp sqlTime = new java.sql.Timestamp(utilDate.getTime());
                 quiz = new Quiz(qName, qDesc, isRandomized, isImmediatelyCorrected, pageType, sqlTime);
+                quizManager.createQuiz(quiz, account);
             }
+
+            RequestDispatcher rd = request.getRequestDispatcher("addQuestion.jsp");
+            rd.forward(request, response);
+
         }else if(requetType.equals("1")){//question response type]
             quizManager.addQuestion(quiz,
                     createQuestion(QuestionType.QUESTION_RESPONSE, (String) request.getAttribute("q1"),
