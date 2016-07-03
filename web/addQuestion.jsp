@@ -29,10 +29,10 @@
 
         <!-- buttons with question types-->
         <form id="q-types" style="position:relative; left:10%">
-            <button class="button pr" onclick="a(1)"> Question-Response </button>
-            <button class="button pr" onclick="a(2)"> Fill in the Blanks </button>
-            <button class="button pr" onclick="a(3)"> Multiple Choice </button>
-            <button class="button pr" onclick="a(4)"> Picture-Response </button>
+            <button type="button" class="button pr" onclick="a(1)"> Question-Response </button>
+            <button type="button" class="button pr" onclick="a(2)"> Fill in the Blanks </button>
+            <button type="button" class="button pr" onclick="a(3)"> Multiple Choice </button>
+            <button type="button" class="button pr" onclick="a(4)"> Picture-Response </button>
 
             <button class="button sub" id="submit" onclick="" style="margin-left: 25px;"> Submit </button>
             <button class="button pr" onclick="location.href='homePage.jsp'"> Cancel Quiz Creation </button>
@@ -51,7 +51,7 @@
             seperate multiple correct answers with semicolons
             <input type="text" name="answer" id="a1" placeholder="answer(s)"/>
             </br>
-            <input type="submit" class="button sub" value="submit"> add </input>
+            <button class="button sub" onclick="document.getElementById('Fill in the Blanks').submit();"> add </button>
             </br>
 
         </form>
