@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Created by AVTO on 7/3/2016.
  */
-@WebServlet("addFriend")
+@WebServlet("/addFriend")
 public class addFriend extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("aaaaaaaaaaaaaaa");
