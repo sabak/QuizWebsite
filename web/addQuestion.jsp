@@ -28,13 +28,14 @@
     <body>
 
         <!-- buttons with question types-->
-        <form id="q-types" style="position:relative; left:10%">
+        <form id="q-types" style="position:relative; left:10%" action="/QuizCreation" method="post">
+            <input type=hidden name="type" value="-1"/>
             <button type="button" class="button pr" onclick="a(1)"> Question-Response </button>
             <button type="button" class="button pr" onclick="a(2)"> Fill in the Blanks </button>
             <button type="button" class="button pr" onclick="a(3)"> Multiple Choice </button>
             <button type="button" class="button pr" onclick="a(4)"> Picture-Response </button>
 
-            <button class="button sub" id="submit" onclick="" style="margin-left: 25px;"> Submit </button>
+            <button class="button sub" id="submit" onclick="document.getElementById('q-types').submit();" style="margin-left: 25px;"> Submit </button>
             <button class="button pr" onclick="location.href='homePage.jsp'"> Cancel Quiz Creation </button>
         </form>
 
@@ -46,10 +47,10 @@
             <h1> Question-Response </h1>
             <input type=hidden name="type" value="1"/>
             </br>
-            <input type="text" name="question" id="q1" placeholder="Question"/>
+            <input type="text" name="q1" placeholder="Question"/>
             </br>
             seperate multiple correct answers with semicolons
-            <input type="text" name="answer" id="a1" placeholder="answer(s)"/>
+            <input type="text" name="a1" placeholder="answer(s)"/>
             </br>
             <button class="button sub" onclick="document.getElementById('Fill in the Blanks').submit();"> add </button>
             </br>
@@ -60,9 +61,9 @@
             <h1> Fill in the Blanks </h1>
             </br>
             <input type=hidden name="type" value="2"/>
-            <input type="text" name="question" id="q2" placeholder="Question"/>
+            <input type="text" name="q2" placeholder="Question"/>
             </br>
-            <input type="text" name="answer" id="a2" placeholder="answer(s)"/>
+            <input type="text" name="a2" placeholder="answer(s)"/>
             </br>
             <button class="button sub" onclick="document.getElementById('Fill in the Blanks').submit();"> add </button>
             </br>
@@ -72,15 +73,15 @@
             <h1> Multiple Choice </h1>
             </br>
             <input type=hidden name="type" value="3"/>
-            <input type="text" name="question" id="q3" placeholder="Question"/>
+            <input type="text" name="q3" placeholder="Question"/>
             </br>
-            <input type="text" name="answer1" id="a3" placeholder="Correct Answer"/>
+            <input type="text" name="a3" placeholder="Correct Answer"/>
             </br>
-            <input type="text" name="answer2" id="o31" placeholder="option"/>
+            <input type="text" name="o31" placeholder="option"/>
             </br>
-            <input type="text" name="answer3" id="o32" placeholder="option"/>
+            <input type="text" name="o32" placeholder="option"/>
             </br>
-            <input type="text" name="answer4" id="o33" placeholder="option"/>
+            <input type="text" name="o33" placeholder="option"/>
             </br>
             <button class="button sub" onclick="document.getElementById('Multiple Choice').submit();"> add </button>
             </br>
@@ -91,9 +92,9 @@
             <h1> Picture-Response </h1>
             </br>
             <input type=hidden name="type" value="4"/>
-            <input type="text" name="question" id="q4" placeholder="image URL"/>
+            <input type="text" name="q4" placeholder="image URL"/>
             </br>
-            <input type="text" name="answer" id="a4" placeholder="answer"/>
+            <input type="text" name="a4" placeholder="answer"/>
             </br>
             <button class="button sub" onclick="document.getElementById('Picture-Response').submit();"> add </button>
             </br>

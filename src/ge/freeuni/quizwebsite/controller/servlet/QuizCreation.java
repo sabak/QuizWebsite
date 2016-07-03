@@ -57,7 +57,7 @@ public class QuizCreation extends HttpServlet {
                     java.util.Date utilDate = new java.util.Date();
                     java.sql.Timestamp sqlTime = new java.sql.Timestamp(utilDate.getTime());
                     quiz = new Quiz(qName, qDesc, isRandomized, isImmediatelyCorrected, pageType, sqlTime);
-                    quizManager.createQuiz(quiz, account);
+                    quiz = quizManager.createQuiz(quiz, account);
                     session.setAttribute("quiz", quiz);
                 }
             }
@@ -80,7 +80,12 @@ public class QuizCreation extends HttpServlet {
             quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
                 createQuestion(QuestionType.PICTURE_RESPONSE, (String) request.getAttribute("q4"),
                         index, request.getParameter("a4"), request));
+        }else if(requetType.equals("-1")){
+            RequestDispatcher rd = request.getRequestDispatcher("quizOverview.jsp");
+            rd.forward(request, response);
         }
+        RequestDispatcher rd = request.getRequestDispatcher("addQuestion.jsp");
+        rd.forward(request, response);
     }
 
     private Question createQuestion(QuestionType qt, String questionText, int index, String ans, HttpServletRequest request){
