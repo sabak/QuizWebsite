@@ -28,7 +28,7 @@
     <body>
 
         <!-- buttons with question types-->
-        <form id="q-types">
+        <form id="q-types" style="position:relative; left:10%">
             <button class="button pr" onclick="a(1)"> Question-Response </button>
             <button class="button pr" onclick="a(2)"> Fill in the Blanks </button>
             <button class="button pr" onclick="a(3)"> Multiple Choice </button>
@@ -51,7 +51,7 @@
             seperate multiple correct answers with semicolons
             <input type="text" name="answer" id="a1" placeholder="answer(s)"/>
             </br>
-            <button class="button sub" onclick="document.getElementById('Question-Response').submit();"> add </button>
+            <input type="submit" class="button sub" value="submit"> add </input>
             </br>
 
         </form>
