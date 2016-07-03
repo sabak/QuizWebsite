@@ -58,25 +58,26 @@ public class QuizCreation extends HttpServlet {
                     java.sql.Timestamp sqlTime = new java.sql.Timestamp(utilDate.getTime());
                     quiz = new Quiz(qName, qDesc, isRandomized, isImmediatelyCorrected, pageType, sqlTime);
                     quizManager.createQuiz(quiz, account);
+                    session.setAttribute("quiz", quiz);
                 }
             }
             RequestDispatcher rd = request.getRequestDispatcher("addQuestion.jsp");
             rd.forward(request, response);
 
         }else if(requetType.equals("1")){//question response type]
-            quizManager.addQuestion(quiz,
+            quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
                     createQuestion(QuestionType.QUESTION_RESPONSE, (String) request.getAttribute("q1"),
                             index, request.getParameter("a1"), request));
         }else if(requetType.equals("2")){//fill in the blanks
-            quizManager.addQuestion(quiz,
+            quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
                     createQuestion(QuestionType.FILL_IN_THE_BLANK, (String) request.getAttribute("q2"),
                             index, request.getParameter("a2"), request));
         }else if(requetType.equals("3")){//multiple choice
-            quizManager.addQuestion(quiz,
+            quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
                     createQuestion(QuestionType.MULTIPLE_CHOICE, (String) request.getAttribute("q3"),
                             index, request.getParameter("a3"), request));
         }else if(requetType.equals("4")){//picture-response
-            quizManager.addQuestion(quiz,
+            quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
                 createQuestion(QuestionType.PICTURE_RESPONSE, (String) request.getAttribute("q4"),
                         index, request.getParameter("a4"), request));
         }
