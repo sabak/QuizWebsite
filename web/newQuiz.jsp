@@ -68,14 +68,16 @@
 
     <body>
         <form id="quiz-form" action="/QuizCreation" method="post">
-            <input type=hidden name="questions" value="nuthing"/> <!-- before submitting, the value of this input becomes the list of questions -->
+            <!-- before submitting, the value of this input becomes the list of questions -->
+            <input type=hidden name="questions" value="nuthing"/>
             <div id="q-form">
                 <div class="tb" style="text-align:center; font-size:150%; position:absolute; top:20px; left:10%"> New Quiz </div>
-                <input type="text" name="quiz-name" placeholder="Enter Quiz Name" id = "qName" style="position:absolute; left:10%; top:50px;"/>
+                <div class="tb" style="text-align:center; position:absolute; top:30px; left:10%"> please fill this form last </div>
+                <input type="text" name="quiz-name" placeholder="Enter Quiz Name" id = "qName" style="position:absolute; left:10%; top:70px;"/>
 
-                <input type="text" name="quiz-description" placeholder="Enter Quiz Description" id = "qDesc" style="position:absolute; left:10%; top:95px;"/>
+                <input type="text" name="quiz-description" placeholder="Enter Quiz Description" id = "qDesc" style="position:absolute; left:10%; top:115px;"/>
 
-                <div style="position:absolute; left: 10%; top: 140px;">
+                <div style="position:absolute; left: 10%; top: 155px;">
                     Is randomised</br>
                     <input type="radio" name="rand" value="true"> yes </br>
                     <input type="radio" name="rand" value="false"> no </br>

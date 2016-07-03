@@ -9,6 +9,7 @@
 	</head>
 
 	<body>
+		<!-- yes, "bob" is a legitimate id -->
 		<form id="bob" action="/Registration" method="post">
 			<h2 id="bold-text2"> Fill Out The Registration Form</h2>
 			
@@ -45,6 +46,10 @@
 		<button class="button return" onclick="location.href='index.jsp'"> return </button>
 	
 		<script type="text/javascript">
+			/*
+				checks if the username contains illegal characters
+				or is empty
+			*/
 			function checkName(){
 				var name = document.getElementById("un").value;
 				var bob = /^[0-9a-zA-Z]+$/;
@@ -55,6 +60,10 @@
 				}
 			}
 
+			/*
+				checks whether or not entered password and
+				"password confirmation" match
+			*/
 			function checkConfirm(){
 				if(document.getElementById('pass').value != document.getElementById('pConfirm').value){
 					document.getElementById("post-confirm").innerHTML = "Passwords don't match";
@@ -62,7 +71,14 @@
 					document.getElementById("post-confirm").innerHTML = "";
 				}
 			}
-			
+
+			/*
+				this function checks if the password enter
+				 a) is long enough
+				 b) calculates the strength of the password, according to
+				 	whether or not uppercase characters, lowercase characters
+				 	and numbers are used
+			 */
 			function checkPass(){
 				var pass = document.getElementById('pass').value;
 				var strength = 0;
@@ -95,6 +111,8 @@
 				}
 			}
 
+			//checks if mail contains the symbol "@"
+			//asks user to enter a valid mail if it doesn't
 			function checkMail(){
 				var name = document.getElementById("mail").value;
 				var bob = /@/;
