@@ -6,6 +6,9 @@
 <%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Achievement" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.FriendManagerDAO" %>
+<%@ page import="ge.freeuni.quizwebsite.model.message.FriendRequest" %>
+<%@ page import="java.util.ArrayList" %>
 <html>
 	<head>
 		<%
@@ -15,6 +18,7 @@
 					QuizManagerDAO.ATTRIBUTE_NAME);
 			AchievementManagerDAO achManager = (AchievementManagerDAO) session.getServletContext().getAttribute(
 					AchievementManagerDAO.ATTRIBUTE_NAME);
+			FriendManagerDAO friendManager = (FriendManagerDAO) session.getServletContext().getAttribute(FriendManagerDAO.ATTRIBUTE_NAME);
 			/*
         		list of variables:
         		details of the user (the one who's logged in)
@@ -140,6 +144,22 @@
 		-->
 		<div id="mess">
 			<div class="tb" style="text-align:center; position:relative; top:15px;"> Messages & Friend Requests </div>
+			<%
+				if (friendManager.getFriendRequests(account) != null){
+					List<FriendRequest> friendRequests = friendManager.getFriendRequests(account);
+					for (int i = 0; i < friendRequests.size(); i++){
+						FriendRequest req = friendRequests.get(i);
+						Account sender = req.getSender();
+						%>
+
+						sender.getUsername()
+								sender.getFirstName()
+										sender.getLastName()
+			<&
+					}
+
+				}
+			%>
 			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="messages.jsp">Show All </a> </div>
 		</div>
 
