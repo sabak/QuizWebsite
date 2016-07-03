@@ -110,7 +110,7 @@
     -->
     <div id="messages" style="position:absolute; top:85px; left:18%;"> <%--popular and  buttons--%>
         <button class="button pr" onclick=""> Message </button>
-        <button class="button pr" onclick="form.action='addFriend';"> Add Friend </button>
+        <button class="button pr" onclick="form.action='/addFriend';"> Add Friend </button>
         <button class="button pr" onclick="location.href='homePage.jsp'"> Back </button>
     </div>
 
