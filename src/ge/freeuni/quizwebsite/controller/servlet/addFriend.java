@@ -18,19 +18,28 @@ import java.io.IOException;
 @WebServlet("/addFriend")
 public class addFriend extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("aaaaaaaaaaaaaaa");
         HttpSession session = request.getSession(true);
+        System.out.println("olaaa");
         Account account = (Account) session.getAttribute("user_account");
         Account senderAccount = (Account) session.getAttribute("account");
         FriendManagerDAO friendManager = (FriendManagerDAO) getServletContext().getAttribute(
                 FriendManagerDAO.ATTRIBUTE_NAME);
-        friendManager.requestFriendship(senderAccount, account);
+        System.out.println("ieeeee");
+        if(friendManager != null) {
+            if (account != null && senderAccount != null) {
+
+                friendManager.requestFriendship(senderAccount, account);
+            }
+        }
+        response.sendRedirect("otherUserPage.jsp");
 
 
 
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

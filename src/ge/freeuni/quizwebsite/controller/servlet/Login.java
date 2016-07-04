@@ -32,6 +32,8 @@ public class Login extends HttpServlet {
                 session.setAttribute("account_un", username);
                 RequestDispatcher rd = request.getRequestDispatcher("homePage.jsp");
                 rd.forward(request, response);
+                Account account = accManager.getAccount(username);
+                session.setAttribute("account", account);
                 response.sendRedirect("homePage.jsp");
                 System.out.println("shevida");
             } else{
