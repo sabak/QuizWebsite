@@ -75,9 +75,9 @@ public class Quiz {
 
     @Override
     public String toString() {
-        return "{ ID: " + id + ", Name: " + name + ", Description: " + description + ", Is Random Ordered: " +
+        return "ID: " + id + ", Name: " + name + ", Description: " + description + ", Is Random Ordered: " +
                 hasRandomOrder + ", Is Immediately Corrected: " + isImmediatelyCorrected +
-                ", Page Type: " + pageType + ", Date Created: " + dateCreated + " }";
+                ", Page Type: " + pageType + ", Date Created: " + dateCreated;
     }
 
 }

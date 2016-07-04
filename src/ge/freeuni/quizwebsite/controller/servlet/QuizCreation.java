@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector;
@@ -38,6 +39,9 @@ public class QuizCreation extends HttpServlet {
         PageType pageType = PageType.MULTI_PAGE;
         int index = 1;
         Quiz quiz = null;
+       // System.out.println("1." + quiz.toString());
+        List<Question> questionList = new ArrayList<>();
+        System.out.println("size: " + questionList.size());
 
         if(requetType.equals("0")){//get quiz name, description, and booleans
 
@@ -54,34 +58,56 @@ public class QuizCreation extends HttpServlet {
                     } else if (boxes[i].equals("sPage")) {
                         pageType = PageType.ONE_PAGE;
                     }
-                    java.util.Date utilDate = new java.util.Date();
-                    java.sql.Timestamp sqlTime = new java.sql.Timestamp(utilDate.getTime());
-                    quiz = new Quiz(qName, qDesc, isRandomized, isImmediatelyCorrected, pageType, sqlTime);
-                    quiz = quizManager.createQuiz(quiz, account);
-                    session.setAttribute("quiz", quiz);
                 }
             }
+            java.util.Date utilDate = new java.util.Date();
+            java.sql.Timestamp sqlTime = new java.sql.Timestamp(utilDate.getTime());
+            quiz = new Quiz(qName, qDesc, isRandomized, isImmediatelyCorrected, pageType, sqlTime);
+            quiz = quizManager.createQuiz(quiz, account);
+            session.setAttribute("quiz", quiz);
             RequestDispatcher rd = request.getRequestDispatcher("addQuestion.jsp");
             rd.forward(request, response);
 
         }else if(requetType.equals("1")){//question response type]
-            quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
-                    createQuestion(QuestionType.QUESTION_RESPONSE, (String) request.getAttribute("q1"),
-                            index, request.getParameter("a1"), request));
+            Question q = createQuestion(QuestionType.QUESTION_RESPONSE, (String) request.getAttribute("q1"),
+                    index, request.getParameter("a1"), request);
+            boolean add = questionList.add(q);
+            System.out.println(q.toString() + " qr");
+            System.out.println(add + requetType);
+            System.out.println(questionList.get(questionList.size()-1));
         }else if(requetType.equals("2")){//fill in the blanks
-            quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
-                    createQuestion(QuestionType.FILL_IN_THE_BLANK, (String) request.getAttribute("q2"),
-                            index, request.getParameter("a2"), request));
+            Question q = createQuestion(QuestionType.FILL_IN_THE_BLANK, (String) request.getAttribute("q2"),
+                    index, request.getParameter("a2"), request);
+            boolean add = questionList.add(q);
+            System.out.println(q.toString() + " fib");
+            System.out.println(add + requetType);
+            System.out.println(questionList.get(questionList.size()-1));
         }else if(requetType.equals("3")){//multiple choice
-            quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
-                    createQuestion(QuestionType.MULTIPLE_CHOICE, (String) request.getAttribute("q3"),
-                            index, request.getParameter("a3"), request));
+            Question q = createQuestion(QuestionType.MULTIPLE_CHOICE, (String) request.getAttribute("q3"),
+                    index, request.getParameter("a3"), request);
+            System.out.println(q.toString() + " mc");
+            boolean add = questionList.add(q);
+            System.out.println(add + requetType);
+            System.out.println(questionList.get(questionList.size()-1));
         }else if(requetType.equals("4")){//picture-response
-            quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
-                createQuestion(QuestionType.PICTURE_RESPONSE, (String) request.getAttribute("q4"),
-                        index, request.getParameter("a4"), request));
+            Question q = createQuestion(QuestionType.PICTURE_RESPONSE, (String) request.getAttribute("q4"),
+                    index, request.getParameter("a4"), request);
+            System.out.println(q.toString() + " pr");
+            boolean add = questionList.add(q);
+            System.out.println(add + requetType);
+            System.out.println(questionList.get(questionList.size()-1));
         }else if(requetType.equals("-1")){
+            System.out.println("3." + session.getAttribute("quiz").toString());
+            quiz = (Quiz)session.getAttribute("quiz");
+            System.out.println(questionList.get(questionList.size()-1) + " question list");
+            quizManager.addQuestions(quiz, questionList);
+            session.setAttribute("quiz", quizManager.createQuiz(quiz , account));
+            System.out.println("5." + session.getAttribute("quiz").toString());
             RequestDispatcher rd = request.getRequestDispatcher("quizOverview.jsp");
+            rd.forward(request, response);
+        }else if(requetType.equals("-2")){
+            quizManager.createQuiz(quiz, account);
+            RequestDispatcher rd = request.getRequestDispatcher("homePage.jsp");
             rd.forward(request, response);
         }
         RequestDispatcher rd = request.getRequestDispatcher("addQuestion.jsp");
@@ -110,6 +136,7 @@ public class QuizCreation extends HttpServlet {
         }
 
         Question question = new Question(qt, questionText , index, answers);
+        System.out.println(question.toString());
         return question;
     }
 
