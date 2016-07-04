@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector;
@@ -38,6 +39,8 @@ public class QuizCreation extends HttpServlet {
         PageType pageType = PageType.MULTI_PAGE;
         int index = 1;
         Quiz quiz = null;
+       // System.out.println("1." + quiz.toString());
+        List<Question> questionList = new ArrayList<>();
 
         if(requetType.equals("0")){//get quiz name, description, and booleans
 
@@ -54,34 +57,45 @@ public class QuizCreation extends HttpServlet {
                     } else if (boxes[i].equals("sPage")) {
                         pageType = PageType.ONE_PAGE;
                     }
-                    java.util.Date utilDate = new java.util.Date();
-                    java.sql.Timestamp sqlTime = new java.sql.Timestamp(utilDate.getTime());
-                    quiz = new Quiz(qName, qDesc, isRandomized, isImmediatelyCorrected, pageType, sqlTime);
-                    quiz = quizManager.createQuiz(quiz, account);
-                    session.setAttribute("quiz", quiz);
                 }
             }
+            java.util.Date utilDate = new java.util.Date();
+            java.sql.Timestamp sqlTime = new java.sql.Timestamp(utilDate.getTime());
+            quiz = new Quiz(qName, qDesc, isRandomized, isImmediatelyCorrected, pageType, sqlTime);
+            quiz = quizManager.createQuiz(quiz, account);
+            session.setAttribute("quiz", quiz);
             RequestDispatcher rd = request.getRequestDispatcher("addQuestion.jsp");
             rd.forward(request, response);
 
         }else if(requetType.equals("1")){//question response type]
-            quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
-                    createQuestion(QuestionType.QUESTION_RESPONSE, (String) request.getAttribute("q1"),
-                            index, request.getParameter("a1"), request));
+            final boolean add = questionList.add(createQuestion(QuestionType.QUESTION_RESPONSE, (String) request.getAttribute("q1"),
+                    index, request.getParameter("a1"), request));
+            System.out.println(add);
         }else if(requetType.equals("2")){//fill in the blanks
-            quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
-                    createQuestion(QuestionType.FILL_IN_THE_BLANK, (String) request.getAttribute("q2"),
-                            index, request.getParameter("a2"), request));
+            boolean add = questionList.add(createQuestion(QuestionType.FILL_IN_THE_BLANK, (String) request.getAttribute("q2"),
+                    index, request.getParameter("a2"), request));
+            System.out.println(add);
         }else if(requetType.equals("3")){//multiple choice
-            quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
-                    createQuestion(QuestionType.MULTIPLE_CHOICE, (String) request.getAttribute("q3"),
-                            index, request.getParameter("a3"), request));
+            boolean add = questionList.add(createQuestion(QuestionType.MULTIPLE_CHOICE, (String) request.getAttribute("q3"),
+                    index, request.getParameter("a3"), request));
+            System.out.println(add);
         }else if(requetType.equals("4")){//picture-response
-            quizManager.addQuestion((Quiz) session.getAttribute("quiz"),
-                createQuestion(QuestionType.PICTURE_RESPONSE, (String) request.getAttribute("q4"),
+            boolean add = questionList.add(createQuestion(QuestionType.PICTURE_RESPONSE, (String) request.getAttribute("q4"),
                         index, request.getParameter("a4"), request));
+            System.out.println(add);
         }else if(requetType.equals("-1")){
+//            System.out.println("2." + quiz.toString());
+            System.out.println("3." + session.getAttribute("quiz").toString());
+            quiz = (Quiz)session.getAttribute("quiz");
+            quizManager.addQuestions(quiz, questionList);
+            session.setAttribute("quiz", quizManager.createQuiz(quiz , account));
+//            System.out.println("4." + quiz.toString());
+            System.out.println("5." + session.getAttribute("quiz").toString());
             RequestDispatcher rd = request.getRequestDispatcher("quizOverview.jsp");
+            rd.forward(request, response);
+        }else if(requetType.equals("-2")){
+            quizManager.createQuiz(quiz, account);
+            RequestDispatcher rd = request.getRequestDispatcher("homePage.jsp");
             rd.forward(request, response);
         }
         RequestDispatcher rd = request.getRequestDispatcher("addQuestion.jsp");

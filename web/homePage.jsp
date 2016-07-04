@@ -1,14 +1,12 @@
-<%@ page import="ge.freeuni.quizwebsite.model.Account" %>
-<%@ page import="ge.freeuni.quizwebsite.manager.AccountManager" %>
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO" %>
-<%@ page import="ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO" %>
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.AchievementManagerDAO" %>
-<%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
-<%@ page import="java.util.List" %>
-<%@ page import="ge.freeuni.quizwebsite.model.Achievement" %>
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.FriendManagerDAO" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Account" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Achievement" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
 <%@ page import="ge.freeuni.quizwebsite.model.message.FriendRequest" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <html>
 	<head>
 		<%
