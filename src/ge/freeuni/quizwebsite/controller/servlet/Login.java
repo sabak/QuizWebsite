@@ -45,7 +45,6 @@ public class Login extends HttpServlet {
             session.setAttribute("user", "username");
             response.sendRedirect("index.jsp");
         }
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

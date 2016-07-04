@@ -158,7 +158,6 @@
 					</p>
 			<%
 					}
-
 				}
 			%>
 			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="messages.jsp">Show All </a> </div>
