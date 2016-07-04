@@ -57,7 +57,7 @@
                         for(int i=0; i<questions.size(); i++){
                             Question quest = questions.get(i);
                             String Q_TEXT = quest.getText();
-                            Integer Q_ID = quest.getId();
+                           // Integer Q_ID = quest.getId();
                             List<Answer> Q_ANS = quest.getAnswers();
                             QuestionType Q_TYPE = quest.getType();
                             int Q_INDEX = quest.getIndex(); %>

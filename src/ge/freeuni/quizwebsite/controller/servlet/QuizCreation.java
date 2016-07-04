@@ -41,6 +41,7 @@ public class QuizCreation extends HttpServlet {
         Quiz quiz = null;
        // System.out.println("1." + quiz.toString());
         List<Question> questionList = new ArrayList<>();
+        System.out.println("size: " + questionList.size());
 
         if(requetType.equals("0")){//get quiz name, description, and booleans
 
@@ -68,28 +69,39 @@ public class QuizCreation extends HttpServlet {
             rd.forward(request, response);
 
         }else if(requetType.equals("1")){//question response type]
-            final boolean add = questionList.add(createQuestion(QuestionType.QUESTION_RESPONSE, (String) request.getAttribute("q1"),
-                    index, request.getParameter("a1"), request));
-            System.out.println(add);
+            Question q = createQuestion(QuestionType.QUESTION_RESPONSE, (String) request.getAttribute("q1"),
+                    index, request.getParameter("a1"), request);
+            boolean add = questionList.add(q);
+            System.out.println(q.toString() + " qr");
+            System.out.println(add + requetType);
+            System.out.println(questionList.get(questionList.size()-1));
         }else if(requetType.equals("2")){//fill in the blanks
-            boolean add = questionList.add(createQuestion(QuestionType.FILL_IN_THE_BLANK, (String) request.getAttribute("q2"),
-                    index, request.getParameter("a2"), request));
-            System.out.println(add);
+            Question q = createQuestion(QuestionType.FILL_IN_THE_BLANK, (String) request.getAttribute("q2"),
+                    index, request.getParameter("a2"), request);
+            boolean add = questionList.add(q);
+            System.out.println(q.toString() + " fib");
+            System.out.println(add + requetType);
+            System.out.println(questionList.get(questionList.size()-1));
         }else if(requetType.equals("3")){//multiple choice
-            boolean add = questionList.add(createQuestion(QuestionType.MULTIPLE_CHOICE, (String) request.getAttribute("q3"),
-                    index, request.getParameter("a3"), request));
-            System.out.println(add);
+            Question q = createQuestion(QuestionType.MULTIPLE_CHOICE, (String) request.getAttribute("q3"),
+                    index, request.getParameter("a3"), request);
+            System.out.println(q.toString() + " mc");
+            boolean add = questionList.add(q);
+            System.out.println(add + requetType);
+            System.out.println(questionList.get(questionList.size()-1));
         }else if(requetType.equals("4")){//picture-response
-            boolean add = questionList.add(createQuestion(QuestionType.PICTURE_RESPONSE, (String) request.getAttribute("q4"),
-                        index, request.getParameter("a4"), request));
-            System.out.println(add);
+            Question q = createQuestion(QuestionType.PICTURE_RESPONSE, (String) request.getAttribute("q4"),
+                    index, request.getParameter("a4"), request);
+            System.out.println(q.toString() + " pr");
+            boolean add = questionList.add(q);
+            System.out.println(add + requetType);
+            System.out.println(questionList.get(questionList.size()-1));
         }else if(requetType.equals("-1")){
-//            System.out.println("2." + quiz.toString());
             System.out.println("3." + session.getAttribute("quiz").toString());
             quiz = (Quiz)session.getAttribute("quiz");
+            System.out.println(questionList.get(questionList.size()-1) + " question list");
             quizManager.addQuestions(quiz, questionList);
             session.setAttribute("quiz", quizManager.createQuiz(quiz , account));
-//            System.out.println("4." + quiz.toString());
             System.out.println("5." + session.getAttribute("quiz").toString());
             RequestDispatcher rd = request.getRequestDispatcher("quizOverview.jsp");
             rd.forward(request, response);
@@ -124,6 +136,7 @@ public class QuizCreation extends HttpServlet {
         }
 
         Question question = new Question(qt, questionText , index, answers);
+        System.out.println(question.toString());
         return question;
     }
 

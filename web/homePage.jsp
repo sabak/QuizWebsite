@@ -153,8 +153,8 @@
 					<p>
 						<%=sender.getUsername()%> ( <%=sender.getFirstName()%> <%=sender.getLastName()%> ) </br>
 						wants to be your friend!
-						<a onclick="<%session.setAttribute("accepted", true);%>; form.action='FriendRequest';"> accept! </a>
-						<a onclick="<%session.setAttribute("accepted", false);%>; form.action='FriendRequest';"> deny! </a>
+						<button button class="button pr" onclick="<%session.setAttribute("accepted", true);%>; form.action='FriendRequest';"> accept </button>
+						<button button class="button pr" onclick="<%session.setAttribute("accepted", false);%>; form.action='FriendRequest';"> deny </button>
 					</p>
 			<%
 					}
