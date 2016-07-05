@@ -21,13 +21,13 @@
     		 */
             Account account = (Account) accManager.getAccount((String) session.getAttribute("account_un"));
         %>
-        <title>Your Activity</title>
+        <title>Activity</title>
         <link rel="stylesheet" type="text/css" href="rules.css"/>
     </head>
 
     <body>
         <div id="title">
-            <h1>Your Activity</h1>
+            <h1>All Activity</h1>
 
         </div>
 

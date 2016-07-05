@@ -73,7 +73,7 @@
 					<h1 class="bold-text" style="margin-bottom: 10px"> link </h1>
 			<%	}
 			%>
-			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="activity.jsp">Show All </a></div>
+			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="activity.jsp?account=<%=account.getUsername()%>">Show All </a></div>
 		</div>
 
 		<!--
@@ -86,7 +86,7 @@
 					<a href="/TakeQuiz?quiz=<%createdQuizzes.get(i);%>" class="bold-text"> Created Quiz: <%=createdQuizzes.get(i).getName()%></a> </br>
 			<%	}
 			%>
-			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="userQuizes.jsp">Show All </a> </div>
+			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="userQuizes.jsp?account=<%=account.getUsername()%>">Show All </a> </div>
 		</div>
 
 		<!--
@@ -95,12 +95,12 @@
 		<div id="achievements">
 			<div class="tb" style="text-align:center; position:relative; top:15px;"> Your Achievements </div>
 			<%
-				for(int i=0; i<takenQuizzes.size(); i++){ %>
+				for(int i=0; i<achievements.size(); i++){ %>
 					<h1 class="bold-text"> Achievements: <%=achievements.get(i).getAchievementType()%></h1>
 					<h1 class="bold-text" style="margin-bottom: 10px"> link </h1>
 			<%	}
 			%>
-			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="achievements.jsp">Show All </a></div>
+			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="achievements.jsp?account=<%=account.getUsername()%>">Show All </a></div>
 		</div>
 
 		<!--
@@ -153,7 +153,7 @@
 				</p>
 				<%}
 			%>
-			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="messages.jsp">Show All </a> </div>
+			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="messages.jsp?account=<%=account.getUsername()%>">Show All </a> </div>
 		</div>
 
 		<%--
@@ -180,9 +180,9 @@
 					for(int i=0; i<popularQuizzes.size(); i++){ %>
 						Quiz Name: <%=popularQuizzes.get(i).getName()%> </br>
 						Quiz Description: <%=popularQuizzes.get(i).getDescription()%> </br>
-						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/TakeQuiz?quiz=<%=popularQuizzes.get(i).getName()%>'"> take quiz </button></br>
+						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/TakeQuiz?quiz=<%=popularQuizzes.get(i)%>'"> take quiz </button></br>
 			<%		}
-			%>	<button class="button sub" > show all (recent) </button><%
+			%>	<button class="button sub" > show all (popular) </button><%
 				}
 		%>
 		</div>
@@ -195,7 +195,7 @@
 					for(int i=0; i<recentQuizzes.size(); i=i+2){ %>
 						Quiz Name: <%=recentQuizzes.get(i).getName()%> </br>
 						Quiz Description: <%=recentQuizzes.get(i).getDescription()%> </br>
-						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/TakeQuiz?quiz=<%=recentQuizzes.get(i).getName()%>'"> take quiz </button></br>
+						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takeQuiz?quiz=<%=recentQuizzes.get(i).getName()%>'"> take quiz </button></br>
 				<%	}
 				%><button class="button sub" > show all (recent) </button><%
 				}
@@ -235,7 +235,7 @@
 		-->
 		<div id="fAct">
 			<div class="tb" style="text-align:center; position:relative; top:15px;"> Friends' Activities </div>
-			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"> <a href="fActivities.jsp">Show All </a> </div>
+			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"> <a href="fActivities.jsp?account=<%=account.getUsername()%>">Show All </a> </div>
 		</div>
 
 		<script type="text/javascript">
