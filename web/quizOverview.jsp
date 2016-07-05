@@ -3,8 +3,6 @@
 <%@ page import="ge.freeuni.quizwebsite.model.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.StringTokenizer" %>
-<%@ page import="ge.freeuni.quizwebsite.model.Answer" %>
-<%@ page import="ge.freeuni.quizwebsite.model.QuestionType" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -12,7 +10,6 @@
   Date: 7/3/2016
   Time: 10:36 PM
   To change this template use File | Settings | File Templates.
-
   after user is done adding questions to the quiz,
   this is where he can review it
   to add more questions,
@@ -29,14 +26,13 @@
         QuizManagerDAO quizManager = (QuizManagerDAO) session.getServletContext().getAttribute(
                 QuizManagerDAO.ATTRIBUTE_NAME);
         Quiz quiz = (Quiz) session.getAttribute("quiz");
-        System.out.println(quizManager.getQuestions(quiz));
     %>
 </head>
 
 <body>
 <div style="position: absolute; left: 40%;top: 10%">
     <!--quiz details are displayed here-->
-    <form name="quiz" id="inputs_form" action="/Login" method="post">
+    <div>
         <h1 id="title">Your Quiz</h1>
 
         <p class="tn">
@@ -49,54 +45,12 @@
             <%  }
             %>
         </p>
-
-        <p class="tn">
-                <%
-                        List<Question> questions = quizManager.getQuestions((Quiz) session.getAttribute("quiz"));
-                        for(int i=0; i<questions.size(); i++){
-                            Question quest = questions.get(i);
-                            String Q_TEXT = quest.getText();
-                           // Integer Q_ID = quest.getId();
-                            List<Answer> Q_ANS = quest.getAnswers();
-                            QuestionType Q_TYPE = quest.getType();
-                            int Q_INDEX = quest.getIndex(); %>
-
-        <p>
-            Question: <%=Q_TEXT%> </br>
-            <%
-                String qType = null;
-                switch(Q_TYPE){
-                    case QUESTION_RESPONSE: qType = "Question-Response"; break;
-                    case FILL_IN_THE_BLANK: qType = "Fill in the Blank"; break;
-                    case MULTIPLE_CHOICE: qType = "Multiple Choice"; break;
-                    case PICTURE_RESPONSE: qType = "Picture-Resopnse"; break;
-                }
-            %>
-            Question Type: <%=qType%> </br>
-            Answer(s):<%
-            for(int j=0; j<Q_ANS.size(); j++){%>
-            <%=Q_ANS.get(j)%> </br>
-            <%  }
-            %>
-        </p>
-        <%  }
-        %>
-        </p>
-
-    </form>
-
-    <div><!-- bs stands for buttons -->
-        <button class="button pass" onclick="location.href='prec.html'">Create!</button>
-        <br/>
-        <button class="button pass" onclick="location.href='prec.html'">add more questions</button>
-        <br/>
-        <button class="button pass" onclick="location.href='registration.jsp'"> Cancel</button>
         ]
         <form id="listOfQuestions" action="/QuizCreation" method="post">
             <input type=hidden name="type" value="-2"/>
             <p class="tn">
                     <%
-                            questions = (List<Question>) session.getAttribute("questions");
+                            List<Question> questions = (List<Question>) session.getAttribute("questions");
                             System.out.println("kitxvebi:" + questions);
                             for(int i=0; i<questions.size(); i++){
                                 Question quest = questions.get(i);

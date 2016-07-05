@@ -105,10 +105,12 @@ public class QuizCreation extends HttpServlet {
             quiz = (Quiz)session.getAttribute("quiz");
             List<Question> questionList = (List<Question>) session.getAttribute("questions");
 
-            for(int i=0; i<questionList.size(); i++){
-                for (int j=0; j<removeQs.length; j++){
-                    if(questionList.get(i).getId().toString().equals(removeQs[j])){
-                        questionList.remove(i);
+            if(removeQs != null) {
+                for (int i = 0; i < questionList.size(); i++) {
+                    for (int j = 0; j < removeQs.length; j++) {
+                        if (questionList.get(i).getId().toString().equals(removeQs[j])) {
+                            questionList.remove(i);
+                        }
                     }
                 }
             }
