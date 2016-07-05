@@ -188,7 +188,7 @@
 					for(int i=0; i<popularQuizzes.size(); i++){ %>
 						Quiz Name: <%=popularQuizzes.get(i).getName()%> </br>
 						Quiz Description: <%=popularQuizzes.get(i).getDescription()%> </br>
-						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takeQuiz?quiz=<%=popularQuizzes.get(i).getName()%>'"> take quiz </button></br>
+						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/TakeQuiz?quiz=<%=popularQuizzes.get(i).getName()%>'"> take quiz </button></br>
 			<%		}
 			%>	<button class="button sub" > show all (recent) </button><%
 				}
@@ -203,7 +203,7 @@
 					for(int i=0; i<recentQuizzes.size(); i=i+2){ %>
 						Quiz Name: <%=recentQuizzes.get(i).getName()%> </br>
 						Quiz Description: <%=recentQuizzes.get(i).getDescription()%> </br>
-						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takeQuiz?quiz=<%=recentQuizzes.get(i).getName()%>'"> take quiz </button></br>
+						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/TakeQuiz?quiz=<%=recentQuizzes.get(i).getName()%>'"> take quiz </button></br>
 				<%	}
 				%><button class="button sub" > show all (recent) </button><%
 				}
