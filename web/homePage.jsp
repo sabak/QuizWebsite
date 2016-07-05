@@ -80,11 +80,10 @@
 			quizzes created by the user
 		-->
 		<div id="mq">
-			<div class="tb" style="text-align:center; position:relative; top:15px;"> Your Quizes </div>
+			<div class="tb" style="text-align:center; position:relative; top:15px; margin-bottom: 30px;"> Your Quizes </div>
 			<%
-				for(int i=0; i<takenQuizzes.size(); i++){ %>
-					<h1 class="bold-text"> Created Quiz: <%=createdQuizzes.get(i).getName()%></h1>
-					<h1 class="bold-text" style="margin-bottom: 10px"> link </h1>
+				for(int i=0; i<createdQuizzes.size(); i++){ %>
+					<a href="/TakeQuiz?quiz=<%createdQuizzes.get(i);%>" class="bold-text"> Created Quiz: <%=createdQuizzes.get(i).getName()%></a> </br>
 			<%	}
 			%>
 			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="userQuizes.jsp">Show All </a> </div>
@@ -148,7 +147,7 @@
 					String senderFirstName = sender.getFirstName();
 			%>
 				<p class="tn">
-						<a href="otherUserPage.jsp" ><%=senderFirstName%> <%=senderLastName%></a> sent you a message: </br>
+						<a onclick="<%session.setAttribute("user_account", sender);%>" href="otherUserPage.jsp" ><%=senderFirstName%> <%=senderLastName%></a> sent you a message: </br>
 						<%=mText%>
 						at <%=sqlTime%>
 				</p>
