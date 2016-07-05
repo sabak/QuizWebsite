@@ -95,12 +95,29 @@ public class QuizCreation extends HttpServlet {
         if(requetType.equals("-1")){
             quiz = (Quiz)session.getAttribute("quiz");
             session.setAttribute("quiz", quizManager.createQuiz(quiz , account));
-            System.out.println(quizManager.getQuestions(quiz));
+            List<Question> questionList = quizManager.getQuestions(quiz);
+            session.setAttribute("questions", questionList);
             RequestDispatcher rd = request.getRequestDispatcher("quizOverview.jsp");
             rd.forward(request, response);
         }
         if(requetType.equals("-2")){
-            quizManager.createQuiz(quiz, account);
+            String[] removeQs = request.getParameterValues("removeQ");
+            quiz = (Quiz)session.getAttribute("quiz");
+            List<Question> questionList = (List<Question>) session.getAttribute("questions");
+
+            for(int i=0; i<questionList.size(); i++){
+                for (int j=0; j<removeQs.length; j++){
+                    if(questionList.get(i).getId().toString().equals(removeQs[j])){
+                            questionList.remove(i);
+                    }
+                }
+            }
+            System.out.println(quiz.getId());
+            Quiz finalQuiz = new Quiz(quiz.getId(), quiz.getName(), quiz.getDescription(), quiz.hasHasRandomOrder(),
+                    quiz.isImmediatelyCorrected(), quiz.getPageType(), quiz.getDateCreated());
+            quizManager.removeQuiz(quiz);
+            finalQuiz = quizManager.createQuiz(finalQuiz, account);
+            quizManager.addQuestions(finalQuiz, questionList);
             RequestDispatcher rd = request.getRequestDispatcher("homePage.jsp");
             rd.forward(request, response);
         }
@@ -109,8 +126,6 @@ public class QuizCreation extends HttpServlet {
     }
 
     private Question createQuestion(QuestionType qt, String questionText, int index, String ans, HttpServletRequest request){
-        System.out.println("create Question question: " + questionText);
-        System.out.println("create Question answers: " + ans);
         //get answers
         //and store them in a list
         StringTokenizer tk = new StringTokenizer(ans, ";");

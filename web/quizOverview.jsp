@@ -27,14 +27,13 @@
             QuizManagerDAO quizManager = (QuizManagerDAO) session.getServletContext().getAttribute(
                     QuizManagerDAO.ATTRIBUTE_NAME);
             Quiz quiz = (Quiz) session.getAttribute("quiz");
-            System.out.println(quizManager.getQuestions(quiz));
         %>
     </head>
 
     <body>
         <div style="position: absolute; left: 40%;top: 10%">
             <!--quiz details are displayed here-->
-            <form name="quiz" id="inputs_form" action="/Login" method="post">
+            <div>
                 <h1 id="title">Your Quiz</h1>
 
                 <p class="tn">
@@ -47,54 +46,49 @@
                     <%  }
                     %>
                 </p>
-
-                <p class="tn">
-                    <%
-                        System.out.println(quiz);
-                        AccountManagerDAO accManager = (AccountManagerDAO) session.getServletContext().getAttribute(
-					                                        AccountManagerDAO.ATTRIBUTE_NAME);
-					    Account account = (Account) accManager.getAccount((String) session.getAttribute("account_un"));
-                        quizManager.createQuiz(quiz, account);
-                        List<Question> questions = quizManager.getQuestions(quiz);
-                        System.out.println(questions);
-                        for(int i=0; i<questions.size(); i++){
-                            Question quest = questions.get(i);
-                            String Q_TEXT = quest.getText();
-                           // Integer Q_ID = quest.getId();
-                            List<Answer> Q_ANS = quest.getAnswers();
-                            QuestionType Q_TYPE = quest.getType();
-                            int Q_INDEX = quest.getIndex(); %>
-
-                            <p>
-                                Question: <%=Q_TEXT%> </br>
-                                <%
-                                    String qType = null;
-                                    switch(Q_TYPE){
-                                        case QUESTION_RESPONSE: qType = "Question-Response"; break;
-                                        case FILL_IN_THE_BLANK: qType = "Fill in the Blank"; break;
-                                        case MULTIPLE_CHOICE: qType = "Multiple Choice"; break;
-                                        case PICTURE_RESPONSE: qType = "Picture-Resopnse"; break;
-                                    }
-                                %>
-                                Question Type: <%=qType%> </br>
-                                Answer(s):<%
-                                    for(int j=0; j<Q_ANS.size(); j++){%>
-                                        <%=Q_ANS.get(j)%> </br>
-                                <%  }
-                                %>
-                            </p>
-                    <%  }
-                    %>
-                </p>
-
-            </form>
-
-            <div id="bs"><!-- bs stands for buttons -->
-                <button class="button pass" onclick="location.href='prec.html'">Create!</button>
-                <br/>
-                <button class="button pass" onclick="location.href='prec.html'">add more questions</button>
-                <br/>
-                <button class="button pass" onclick="location.href='registration.jsp'"> Cancel</button>
+]
+                <form id="listOfQuestions" action="/QuizCreation" method="post">
+                    <input type=hidden name="type" value="-2"/>
+                    <p class="tn">
+                            <%
+                            List<Question> questions = (List<Question>) session.getAttribute("questions");
+                            System.out.println("kitxvebi:" + questions);
+                            for(int i=0; i<questions.size(); i++){
+                                Question quest = questions.get(i);
+                                String Q_TEXT = quest.getText();
+                                Integer Q_ID = quest.getId();
+                                List<Answer> Q_ANS = quest.getAnswers();
+                                QuestionType Q_TYPE = quest.getType(); %>
+                                <p class="tn">
+                                    Question: <%=Q_TEXT%> </br>
+                                    <%
+                                        String qType = null;
+                                        switch(Q_TYPE){
+                                            case QUESTION_RESPONSE: qType = "Question-Response"; break;
+                                            case FILL_IN_THE_BLANK: qType = "Fill in the Blank"; break;
+                                            case MULTIPLE_CHOICE: qType = "Multiple Choice"; break;
+                                            case PICTURE_RESPONSE: qType = "Picture-Resopnse"; break;
+                                        }
+                                    %>
+                                    Question Type: <%=qType%> </br>
+                                    Answer(s):<%
+                                        for(int j=0; j<Q_ANS.size(); j++){%>
+                                            <%=Q_ANS.get(j)%> </br>
+                                    <%  }
+                                    %>
+                                    <input type="checkbox" name="removeQ" value=<%=Q_ID%>> remove question
+                                </p>
+                        <%  }
+                        %>
+                    </p>
+                    <div id="bs"><!-- bs stands for buttons -->
+                        <button class="button sub" onclick="document.getElementById('listOfQuestions').submit()">Create!</button>
+                        <br/>
+                        <button class="button pass" onclick="location.href='addQuestion.jsp'">add more questions</button>
+                        <br/>
+                        <button class="button pass" onclick="location.href='registration.jsp'"> Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     </body>
