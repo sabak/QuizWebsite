@@ -1,8 +1,11 @@
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO" %>
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO" %>
-<%@ page import="ge.freeuni.quizwebsite.model.*" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Question" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.StringTokenizer" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Answer" %>
+<%@ page import="ge.freeuni.quizwebsite.model.QuestionType" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -50,13 +53,7 @@
 
                 <p class="tn">
                     <%
-                        System.out.println(quiz);
-                        AccountManagerDAO accManager = (AccountManagerDAO) session.getServletContext().getAttribute(
-					                                        AccountManagerDAO.ATTRIBUTE_NAME);
-					    Account account = (Account) accManager.getAccount((String) session.getAttribute("account_un"));
-                        quizManager.createQuiz(quiz, account);
-                        List<Question> questions = quizManager.getQuestions(quiz);
-                        System.out.println(questions);
+                        List<Question> questions = quizManager.getQuestions((Quiz) session.getAttribute("quiz"));
                         for(int i=0; i<questions.size(); i++){
                             Question quest = questions.get(i);
                             String Q_TEXT = quest.getText();

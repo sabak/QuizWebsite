@@ -1,7 +1,6 @@
 package ge.freeuni.quizwebsite.controller.servlet;
 
 import ge.freeuni.quizwebsite.manager.dao.FriendManagerDAO;
-import ge.freeuni.quizwebsite.model.Account;
 import ge.freeuni.quizwebsite.model.message.FriendRequest;
 
 import javax.servlet.ServletException;
@@ -15,8 +14,8 @@ import java.io.IOException;
 /**
  * Created by AVTO on 7/5/2016.
  */
-@WebServlet("/FriendResponse")
-public class FriendResponse extends HttpServlet {
+@WebServlet(name = "DeclineResponse")
+public class DeclineResponse extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         FriendManagerDAO friendManager = (FriendManagerDAO) getServletContext().getAttribute(
@@ -24,14 +23,12 @@ public class FriendResponse extends HttpServlet {
         FriendRequest req = (FriendRequest)session.getAttribute("request");
 
 
-        friendManager.confirmFriendship(req);
+        friendManager.declineFriendship(req);
 
         response.sendRedirect("homePage.jsp");
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
 
     }
 }
