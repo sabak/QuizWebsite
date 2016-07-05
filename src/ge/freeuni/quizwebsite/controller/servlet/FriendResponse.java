@@ -1,8 +1,8 @@
 package ge.freeuni.quizwebsite.controller.servlet;
 
-
 import ge.freeuni.quizwebsite.manager.dao.FriendManagerDAO;
 import ge.freeuni.quizwebsite.model.Account;
+import ge.freeuni.quizwebsite.model.message.FriendRequest;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,31 +13,28 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Created by AVTO on 7/3/2016.
+ * Created by AVTO on 7/5/2016.
  */
-@WebServlet("/addFriend")
-public class addFriend extends HttpServlet {
+@WebServlet("/FriendResponse")
+public class FriendResponse extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        Account account = (Account) session.getAttribute("user_account");
-        Account senderAccount = (Account) session.getAttribute("account");
         FriendManagerDAO friendManager = (FriendManagerDAO) getServletContext().getAttribute(
                 FriendManagerDAO.ATTRIBUTE_NAME);
+        FriendRequest req = (FriendRequest)session.getAttribute("request");
+        String aee = (String) session.getAttribute("accepted");
+        if (session.getAttribute("accepted") == "true"){
 
-        if(friendManager != null) {
-            if (account != null && senderAccount != null) {
-                friendManager.requestFriendship(senderAccount, account);
-            }
+            friendManager.confirmFriendship(req);
+        }else {
+            friendManager.declineFriendship(req);
         }
-        response.sendRedirect("otherUserPage.jsp");
-
-
+        response.sendRedirect("homePage.jsp");
 
     }
 
-
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        doPost(request,response);
+
     }
 }
