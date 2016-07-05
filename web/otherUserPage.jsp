@@ -125,8 +125,8 @@
             if (!friend){%>
         <button class="button pr" onclick="location.href='/addFriend'"> Add Friend </button></br>
         <% } else {%>
-        <form id="message_form" action="sendMessage" method="post">
-            <input type="text" name="messageText" placeholder="message"/> </br>
+        <form id="message_form" action="/sendMessage" method="post">
+            <input type="text" name="messageText" placeholder="message" style="position:relative; left: 30px;"/> </br>
             <button class="button pr" onclick=document.getElementById('listOfQuestions').submit()> Message </button>
             </br>
         </form>
