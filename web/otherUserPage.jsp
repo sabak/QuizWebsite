@@ -127,7 +127,7 @@
         <% } else {%>
         <form id="message_form" action="sendMessage" method="post">
             <input type="text" name="messageText" placeholder="message"/> </br>
-            <button class="button pr" onclick=document.getElementById('listOfQuestions').submit()> Message </button>
+            <button class="button pr"> Message </button>
             </br>
         </form>
         <% }%>

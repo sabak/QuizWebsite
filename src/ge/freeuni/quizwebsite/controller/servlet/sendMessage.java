@@ -17,11 +17,11 @@ import java.io.IOException;
 /**
  * Created by AVTO on 7/5/2016.
  */
-@WebServlet(name = "sendMessage")
+@WebServlet("/sendMessage")
 public class sendMessage extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //aq chaiwereba is saxeli romelic jspshi iqneba name am velis
-        String msgName = "";
+        String msgName = "messageText";
         String message = request.getParameter(msgName);
         TextMessageManagerDAO messageManager = (TextMessageManagerDAO) getServletContext().getAttribute(
                 TextMessageManagerDAO.ATTRIBUTE_NAME);
