@@ -1,5 +1,7 @@
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO" %>
-<%@ page import="ge.freeuni.quizwebsite.model.Account" %><%--
+<%@ page import="ge.freeuni.quizwebsite.model.Account" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Achievement" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 6/27/2016
@@ -26,16 +28,6 @@
     <body>
         <div id="title">
             <h1>Your Activity</h1>
-
-            <%
-                List<Achievement> achievements = achManager.getAchievements(account);
-                for(int i=0; i<achievements.size(); i++){%>
-            <p class="tn" style="margin-bottom: 20px;">
-                Achievement type:  <% achievements.get(0).getAchievementType();%>
-                Date Unlocked:  <% achievements.get(i).getDateUnlocked();%>
-            </p>
-
-            <%  }%>
 
         </div>
 
