@@ -182,8 +182,7 @@ input:focus {
 }
 
 #sbar{
-	border-style:solid;
-	border-color:brown;
+	border-style: none;
 	position:absolute;
 	top:5px;
 	left:250px;

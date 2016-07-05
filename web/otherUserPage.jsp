@@ -22,9 +22,6 @@
         Account account = (Account) session.getAttribute("user_account");
         String A_FNAME = (String)account.getFirstName();
         String A_LNAME = (String)account.getLastName();
-        String A_MAIL = (String)account.getEmail();
-        String a_name = (String)account.getHashedPassword();
-        Integer a_id = (Integer)account.getId();
 
         //how many quizzes and achievements are going to
         //appear on user's page
@@ -37,11 +34,6 @@
         List<Quiz> createdQuizzes = qManager.getCreatedQuizzes(account, count);
         List<Quiz> takenQuizzes = qManager.getTakenQuizzes(account, count);
         List<Achievement> achievements = achManager.getAchievements(account);
-
-        List<Quiz> recentQuizzes = qManager.getRecentlyCreatedQuizzes(4);
-        StatsManagerDAO statsManager = (StatsManagerDAO) session.getServletContext().getAttribute(
-                StatsManagerDAO.ATTRIBUTE_NAME);
-        List<Quiz> popularQuizzes = statsManager.getPopularQuizzes(4);
     %>
 
     <link rel="stylesheet" type="text/css" href="rules.css"/>
@@ -124,7 +116,7 @@
         <button class="button pr" onclick="location.href='/addFriend'"> Add Friend </button></br>
         <% } else {%>
         <form id="message_form" action="sendMessage" method="post">
-            <input type="text" name="messageText" placeholder="message"/> </br>
+            <input type="text" name="messageText" placeholder="message" style="position: relative; left: 27px;"/> </br>
             <button class="button pr"> Message </button>
             </br>
         </form>

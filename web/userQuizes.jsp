@@ -1,5 +1,8 @@
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO" %>
-<%@ page import="ge.freeuni.quizwebsite.model.Account" %><%--
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Account" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 6/27/2016
@@ -18,11 +21,11 @@
         		details of the user (the one who's logged in)
     		 */
             Account account = (Account) accManager.getAccount((String) session.getAttribute("account_un"));
-            String A_FNAME = (String)account.getFirstName();
-            String A_LNAME = (String)account.getLastName();
-            String A_MAIL = (String)account.getEmail();
-            String a_name = (String)account.getHashedPassword();
-            Integer a_id = (Integer) account.getId();
+
+            QuizManagerDAO qManager = (QuizManagerDAO) session.getServletContext().getAttribute(
+                    QuizManagerDAO.ATTRIBUTE_NAME);
+
+            List<Quiz> createdQuizzes = qManager.getCreatedQuizzes(account, 30);
         %>
         <title>Your Quizes</title>
         <link rel="stylesheet" type="text/css" href="rules.css"/>
@@ -31,6 +34,17 @@
     <body>
         <div id="title">
             <h1>Your Quizes</h1>
+            <p class="tn">
+                <%
+                    if(createdQuizzes != null){
+                        for(int i=0; i<createdQuizzes.size(); i=i+2){ %>
+                            Quiz Name: <%=createdQuizzes.get(i).getName()%> </br>
+                            Quiz Description: <%=createdQuizzes.get(i).getDescription()%> </br>
+                            <button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takeQuiz?quiz=<%=createdQuizzes.get(i).getName()%>'"> take quiz </button></br>
+                <%	}
+                }
+                %>
+            </p>
         </div>
 
         <button class="button pr" onclick="location.href='homePage.jsp'" style="position:absolute; bottom: +40px;"> Return </button>
