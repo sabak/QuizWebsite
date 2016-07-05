@@ -124,7 +124,7 @@
         <button class="button pr" onclick="location.href='/addFriend'"> Add Friend </button></br>
         <% } else {%>
         <form id="message_form" action="sendMessage" method="post">
-            <input type="text" name="messageText" placeholder="message"/> </br>
+            <input type="text" name="messageText" placeholder="message" style="position: relative; left: 27px;"/> </br>
             <button class="button pr"> Message </button>
             </br>
         </form>
