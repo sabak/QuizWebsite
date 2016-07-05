@@ -184,15 +184,17 @@
 		<div id="Announcements">
 			<div class="tb" style="text-align:center; position:relative; top:15px;"> Announcements </div>
 			<% if(adminManager.isAdmin(account)){%>
-				<input type="text" name="announcementText" placeholder="announcement" id = "search"/> </br>
-				<button class="button pr" onclick="location.href='makeAnnouncement.jsp'"> Make Announcement </button>
+				<input type="text" name="announcementText" placeholder="announcement"/> </br>
+				<button class="button pr" onclick="location.href='/makeAnnouncement'"> Make Announcement </button>
 			<%} else{
 				List<Announcement> announcements = announcementManager.getAnnouncements(2);
 				for(int i=0; i<announcements.size(); i++){
 			%>
 				<p class="tn">
-					<%=announcements.get(i)%> </br>
+					<%=announcements.get(i).getText()%> </br>
+					<%=announcements.get(i).getAuthor().getUsername()%> </br>
 				</p>
+
 			<%
 					}
 				}
