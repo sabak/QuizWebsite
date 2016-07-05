@@ -23,14 +23,15 @@ public class makeAnnouncement extends HttpServlet {
         AnnouncementManagerDAO annManager = ( AnnouncementManagerDAO) getServletContext().getAttribute(
                 AnnouncementManagerDAO.ATTRIBUTE_NAME);
         String param = request.getParameter("announcementText");
-        HttpSession session = request.getSession(true);
-        Account author = (Account) session.getAttribute("account");
-        java.util.Date utilDate = new java.util.Date();
-        java.sql.Timestamp sqlTime = new java.sql.Timestamp(utilDate.getTime());
-        Announcement a = new Announcement(param, author, sqlTime);
-        annManager.createAnnouncement(a);
-        response.sendRedirect("/homePage.jsp");
-
+        if (param!=null) {
+            HttpSession session = request.getSession(true);
+            Account author = (Account) session.getAttribute("account");
+            java.util.Date utilDate = new java.util.Date();
+            java.sql.Timestamp sqlTime = new java.sql.Timestamp(utilDate.getTime());
+            Announcement a = new Announcement(param, author, sqlTime);
+            annManager.createAnnouncement(a);
+            response.sendRedirect("/homePage.jsp");
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
