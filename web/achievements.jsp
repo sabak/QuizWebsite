@@ -1,5 +1,8 @@
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO" %>
-<%@ page import="ge.freeuni.quizwebsite.model.Account" %><%--
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.AchievementManagerDAO" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Account" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Achievement" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 6/27/2016
@@ -12,16 +15,14 @@
         <%
             AccountManagerDAO accManager = (AccountManagerDAO) session.getServletContext().getAttribute(
                     AccountManagerDAO.ATTRIBUTE_NAME);
+            AchievementManagerDAO achManager = (AchievementManagerDAO) session.getServletContext().getAttribute(
+                    AchievementManagerDAO.ATTRIBUTE_NAME);
 			/*
         		list of variables:
         		details of the user (the one who's logged in)
     		 */
             Account account = (Account) accManager.getAccount((String) session.getAttribute("account_un"));
-            String A_FNAME = (String)account.getFirstName();
-            String A_LNAME = (String)account.getLastName();
-            String A_MAIL = (String)account.getEmail();
-            String a_name = (String)account.getHashedPassword();
-            Integer a_id = (Integer) account.getId();
+
         %>
 
         <title>Your Achievements</title>
@@ -31,6 +32,17 @@
     <body>
         <div id="title">
             <h1>Your Achievements</h1>
+            </br>
+            <%
+                List<Achievement> achievements = achManager.getAchievements(account);
+                for(int i=0; i<achievements.size(); i++){%>
+                 <p class="tn" style="margin-bottom: 20px;">
+                  Achievement type:  <% achievements.get(0).getAchievementType();%>
+                  Date Unlocked:  <% achievements.get(i).getDateUnlocked();%>
+                 </p>
+
+            <%  }%>
+
         </div>
 
         <button class="button pr" onclick="location.href='homePage.jsp'" style="position:absolute; bottom: +40px;"> Return </button>

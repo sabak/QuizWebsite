@@ -18,11 +18,6 @@
         		details of the user (the one who's logged in)
     		 */
             Account account = (Account) accManager.getAccount((String) session.getAttribute("account_un"));
-            String A_FNAME = (String)account.getFirstName();
-            String A_LNAME = (String)account.getLastName();
-            String A_MAIL = (String)account.getEmail();
-            String a_name = (String)account.getHashedPassword();
-            Integer a_id = (Integer) account.getId();
         %>
         <title>Your Activity</title>
         <link rel="stylesheet" type="text/css" href="rules.css"/>
@@ -31,6 +26,17 @@
     <body>
         <div id="title">
             <h1>Your Activity</h1>
+
+            <%
+                List<Achievement> achievements = achManager.getAchievements(account);
+                for(int i=0; i<achievements.size(); i++){%>
+            <p class="tn" style="margin-bottom: 20px;">
+                Achievement type:  <% achievements.get(0).getAchievementType();%>
+                Date Unlocked:  <% achievements.get(i).getDateUnlocked();%>
+            </p>
+
+            <%  }%>
+
         </div>
 
         <button class="button pr" onclick="location.href='homePage.jsp'" style="position:absolute; bottom: +40px;"> Return </button>

@@ -29,9 +29,6 @@
 			Account account = (Account) accManager.getAccount((String) session.getAttribute("account_un"));
 			String A_FNAME = (String)account.getFirstName();
 			String A_LNAME = (String)account.getLastName();
-			String A_MAIL = (String)account.getEmail();
-			String a_name = (String)account.getHashedPassword();
-			Integer a_id = (Integer) account.getId();
 
 			//how many quizzes and achievements are going to
 			//appear on user's homepage
