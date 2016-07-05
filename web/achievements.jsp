@@ -25,13 +25,13 @@
 
         %>
 
-        <title>Your Achievements</title>
+        <title>Achievements</title>
         <link rel="stylesheet" type="text/css" href="rules.css"/>
     </head>
 
     <body>
         <div id="title">
-            <h1>Your Achievements</h1>
+            <h1>All Achievements</h1>
             </br>
             <%
                 List<Achievement> achievements = achManager.getAchievements(account);

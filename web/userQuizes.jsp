@@ -20,8 +20,9 @@
         		list of variables:
         		details of the user (the one who's logged in)
     		 */
-            Account account = (Account) accManager.getAccount((String) session.getAttribute("account_un"));
-
+            System.out.println("aeee " + request.getParameter("account"));
+            Account account = (Account) accManager.getAccount(request.getParameter("account"));
+            System.out.println("aeee " + account);
             QuizManagerDAO qManager = (QuizManagerDAO) session.getServletContext().getAttribute(
                     QuizManagerDAO.ATTRIBUTE_NAME);
 
