@@ -1,9 +1,7 @@
 package ge.freeuni.quizwebsite.controller.servlet;
 
-import ge.freeuni.quizwebsite.manager.dao.FriendManagerDAO;
 import ge.freeuni.quizwebsite.manager.dao.TextMessageManagerDAO;
 import ge.freeuni.quizwebsite.model.Account;
-import ge.freeuni.quizwebsite.model.message.FriendRequest;
 import ge.freeuni.quizwebsite.model.message.TextMessage;
 
 import javax.servlet.ServletException;
@@ -17,7 +15,7 @@ import java.io.IOException;
 /**
  * Created by AVTO on 7/5/2016.
  */
-@WebServlet(name = "sendMessage")
+@WebServlet(name = "/sendMessage")
 public class sendMessage extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //aq chaiwereba is saxeli romelic jspshi iqneba name am velis

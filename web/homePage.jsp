@@ -121,23 +121,16 @@
 						FriendRequest req = friendRequests.get(i);
 						Account sender = req.getSender();
 			%>
-
-			<p>
 					<%=sender.getUsername()%> ( <%=sender.getFirstName()%> <%=sender.getLastName()%> ) </br>
 				wants to be your friend!
 			<form action="/FriendResponse" method = "Post">
 				<button button class="button pr" onclick="<% session.setAttribute("request",req);%>;"> accept </button>
-
 			</form>
 			<form action="/DeclineResponse" method = "Post">
-
+				<button button class="button pr" onclick="<% session.setAttribute("request",req);%>;"> decline </button>
 			</form>
-			<button button class="button pr" onclick="<% session.setAttribute("request",req);%>;"> decline </button>
-
-			</p>
 			<%
 					}
-
 				}
 			%>
 
@@ -145,16 +138,18 @@
 				List msgs = messageManager.getReceivedMessages(account);
 				for( int i=0; i < msgs.size(); i++){
 					TextMessage msg = (TextMessage) msgs.get(i);
-					%>
-					<%--msg.getText();--%>
-					<%--msg.getDateSent();--%>
-					<%--Account sender = msg.getSender();--%>
-					<%--sender.getUsername();--%>
-					<%--sender.getLastName();--%>
-					<%--sender.getFirstName();--%>
 
-			<%--eseni unda gamochndes shesabamisad frontze--%>
-
+					String mText = msg.getText();
+					java.sql.Timestamp sqlTime = msg.getDateSent();
+					Account sender = msg.getSender();
+					String senderLastName = sender.getLastName();
+					String senderFirstName = sender.getFirstName();
+			%>
+				<p>
+						<%=senderFirstName%> <%=senderLastName%> sent you a message: </br>
+						<%=mText%>
+						at <%=sqlTime%>
+				</p>
 				<%}
 			%>
 			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="messages.jsp">Show All </a> </div>
