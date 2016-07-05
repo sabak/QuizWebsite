@@ -39,9 +39,9 @@
             <button class="button pr" onclick="location.href='homePage.jsp'"> Cancel Quiz Creation </button>
         </form>
 
-        <div id="newQuestion" style="position: absolute; left: 65%; top: 20px;">
+        <form id="newQuestion"action="/QuizCreation" method="post" style="position: absolute; left: 65%; top: 20px;">
             <!-- this is where question forms are "inserted"-->
-        </div>
+        </form>
 
         <form id="Question-Response" action="/QuizCreation" method="post" style="visibility: hidden">
             <h1> Question-Response </h1>
@@ -52,9 +52,8 @@
             seperate multiple correct answers with semicolons
             <input type="text" name="a1" placeholder="answer(s)"/>
             </br>
-            <button class="button sub" onclick="document.getElementById('Fill in the Blanks').submit();"> add </button>
+            <button class="button sub" onclick="document.getElementById('newQuestion').submit();"> add </button>
             </br>
-
         </form>
 
         <form id="Fill in the Blanks" action="/QuizCreation" method="post" style="visibility: hidden">
@@ -65,7 +64,7 @@
             </br>
             <input type="text" name="a2" placeholder="answer(s)"/>
             </br>
-            <button class="button sub" onclick="document.getElementById('Fill in the Blanks').submit();"> add </button>
+            <button class="button sub" onclick="document.getElementById('newQuestion').submit();"> add </button>
             </br>
         </form>
 
@@ -83,7 +82,7 @@
             </br>
             <input type="text" name="o33" placeholder="option"/>
             </br>
-            <button class="button sub" onclick="document.getElementById('Multiple Choice').submit();"> add </button>
+            <button class="button sub" onclick="document.getElementById('newQuestion').submit();"> add </button>
             </br>
 
         </form>
@@ -96,7 +95,7 @@
             </br>
             <input type="text" name="a4" placeholder="answer"/>
             </br>
-            <button class="button sub" onclick="document.getElementById('Picture-Response').submit();"> add </button>
+            <button class="button sub" onclick="document.getElementById('newQuestion').submit();"> add </button>
             </br>
         </form>
     </body>

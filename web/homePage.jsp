@@ -112,35 +112,10 @@
 			Popular displays a certain number of most popular quizzes
 			Recent displays a certain number of most recent quizzes
 		--%>
-		<div id="mess">
-			<div class="tb" style="text-align:center; position:relative; top:15px;"> Messages & Friend Requests </div>
-			<%
-				if (friendManager.getFriendRequests(account) != null){
-					List<FriendRequest> friendRequests = friendManager.getFriendRequests(account);
-					for (int i = 0; i < friendRequests.size(); i++) {
-						FriendRequest req = friendRequests.get(i);
-						Account sender = req.getSender();
-			%>
-
-			<p>
-					<%=sender.getUsername()%> ( <%=sender.getFirstName()%> <%=sender.getLastName()%> ) </br>
-				wants to be your friend!
-			<form action="/FriendResponse" method = "Post">
-				<button button class="button pr" onclick="<%session.setAttribute("accepted", "true"); session.setAttribute("request",req);%>;"> accept </button>
-
-			</form>
-			<form action="/FriendResponse" method = "Post">
-
-			</form>
-			<button button class="button pr" onclick="<%session.setAttribute("accepted", "false");session.setAttribute("request",req);%>; "> deny </button>
-
-			</p>
-			<%
-					}
-
-				}
-			%>
-			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="messages.jsp">Show All </a> </div>
+		<div id="poprec">
+			<button class="button pr" onclick="sortPopular()"> Popular </button>
+			<button class="button pr" onclick="sortRecent()"> Recent </button>
+			<button class="button pr" onclick="location.href='newQuiz.jsp'"> Create New </button>
 		</div>
 
 		<%--
@@ -148,17 +123,15 @@
 			this is where the list of quizzes are displayed
 			after the user clicks on either "Popular" or "Recent" button
 		--%>
-		<div id="poprec">
-			<button class="button pr" onclick="sortPopular()"> Popular </button>
-			<button class="button pr" onclick="sortRecent()"> Recent </button>
-			<button class="button pr" onclick="location.href='newQuiz.jsp'"> Create New </button>
+		<div id="quiz-list" style="position:absolute; top:120px; left:20%;">
+
 		</div>
 
 		<!--
 			this is where the announcements by the administrators are displayed
 		-->
-		<div id="quiz-list" style="position:absolute; top:120px; left:20%;">
-
+		<div id="Announcements">
+			<div class="tb" style="text-align:center; position:relative; top:15px;"> Announcements </div>
 		</div>
 
 		<!--
@@ -167,8 +140,27 @@
 			and friend requests are going to appear here
 			full list of those is accessed via the show all link
 		-->
-		<div id="Announcements">
-			<div class="tb" style="text-align:center; position:relative; top:15px;"> Announcements </div>
+		<div id="mess">
+			<div class="tb" style="text-align:center; position:relative; top:15px;"> Messages & Friend Requests </div>
+			<%
+				if (friendManager.getFriendRequests(account) != null){
+					List<FriendRequest> friendRequests = friendManager.getFriendRequests(account);
+					for (int i = 0; i < friendRequests.size(); i++) {
+						FriendRequest req = friendRequests.get(i);
+						Account sender = req.getSender();
+					%>
+
+					<p>
+						<%=sender.getUsername()%> ( <%=sender.getFirstName()%> <%=sender.getLastName()%> ) </br>
+						wants to be your friend!
+						<button button class="button pr" onclick="<%session.setAttribute("accepted", true);%>; form.action='FriendRequest';"> accept </button>
+						<button button class="button pr" onclick="<%session.setAttribute("accepted", false);%>; form.action='FriendRequest';"> deny </button>
+					</p>
+			<%
+					}
+				}
+			%>
+			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="messages.jsp">Show All </a> </div>
 		</div>
 
 		<!--
