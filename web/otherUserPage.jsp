@@ -1,11 +1,8 @@
-<%@ page import="ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Account" %>
-<%@ page import="ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
 <%@ page import="java.util.List" %>
-<%@ page import="ge.freeuni.quizwebsite.manager.dao.AchievementManagerDAO" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Achievement" %>
-<%@ page import="ge.freeuni.quizwebsite.manager.dao.FriendManagerDAO" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.*" %>
 <html>
 
 <head>
@@ -40,6 +37,11 @@
         List<Quiz> createdQuizzes = qManager.getCreatedQuizzes(account, count);
         List<Quiz> takenQuizzes = qManager.getTakenQuizzes(account, count);
         List<Achievement> achievements = achManager.getAchievements(account);
+
+        List<Quiz> recentQuizzes = qManager.getRecentlyCreatedQuizzes(4);
+        StatsManagerDAO statsManager = (StatsManagerDAO) session.getServletContext().getAttribute(
+                StatsManagerDAO.ATTRIBUTE_NAME);
+        List<Quiz> popularQuizzes = statsManager.getPopularQuizzes(4);
     %>
 
     <link rel="stylesheet" type="text/css" href="rules.css"/>
@@ -55,7 +57,6 @@
         </br>
         <div class="tn" style="text-align:center; position:relative; top:15px;"> <%=A_FNAME%> <%=A_LNAME%> </div>
     </div>
-
     <!--
         user's activity
         with link to complete activity
@@ -70,7 +71,6 @@
         %>
         <div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="activity.jsp">Show All </a></div>
     </div>
-
     <!--
         quizzes created by this user
     -->
@@ -84,7 +84,6 @@
         %>
         <div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="userQuizes.jsp">Show All </a> </div>
     </div>
-
     <!--
         achievements unclocked by this user
     -->
@@ -98,7 +97,6 @@
         %>
         <div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="achievements.jsp">Show All </a></div>
     </div>
-
     <%--
         search bar
     --%>

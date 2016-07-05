@@ -35,7 +35,7 @@
 
 			//how many quizzes and achievements are going to
 			//appear on user's homepage
-			int count = 3;
+			int count = 4;
 
 			/*
 				list of quizzes the user has created, has taken and the
@@ -44,6 +44,10 @@
 			List<Quiz> createdQuizzes = qManager.getCreatedQuizzes(account, count);
 			List<Quiz> takenQuizzes = qManager.getTakenQuizzes(account, count);
 			List<Achievement> achievements = achManager.getAchievements(account);
+
+			StatsManagerDAO statsManager = (StatsManagerDAO) session.getServletContext().getAttribute(
+					StatsManagerDAO.ATTRIBUTE_NAME);
+
 		%>
 		<link rel="stylesheet" type="text/css" href="rules.css"/>
 		<title> home </title>
@@ -171,8 +175,39 @@
 			<button class="button pr" onclick="location.href='newQuiz.jsp'"> Create New </button>
 		</div>
 
-		<div id="quiz-list" style="position:absolute; top:120px; left:20%;">
+		<!--popular or recent quizzes are displayed here-->
+		<div id="quiz-list" style="position:absolute; top:200px; left:40%;">
 
+		</div>
+
+		<div id="pop"  style="visibility: hidden">
+			<%
+				List<Quiz> popularQuizzes = statsManager.getPopularQuizzes(count);
+				System.out.println("pop: " + popularQuizzes);
+				if(popularQuizzes != null){
+					for(int i=0; i<popularQuizzes.size(); i++){ %>
+						Quiz Name: <%=popularQuizzes.get(i).getName()%> </br>
+						Quiz Description: <%=popularQuizzes.get(i).getDescription()%> </br>
+						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takeQuiz?quiz=<%=popularQuizzes.get(i).getName()%>'"> take quiz </button></br>
+			<%		}
+			%>	<button class="button sub" > show all (recent) </button><%
+				}
+		%>
+		</div>
+
+		<div id="rec"  style="visibility: hidden">
+			<%
+				List<Quiz> recentQuizzes = qManager.getRecentlyCreatedQuizzes(count*2);
+				System.out.println(recentQuizzes);
+				if(recentQuizzes != null){
+					for(int i=0; i<recentQuizzes.size(); i=i+2){ %>
+						Quiz Name: <%=recentQuizzes.get(i).getName()%> </br>
+						Quiz Description: <%=recentQuizzes.get(i).getDescription()%> </br>
+						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takeQuiz?quiz=<%=recentQuizzes.get(i).getName()%>'"> take quiz </button></br>
+				<%	}
+				%><button class="button sub" > show all (recent) </button><%
+				}
+			%>
 		</div>
 
 		<!--
@@ -184,7 +219,7 @@
 		<div id="Announcements">
 			<div class="tb" style="text-align:center; position:relative; top:15px;"> Announcements </div>
 			<% if(adminManager.isAdmin(account)){%>
-				<input type="text" name="announcementText" placeholder="announcement" id = "search"/> </br>
+				<input type="text" name="announcementText" placeholder="announcement"/> </br>
 				<button class="button pr" onclick="location.href='makeAnnouncement.jsp'"> Make Announcement </button>
 			<%} else{
 				List<Announcement> announcements = announcementManager.getAnnouncements(2);
@@ -198,7 +233,6 @@
 				}
 			%>
 		</div>
-
 		<!--
 			friends' quiz taking activities are displayed here
 		-->
@@ -207,29 +241,13 @@
 			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"> <a href="fActivities.jsp">Show All </a> </div>
 		</div>
 
-		<div id="searched">
-			<%=session.getAttribute("racxa")%>
-			<h1 class="bold-text" style="margin-bottom: 20px;"> <a href="index.jsp"> take quiz </a></h1>
-		</div>
-
-		<div id="actual-quizzes" style="visibility: hidden">
-			<%
-				int N_QUIZZES = 5; //number of quizzes to display
-				for(int i=0; i<N_QUIZZES; i++){
-			%>
-				<h1 class="bold-text"> Name: <%=session.getAttribute("qName")%></h1>
-				<h1 class="bold-text"> Description: <%=session.getAttribute("qDesc")%></h1>
-				<h1 class="bold-text" style="margin-bottom: 20px;"> <a href="index.jsp"> take quiz </a></h1>
-			<%}%>
-		</div>
-
 		<script type="text/javascript">
 			function sortPopular(){
-
+				document.getElementById("quiz-list").innerHTML = document.getElementById("pop").innerHTML;
 			}
 
 			function sortRecent(){
-
+				document.getElementById("quiz-list").innerHTML = document.getElementById("rec").innerHTML;
 			}
 
 		</script>
