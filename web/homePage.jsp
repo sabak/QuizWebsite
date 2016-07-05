@@ -219,10 +219,13 @@
 		<div id="Announcements">
 			<div class="tb" style="text-align:center; position:relative; top:15px;"> Announcements </div>
 			<% if(adminManager.isAdmin(account)){%>
+			<form action = "/makeAnnouncement" method = "Post">
+
 				<input type="text" name="announcementText" placeholder="announcement"/> </br>
-				<button class="button pr" onclick="location.href='/makeAnnouncement'"> Make Announcement </button>
+				<button class="button pr"> Make Announcement </button>
+			</form>
 			<%} else{
-				List<Announcement> announcements = announcementManager.getAnnouncements(2);
+				List<Announcement> announcements = announcementManager.getAnnouncements(10);
 				for(int i=0; i<announcements.size(); i++){
 			%>
 				<p class="tn">
