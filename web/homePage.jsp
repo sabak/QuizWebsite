@@ -1,12 +1,10 @@
-<%@ page import="ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO" %>
-<%@ page import="ge.freeuni.quizwebsite.manager.dao.AchievementManagerDAO" %>
-<%@ page import="ge.freeuni.quizwebsite.manager.dao.FriendManagerDAO" %>
-<%@ page import="ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Account" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Achievement" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
 <%@ page import="ge.freeuni.quizwebsite.model.message.FriendRequest" %>
 <%@ page import="java.util.List" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.*" %>
+<%@ page import="ge.freeuni.quizwebsite.model.message.TextMessage" %>
 <html>
 	<head>
 		<%
@@ -17,6 +15,8 @@
 			AchievementManagerDAO achManager = (AchievementManagerDAO) session.getServletContext().getAttribute(
 					AchievementManagerDAO.ATTRIBUTE_NAME);
 			FriendManagerDAO friendManager = (FriendManagerDAO) session.getServletContext().getAttribute(FriendManagerDAO.ATTRIBUTE_NAME);
+			TextMessageManagerDAO messageManager = (TextMessageManagerDAO) getServletContext().getAttribute(
+					TextMessageManagerDAO.ATTRIBUTE_NAME);
 			/*
         		list of variables:
         		details of the user (the one who's logged in)
@@ -139,6 +139,23 @@
 					}
 
 				}
+			%>
+
+			<%
+				List msgs = messageManager.getReceivedMessages(account);
+				for( int i=0; i < msgs.size(); i++){
+					TextMessage msg = (TextMessage) msgs.get(i);
+					%>
+					<%--msg.getText();--%>
+					<%--msg.getDateSent();--%>
+					<%--Account sender = msg.getSender();--%>
+					<%--sender.getUsername();--%>
+					<%--sender.getLastName();--%>
+					<%--sender.getFirstName();--%>
+
+			<%--eseni unda gamochndes shesabamisad frontze--%>
+
+				<%}
 			%>
 			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="messages.jsp">Show All </a> </div>
 		</div>
