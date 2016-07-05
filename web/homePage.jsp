@@ -113,11 +113,7 @@
 			<button class="button srch" onclick="document.getElementById('sbar').submit();"> Search! </button>
 		</form>
 
-		<%--
-			Popular and Recent buttons
-			Popular displays a certain number of most popular quizzes
-			Recent displays a certain number of most recent quizzes
-		--%>
+
 		<div id="mess">
 			<div class="tb" style="text-align:center; position:relative; top:15px;"> Messages & Friend Requests </div>
 			<%
@@ -152,7 +148,7 @@
 					String senderFirstName = sender.getFirstName();
 			%>
 				<p class="tn">
-						<%=senderFirstName%> <%=senderLastName%> sent you a message: </br>
+						<a href="otherUserPage.jsp" ><%=senderFirstName%> <%=senderLastName%></a> sent you a message: </br>
 						<%=mText%>
 						at <%=sqlTime%>
 				</p>
@@ -162,9 +158,9 @@
 		</div>
 
 		<%--
-			list of quizez
-			this is where the list of quizzes are displayed
-			after the user clicks on either "Popular" or "Recent" button
+			Popular and Recent buttons
+			Popular displays a certain number of most popular quizzes
+			Recent displays a certain number of most recent quizzes
 		--%>
 		<div id="poprec">
 			<button class="button pr" onclick="sortPopular()"> Popular </button>
@@ -185,7 +181,7 @@
 					for(int i=0; i<popularQuizzes.size(); i++){ %>
 						Quiz Name: <%=popularQuizzes.get(i).getName()%> </br>
 						Quiz Description: <%=popularQuizzes.get(i).getDescription()%> </br>
-						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takeQuiz?quiz=<%=popularQuizzes.get(i).getName()%>'"> take quiz </button></br>
+						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/TakeQuiz?quiz=<%=popularQuizzes.get(i)%>'"> take quiz </button></br>
 			<%		}
 			%>	<button class="button sub" > show all (recent) </button><%
 				}
