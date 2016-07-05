@@ -4,6 +4,7 @@ import com.mysql.jdbc.AbandonedConnectionCleanupThread;
 import ge.freeuni.quizwebsite.manager.*;
 import ge.freeuni.quizwebsite.manager.dao.*;
 import ge.freeuni.quizwebsite.manager.dao.db.DBInfo;
+import ge.freeuni.quizwebsite.model.Account;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -63,6 +64,9 @@ public class ContextListener implements ServletContextListener,
             sce.getServletContext().setAttribute(HistoryManagerDAO.ATTRIBUTE_NAME, historyManager);
             sce.getServletContext().setAttribute(QuizManagerDAO.ATTRIBUTE_NAME, quizManager);
             sce.getServletContext().setAttribute(StatsManagerDAO.ATTRIBUTE_NAME, statsManager);
+
+
+
 
         } catch (NamingException e) {
             // TODO Auto-generated catch block

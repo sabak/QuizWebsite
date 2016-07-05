@@ -176,3 +176,7 @@ INSERT INTO achievement_type (name) VALUES ("Prodigious Author");
 INSERT INTO achievement_type (name) VALUES ("Quiz Machine");
 INSERT INTO achievement_type (name) VALUES ("I am the Greatest");
 INSERT INTO achievement_type (name) VALUES ("Practice Makes Perfect");
+
+INSERT INTO account (username, hashed_password, email_address, first_name, last_name) Values ('nini', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'winini
+eri@yahoo.com', 'nino', 'mumladze');
+INSERT INTO admin (account_id) values (LAST_INSERT_ID());

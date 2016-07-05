@@ -5,6 +5,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.*" %>
 <%@ page import="ge.freeuni.quizwebsite.model.message.TextMessage" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.AdminManager" %>
 <html>
 	<head>
 		<%
@@ -15,8 +16,10 @@
 			AchievementManagerDAO achManager = (AchievementManagerDAO) session.getServletContext().getAttribute(
 					AchievementManagerDAO.ATTRIBUTE_NAME);
 			FriendManagerDAO friendManager = (FriendManagerDAO) session.getServletContext().getAttribute(FriendManagerDAO.ATTRIBUTE_NAME);
-			TextMessageManagerDAO messageManager = (TextMessageManagerDAO) getServletContext().getAttribute(
+			TextMessageManagerDAO messageManager = (TextMessageManagerDAO) session.getServletContext().getAttribute(
 					TextMessageManagerDAO.ATTRIBUTE_NAME);
+			AdminManagerDAO adminManager = (AdminManagerDAO) session.getServletContext().getAttribute(AdminManagerDAO.ATTRIBUTE_NAME);
+
 			/*
         		list of variables:
         		details of the user (the one who's logged in)
@@ -164,6 +167,10 @@
 			<button class="button pr" onclick="sortPopular()"> Popular </button>
 			<button class="button pr" onclick="sortRecent()"> Recent </button>
 			<button class="button pr" onclick="location.href='newQuiz.jsp'"> Create New </button>
+			<% if(adminManager.isAdmin(account)){%>
+
+				<button class="button pr" onclick="location.href='makeAnnouncement.jsp'"> Make Announcement </button>
+			<%}%>
 		</div>
 
 		<!--
