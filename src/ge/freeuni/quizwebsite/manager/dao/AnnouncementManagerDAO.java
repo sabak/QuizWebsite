@@ -87,8 +87,9 @@ public class AnnouncementManagerDAO extends AbstractManagerDAO implements Announ
         List<Announcement> announcements = new ArrayList<>();
         try (Connection con = dataSource.getConnection()) {
             String query = "SELECT " + DbContract.Announcement.COLUMN_NAME_ANNOUNCEMENT_ID
-                    + " FROM " + DbContract.Announcement.TABLE_NAME + " WHERE " +
-                    DbContract.Announcement.COLUMN_NAME_ACCOUNT_ID + " = ? LIMIT ?, ?;";
+                    + " FROM " + DbContract.Announcement.TABLE_NAME + " WHERE "
+                    + DbContract.Announcement.COLUMN_NAME_ACCOUNT_ID + " = ? ORDER BY "
+                    + DbContract.Announcement.COLUMN_NAME_POST_DATE + " DESC LIMIT ?, ?;";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setInt(1, admin.getId());
             statement.setInt(2, limitFrom);
@@ -115,7 +116,8 @@ public class AnnouncementManagerDAO extends AbstractManagerDAO implements Announ
         List<Announcement> announcements = new ArrayList<>();
         try (Connection con = dataSource.getConnection()) {
             String query = "SELECT " + DbContract.Announcement.COLUMN_NAME_ANNOUNCEMENT_ID
-                    + " FROM " + DbContract.Announcement.TABLE_NAME + " LIMIT ?, ?;";
+                    + " FROM " + DbContract.Announcement.TABLE_NAME
+                    + " ORDER BY " + DbContract.Announcement.COLUMN_NAME_POST_DATE + " DESC LIMIT ?, ?;";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setInt(1, limitFrom);
             statement.setInt(2, limitTo);
