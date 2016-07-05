@@ -1,4 +1,5 @@
-<%--
+<%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Account" %><%--
   Created by IntelliJ IDEA.
   User: AVTO
   Date: 7/6/2016
@@ -9,6 +10,10 @@
 <html>
 <head>
     <title>xax qvizs vaketeb</title>
+    <%
+        Quiz q = (Quiz) request.getAttribute("quiz");
+        Account account = (Account) session.getAttribute("account");
+    %>
 </head>
 <body>
 
