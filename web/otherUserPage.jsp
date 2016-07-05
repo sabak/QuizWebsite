@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Achievement" %>
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.*" %>
+<%@ page import="ge.freeuni.quizwebsite.model.message.FriendRequest" %>
 <html>
 
 <head>
@@ -15,11 +16,13 @@
                 QuizManagerDAO.ATTRIBUTE_NAME);
         AchievementManagerDAO achManager = (AchievementManagerDAO) session.getServletContext().getAttribute(
                 AchievementManagerDAO.ATTRIBUTE_NAME);
+        AdminManagerDAO adminManager = (AdminManagerDAO) session.getServletContext().getAttribute(AdminManagerDAO.ATTRIBUTE_NAME);
     /*
         list of variables:
         details of the user (the one whose page we're visiting)
      */
         Account account = (Account) session.getAttribute("user_account");
+        Account myAccount = (Account) session.getAttribute("account");
         String A_FNAME = (String)account.getFirstName();
         String A_LNAME = (String)account.getLastName();
 
@@ -34,6 +37,22 @@
         List<Quiz> createdQuizzes = qManager.getCreatedQuizzes(account, count);
         List<Quiz> takenQuizzes = qManager.getTakenQuizzes(account, count);
         List<Achievement> achievements = achManager.getAchievements(account);
+        int k =5;
+        %>
+
+     <%!
+         private boolean friendRequestIsSent(List requests, Account account)
+        {
+            for (int i =0; i < requests.size(); i++){
+                FriendRequest req = (FriendRequest) requests.get(i);
+                if (req.getSender().toString().equals(account.toString())){
+                    return true;
+                }
+            }
+            return false;
+
+
+        }
     %>
 
     <link rel="stylesheet" type="text/css" href="rules.css"/>
@@ -114,13 +133,40 @@
             }
             if (!friend){%>
         <button class="button pr" onclick="location.href='/addFriend'"> Add Friend </button></br>
-        <% } else {%>
+        <% } else if(friendRequestIsSent(friendManager.getFriendRequests(account), myAccount)) {%>
+        <button class="button pr" > Friend Request Sent</button></br>
+
+        <%  } else { %>
+
+
+        <form id="message_form" action="removeFriend" method="post">
+               <button class="button pr"> removeFriend </button>
+               </br>
+        </form>
         <form id="message_form" action="sendMessage" method="post">
             <input type="text" name="messageText" placeholder="message" style="position: relative; left: 27px;"/> </br>
             <button class="button pr"> Message </button>
             </br>
         </form>
         <% }%>
+        <%
+            if (adminManager.isAdmin(myAccount)){
+                %>
+            <form id="message_form" action="removeAccount" method="post">
+                <button class="button pr"> Remove User </button>
+                </br>
+            </form>
+                       <%  if (!adminManager.isAdmin(account)){ %>
+                <form id="message_form" action="addAdmin" method="post">
+                    <button class="button pr"> Make Admin </button>
+                    </br>
+                <%
+                    }
+                %>
+            </form>
+
+        <%    }
+        %>
         <button class="button pr" onclick="location.href='homePage.jsp'"> Back </button></br>
     </div>
 
