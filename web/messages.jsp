@@ -32,7 +32,6 @@
                     TextMessageManagerDAO.ATTRIBUTE_NAME);
         %>
 
-
         <title>Your Messages</title>
         <link rel="stylesheet" type="text/css" href="rules.css"/>
     </head>

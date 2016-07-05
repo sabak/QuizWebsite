@@ -21,8 +21,8 @@
         		list of variables:
         		details of the user (the one who's logged in)
     		 */
-            Account account = (Account) accManager.getAccount((String) session.getAttribute("account_un"));
 
+            Account account = (Account) accManager.getAccount(request.getParameter("account"));
         %>
 
         <title>Achievements</title>
