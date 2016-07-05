@@ -113,10 +113,7 @@
         add friends sends him/her a friend request
         back button takes user to his own homepage
     -->
-    <div id="messages" style="position:absolute; top:85px; left:18%;"> <%--popular and  buttons--%>
-
-            <button class="button pr" onclick=location.href="sendMessage"> Message </button>
-
+    <div id="messages" style="position:absolute; top:85px; left:16%; min-width: 5000px;"> <%--popular and  buttons--%>
         <%  boolean friend = false;
             List friends = friendManager.getFriends(account);
             Account acc = (Account) session.getAttribute("account");
@@ -124,13 +121,17 @@
                 if (friends.get(i).toString().equals(acc.toString())){
                     friend = true;
                 }
-
             }
             if (!friend){%>
-        <button class="button pr" onclick="location.href='/addFriend'"> Add Friend </button>
-        <% } %>
-
-        <button class="button pr" onclick="location.href='homePage.jsp'"> Back </button>
+        <button class="button pr" onclick="location.href='/addFriend'"> Add Friend </button></br>
+        <% } else {%>
+        <form id="message_form" action="sendMessage" method="post">
+            <input type="text" name="messageText" placeholder="message"/> </br>
+            <button class="button pr" onclick=document.getElementById('listOfQuestions').submit()> Message </button>
+            </br>
+        </form>
+        <% }%>
+        <button class="button pr" onclick="location.href='homePage.jsp'"> Back </button></br>
     </div>
 
 </body>
