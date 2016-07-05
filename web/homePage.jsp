@@ -133,10 +133,10 @@
 					<%=sender.getUsername()%> ( <%=sender.getFirstName()%> <%=sender.getLastName()%> ) </br>
 				wants to be your friend!
 			<form action="/FriendResponse" method = "Post">
-				<button button class="button pr" onclick="<% session.setAttribute("request",req);%>;"> accept </button>
+				<button button class="button pr" style="width:50px" onclick="<% session.setAttribute("request",req);%>;"> accept </button> </br>
 			</form>
 			<form action="/DeclineResponse" method = "Post">
-				<button button class="button pr" onclick="<% session.setAttribute("request",req);%>;"> decline </button>
+				<button button class="button pr" style="width:150px" onclick="<% session.setAttribute("request",req);%>;"> decline </button> </br>
 			</form>
 			<%
 					}
