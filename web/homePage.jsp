@@ -6,6 +6,8 @@
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.*" %>
 <%@ page import="ge.freeuni.quizwebsite.model.message.TextMessage" %>
 <%@ page import="ge.freeuni.quizwebsite.manager.AdminManager" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.db.DbContract" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Announcement" %>
 <html>
 	<head>
 		<%
@@ -19,7 +21,7 @@
 			TextMessageManagerDAO messageManager = (TextMessageManagerDAO) session.getServletContext().getAttribute(
 					TextMessageManagerDAO.ATTRIBUTE_NAME);
 			AdminManagerDAO adminManager = (AdminManagerDAO) session.getServletContext().getAttribute(AdminManagerDAO.ATTRIBUTE_NAME);
-
+			AnnouncementManagerDAO announcementManager = (AnnouncementManagerDAO) session.getServletContext().getAttribute(AnnouncementManagerDAO.ATTRIBUTE_NAME);
 			/*
         		list of variables:
         		details of the user (the one who's logged in)
@@ -148,7 +150,7 @@
 					String senderLastName = sender.getLastName();
 					String senderFirstName = sender.getFirstName();
 			%>
-				<p>
+				<p class="tn">
 						<%=senderFirstName%> <%=senderLastName%> sent you a message: </br>
 						<%=mText%>
 						at <%=sqlTime%>
@@ -167,15 +169,8 @@
 			<button class="button pr" onclick="sortPopular()"> Popular </button>
 			<button class="button pr" onclick="sortRecent()"> Recent </button>
 			<button class="button pr" onclick="location.href='newQuiz.jsp'"> Create New </button>
-			<% if(adminManager.isAdmin(account)){%>
-
-				<button class="button pr" onclick="location.href='makeAnnouncement.jsp'"> Make Announcement </button>
-			<%}%>
 		</div>
 
-		<!--
-			this is where the announcements by the administrators are displayed
-		-->
 		<div id="quiz-list" style="position:absolute; top:120px; left:20%;">
 
 		</div>
@@ -188,6 +183,20 @@
 		-->
 		<div id="Announcements">
 			<div class="tb" style="text-align:center; position:relative; top:15px;"> Announcements </div>
+			<% if(adminManager.isAdmin(account)){%>
+				<input type="text" name="announcementText" placeholder="announcement" id = "search"/>
+				<button class="button pr" onclick="location.href='makeAnnouncement.jsp'"> Make Announcement </button>
+			<%} else{
+				List<Announcement> announcements = announcementManager.getAnnouncements(2);
+				for(int i=0; i<announcements.size(); i++){
+			%>
+				<p>
+					<%=announcements.get(i)%> </br>
+				</p>
+			<%
+					}
+				}
+			%>
 		</div>
 
 		<!--
