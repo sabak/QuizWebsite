@@ -5,10 +5,15 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.AchievementManagerDAO" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Achievement" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.FriendManagerDAO" %>
 <html>
 
 <head>
     <%
+        AccountManagerDAO accManager = (AccountManagerDAO) session.getServletContext().getAttribute(
+                AccountManagerDAO.ATTRIBUTE_NAME);
+        FriendManagerDAO friendManager = (FriendManagerDAO) session.getServletContext().getAttribute(FriendManagerDAO.ATTRIBUTE_NAME);
+
         QuizManagerDAO qManager = (QuizManagerDAO) session.getServletContext().getAttribute(
                 QuizManagerDAO.ATTRIBUTE_NAME);
         AchievementManagerDAO achManager = (AchievementManagerDAO) session.getServletContext().getAttribute(
@@ -97,11 +102,11 @@
     <%--
         search bar
     --%>
-    <form id="sbar" action="" method="post">
+    <form id="sbar" action="/searchInfo" method="post">
         <input type="text" name="searchData" placeholder="Search" id = "search"/>
+
         <button class="button srch" onclick="document.getElementById('sbar').submit();"> Search! </button>
     </form>
-
     <!--
         message, add friend and back buttons
         message promts user to write a message to the user whose account is being visited
@@ -109,8 +114,22 @@
         back button takes user to his own homepage
     -->
     <div id="messages" style="position:absolute; top:85px; left:18%;"> <%--popular and  buttons--%>
-        <button class="button pr" onclick=""> Message </button>
+
+            <button class="button pr" onclick=location.href="sendMessage"> Message </button>
+
+        <%  boolean friend = false;
+            List friends = friendManager.getFriends(account);
+            Account acc = (Account) session.getAttribute("account");
+            for (int i=0; i < friends.size(); i ++){
+                if (friends.get(i).toString().equals(acc.toString())){
+                    friend = true;
+                }
+
+            }
+            if (!friend){%>
         <button class="button pr" onclick="location.href='/addFriend'"> Add Friend </button>
+        <% } %>
+
         <button class="button pr" onclick="location.href='homePage.jsp'"> Back </button>
     </div>
 

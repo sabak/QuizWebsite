@@ -22,16 +22,24 @@ import static ge.freeuni.quizwebsite.util.SHAHasher.hashText;
 public class searchInfo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("searchData");
-        if (name != null && name!= ""){
+        if (name != null && !name.equals(" ")){
             QuizManagerDAO quizManager = (QuizManagerDAO) request.getServletContext().getAttribute(QuizManagerDAO.ATTRIBUTE_NAME);
             AccountManagerDAO accountManager = (AccountManagerDAO) request.getServletContext().getAttribute(AccountManagerDAO.ATTRIBUTE_NAME);
             Account account = accountManager.getAccount(name);
             if (account != null){
+
                 HttpSession session = request.getSession(true);
-                session.setAttribute("user_account", account);
-                response.sendRedirect("otherUserPage.jsp");
+                if(session.getAttribute("account").toString().equals(account.toString())){
+                    response.sendRedirect("homePage.jsp");
+                }else{
+                    session.setAttribute("user_account", account);
+                    response.sendRedirect("otherUserPage.jsp");
+
                 }
+            }else{
+                System.out.println("account not found");
             }
+        }
     }
 
 
