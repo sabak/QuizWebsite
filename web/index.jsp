@@ -19,7 +19,7 @@
             </br>
             <input type="password" name="password" placeholder="password"/>
             </br>
-            <button class="button sub" onclick="document.getElementById('inputs_form').submit();"> Submit</button>
+            <button class="button sub" onclick="document.getElementById('inputs_form').submit();"> Submit </button>
             </br>
 
 

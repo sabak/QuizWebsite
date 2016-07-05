@@ -455,5 +455,4 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
         }
         return quizzes;
     }
-
 }
