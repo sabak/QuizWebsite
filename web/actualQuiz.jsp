@@ -55,17 +55,12 @@
                         <input type="text" name="<%=i%>" placeholder="answer" style="margin-bottom: 10px"/>
                     <% }%>
                 </div>
-
         <% }%>
                 <button class="button sub" onclick="document.getElementById('test').submit();"> Submit </button>
             </form>
-        <%} else {%>
-            <div >
-                <p class="tb"> Question # <%=count%> <%count++;%></p>
-                    <div id="question_div_mPage">
-
-                    </div>
-            </div>
-        <%}%>
+        <%} else {
+            RequestDispatcher rd = request.getRequestDispatcher("multiplePageQuiz.jsp");
+            rd.forward(request, response);
+        }%>
     </body>
 </html>
