@@ -32,9 +32,9 @@
             Quiz q = qManager.getQuiz(Q_ID);
             List<Question> questionList = qManager.getQuestions(q);
             Integer i = 0;
-            Integer count = i+1; //to number questions
             if(session.getAttribute("index") != null)
                 i = (Integer) session.getAttribute("index");
+            Integer count = i+1; //to number questions
         %>
     </head>
 

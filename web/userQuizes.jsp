@@ -41,7 +41,7 @@
                         for(int i=0; i<createdQuizzes.size(); i=i+2){ %>
                             Quiz Name: <%=createdQuizzes.get(i).getName()%> </br>
                             Quiz Description: <%=createdQuizzes.get(i).getDescription()%> </br>
-                            <button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takeQuiz?quiz=<%=createdQuizzes.get(i).getName()%>'"> take quiz </button></br>
+                            <button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takequiz.jsp?quiz=<%=createdQuizzes.get(i).getId()%>'"> take quiz </button></br>
                 <%	}
                 }
                 %>

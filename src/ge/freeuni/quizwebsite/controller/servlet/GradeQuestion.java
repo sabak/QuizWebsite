@@ -13,23 +13,24 @@ public class GradeQuestion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         Integer i;
-        if(request.getParameter("i") != null){
-            i = Integer.parseInt(request.getParameter("i"));
+        if(session.getAttribute("index") != null ){
+            i = (Integer) session.getAttribute("index");
             i++;
         } else{
             i=1;
         }
         session.setAttribute("index", i);
         String id = request.getParameter("Q_ID").substring(0, request.getParameter("Q_ID").length()-1);
-        System.out.println(id + " kadas");
         session.setAttribute("Q_ID", Integer.parseInt(id));
-        if(i == Integer.parseInt(request.getParameter("max").substring(0, request.getParameter("max").length()-1))){
+        Integer max = Integer.parseInt(request.getParameter("max").substring(0, request.getParameter("max").length()-1));
+        if(i == max){
+            session.setAttribute("index", 0);
             RequestDispatcher rd = request.getRequestDispatcher("resultPage.jsp");
             rd.forward(request, response);
+        } else {
+            RequestDispatcher rd = request.getRequestDispatcher("multiplePageQuiz.jsp");
+            rd.forward(request, response);
         }
-
-        RequestDispatcher rd = request.getRequestDispatcher("multiplePageQuiz.jsp");
-        rd.forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
