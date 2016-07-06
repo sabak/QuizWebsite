@@ -225,12 +225,7 @@
 %>
 </div>
 
-<!--
-    recent messages from friends,
-    quizz challenges
-    and friend requests are going to appear here
-    full list of those is accessed via the show all link
--->
+
 <div id="Announcements">
 	<div class="tb" style="text-align:center; position:relative; top:15px; margin-bottom: 15px"> Announcements </div>
 	<% if(adminManager.isAdmin(account)){%>

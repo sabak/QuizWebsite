@@ -76,7 +76,7 @@
         <div class="tb" style="text-align:center; position:relative; top:15px; margin-bottom: 15px;"> Their Activity </div>
         <%
             for(int i=0; i<takenQuizzes.size(); i++){ %>
-                <a class="tn"href="/takequiz.jsp?quiz=<%=takenQuizzes.get(i).getId()%>"> Took Quiz: <%=takenQuizzes.get(i).getName()%></a>
+                <a class="tn"href="/takequiz.jsp?quiz=<%=takenQuizzes.get(i).getId()%>"> Took Quiz: <%=takenQuizzes.get(i).getName()%> </a> </br>
             <%}
         %>
         <div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="activity.jsp?account=<%=account.getUsername()%>">Show All </a></div></br>
