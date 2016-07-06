@@ -36,8 +36,9 @@
     <button type="button" class="button pr" onclick="a(4)"> Picture-Response </button>
 
     <button class="button sub" id="submit" onclick="document.getElementById('q-types').submit();" style="margin-left: 25px;"> Submit </button>
-    <button class="button pr" onclick="location.href='homePage.jsp'"> Cancel Quiz Creation </button>
+
 </form>
+<button class="button pr" onclick="location.href='homePage.jsp'"  style="position:relative; left:10%"> Cancel Quiz Creation </button>
 
 <form id="newQuestion"action="/QuizCreation" method="post" style="position: absolute; left: 65%; top: 20px;">
     <!-- this is where question forms are "inserted"-->

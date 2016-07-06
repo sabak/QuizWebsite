@@ -15,6 +15,12 @@
         %>
     </head>
     <body>
-        <%=k%>
+        <p class="tb">
+            You have Scored </br>
+            <%=k%>  </br>
+            out of </br>
+            <%=session.getAttribute("max")%>
+        </p>
+        <button class="button pr" onclick="location.href='homePage.jsp'"> Return </button>
     </body>
 </html>

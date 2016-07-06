@@ -23,7 +23,8 @@
             </div>
 
             <button class="button sub" style="position:relative; top:400px; left:10px;" onclick="document.getElementById('quiz-form').submit();"> Submit</button>
-            <button class="button pr" style="position:relative; top:460px; left:-275px;" onclick="location.href='homePage.jsp'"> Cancel Quiz Creation </button>
         </form>
+        <button class="button pr" onclick="location.href='homePage.jsp'" style="position:relative; top:460px; left:-12px;"> Cancel Quiz Creation </button>
+
     </body>
 </html>
