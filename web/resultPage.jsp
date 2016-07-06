@@ -22,6 +22,8 @@
             <%=k%>  </br>
             out of </br>
             <%=session.getAttribute("max")%>
+            time taken: </br>
+            <%=session.getAttribute("timetaken")%> milliseconds </br>
         </p>
         <button class="button pr" onclick="location.href='homePage.jsp'"> Return </button>
     </body>
