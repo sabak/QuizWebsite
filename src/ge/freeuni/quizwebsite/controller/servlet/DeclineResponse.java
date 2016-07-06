@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Created by AVTO on 7/5/2016.
  */
-@WebServlet(name = "DeclineResponse")
+@WebServlet("/DeclineResponse")
 public class DeclineResponse extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
