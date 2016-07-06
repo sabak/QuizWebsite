@@ -21,7 +21,7 @@ public class GradeQuestion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         Integer i;
-        Integer score;
+        Integer score ;
         if(session.getAttribute("index") != null ){
             i = (Integer) session.getAttribute("index");
             i++;
@@ -43,11 +43,14 @@ public class GradeQuestion extends HttpServlet {
 
         QuizManagerDAO qManager = (QuizManagerDAO) session.getServletContext().getAttribute(
                 QuizManagerDAO.ATTRIBUTE_NAME);
-        qManager.getQuestions((Quiz) session.getAttribute("quiz"));
-
+        List<Question> questionList = qManager.getQuestions((Quiz) session.getAttribute("quiz"));
+        Question quest = null;
+        for(int k=0; k<questionList.size(); k++){
+            if(questionList.get(k).getId() == Q_ID)
+                quest = questionList.get(k);
+        }
         QuestionType type = quest.getType();
         String text = "";
-        List choices;
         switch(type){
             case FILL_IN_THE_BLANK:
                 text = (String) request.getAttribute(i.toString());
@@ -63,13 +66,13 @@ public class GradeQuestion extends HttpServlet {
 
                 break;
         }
-        List ans = quest.getAnswers();
+        List<Answer> ans = quest.getAnswers();
+        session.setAttribute("lastOneCorrect", false);
         for (int j =0; j < ans.size(); j++){
-               Answer answ = (Answer) ans.get(j);
-               if(answ.getText().equals(text)){
+               if(ans.get(i).getText().equals(text)){
                    score++;
+                   session.setAttribute("lastOneCorrect", true);
                }
-
         }
         session.setAttribute("score", score);
 
