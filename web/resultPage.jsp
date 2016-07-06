@@ -10,8 +10,11 @@
     <head>
         <title>Results</title>
         <link rel="stylesheet" type="text/css" href="rules.css"/>
+        <%
+            int k = (int) session.getAttribute("score");
+        %>
     </head>
     <body>
-        akane ikneba rezalti
+        <%=k%>
     </body>
 </html>
