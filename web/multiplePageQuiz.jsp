@@ -59,11 +59,13 @@
 
                 <% for(int k=0; k<questionList.get(i).getAnswers().size(); k++) {%>
                 <input type="radio" name="<%=i%>" value="<%=questionList.get(i).getAnswers().get(k).getText()%>"> <%=questionList.get(i).getAnswers().get(k).getText()%> </br>
+
                 <%}%>
 
                 <% } else if(questionList.get(i).getType().equals(QuestionType.PICTURE_RESPONSE)){%>
                 <img src="<%=questionList.get(i).getText()%>" alt="HTML5 Icon" style="width:128px;height:128px;"> </br>
                 <input type="text" name="<%=i%>" placeholder="answer" style="margin-bottom: 10px"/>
+
                 <% }%>
             </div>
             <button class="button sub" onclick="document.getElementById('test2').submit();"> Submit </button>
