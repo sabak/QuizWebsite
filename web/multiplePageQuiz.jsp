@@ -46,7 +46,7 @@
             <input type=hidden name="index" value=<%=i%>/>
             <input type=hidden name="max" value=<%=questionList.size()%>/>
             <input type=hidden name="Q_ID" value=<%=Q_ID%>/>
-            <input type="hidden" name="question" value="<%=questionList.get(i)%>">
+            <input type="hidden" name="question" value="<%=questionList.get(i).getId()%>">
             <p class="tb"> Question # <%=count%> <%count++;%></p>
             <div id="question_div_sPage">
                 <% if(questionList.get(i).getType().equals(QuestionType.FILL_IN_THE_BLANK) ||
