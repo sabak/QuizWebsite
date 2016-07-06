@@ -39,7 +39,7 @@
 
         <div id="bs"><!-- bs stands for buttons -->
             <!--link to password recovery page-->
-            <button class="button pass" onclick="location.href='prec.html'">Password Recovery</button>
+            <%--<button class="button pass" onclick="location.href='prec.html'">Password Recovery</button>--%>
             <br/>
             <!--link to registration page-->
             <button class="button pass" onclick="location.href='registration.jsp'"> Registration</button>

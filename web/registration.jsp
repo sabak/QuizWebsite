@@ -30,7 +30,7 @@
 			<div class="tb"> E-mail: </div> <input type="text" name="e_mail" placeholder="E-mail" id = "mail" oninput="checkMail()"/>
 			<div class ="tb" id="post-mail"> </div> </br></br>
 
-			<div class="tb"> Profile picture (optional): </div> <input type="file" name="e-mail"/> </br></br>
+			<%--<div class="tb"> Profile picture (optional): </div> <input type="file" name="e-mail"/> </br></br>--%>
 			<button class="button sub" onclick="document.getElementById('bob').submit();"> Submit </button>
 
 			<%
