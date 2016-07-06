@@ -71,11 +71,11 @@
                 <button class="button pr" onclick="location.href='RemoveQuiz'"> Remove Quiz </button>
             <% }%>
             <form action = "challengeFriend" method = "post">
-                <input type=hidden name="quiz" value=<%=quiz_id%>
-                        />
-                <input type="text" name="Username" placeholder="Enter Friends's Username to challenge" id = "qName" style="position:relative; left:10%; top:70px;"/>
-
+                <input type=hidden name="quiz" value=<%=quiz_id%>/>
+                <input type="text" name="Username" placeholder="Enter Friends's Username to challenge" id = "qName" style="position:relative; left:30px;"/>
+                </br>
                 <button class="button pr" > Challenge Friend </button>
+                </br>
             </form>
             <button class="button pr" onclick="location.href='homePage.jsp'"> Cancel </button>
         </div>

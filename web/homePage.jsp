@@ -238,8 +238,8 @@
 	<% if(adminManager.isAdmin(account)){%>
 	<form action = "/makeAnnouncement" method = "Post">
 
-		<input type="text" name="announcementText" placeholder="announcement"/> </br>
-		<button class="button pr"> Make Announcement </button>
+		<input type="text" name="announcementText" placeholder="announcement" style="width: 100px;"/> </br>
+		<button class="button pr" style="width: 100px;"> Make Announcement </button>
 	</form>
 	<%} else{
 		List<Announcement> announcements = announcementManager.getAnnouncements(10);
