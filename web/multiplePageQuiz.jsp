@@ -66,9 +66,12 @@
                 <img src="<%=questionList.get(i).getText()%>" alt="HTML5 Icon" style="width:128px;height:128px;"> </br>
                 <input type="text" name="<%=i%>" placeholder="answer" style="margin-bottom: 10px"/>
 
-                <% }%>
+                <%}%>
             </div>
-            <button class="button sub" onclick="document.getElementById('test2').submit();"> Submit </button>
+            <button class="button sub" onclick="document.getElementById('test2').submit();"> Submit </button> </br>
+            <%if(i>0){%>
+                Your Previous Answer was: <%=session.getAttribute("lastOneCorrect")%>
+            <%}%>
         </form>
     </body>
 </html>

@@ -21,7 +21,7 @@
             You have Scored </br>
             <%=k%>  </br>
             out of </br>
-            <%=session.getAttribute("max")%>
+            <%=session.getAttribute("max")%> </br>
             time taken: </br>
             <%=session.getAttribute("timetaken")%> milliseconds </br>
         </p>
