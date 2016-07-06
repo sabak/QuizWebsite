@@ -217,7 +217,7 @@
 		List<Quiz> recentQuizzes = qManager.getRecentlyCreatedQuizzes(count*2);
 		System.out.println(recentQuizzes);
 		if(recentQuizzes != null){
-			for(int i=0; i<recentQuizzes.size(); i=i+2){ %>
+			for(int i=0; i<recentQuizzes.size(); i++){ %>
 	Quiz Name: <%=recentQuizzes.get(i).getName()%> </br>
 	Quiz Description: <%=recentQuizzes.get(i).getDescription()%> </br>
 	<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takequiz.jsp?quiz=<%=recentQuizzes.get(i).getId()%>'"> take quiz </button></br>
