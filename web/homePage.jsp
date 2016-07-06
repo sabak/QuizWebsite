@@ -70,11 +70,10 @@
     user's activity
 -->
 <div id="activity">
-	<div class="tb" style="text-align:center; position:relative; top:15px;"> Your Activity </div>
+	<div class="tb" style="text-align:center; position:relative; top:5px;"> Your Activity </div>
 	<%
 		for(int i=0; i<takenQuizzes.size(); i++){ %>
-	<h1 class="bold-text"> Took Quiz: <%=takenQuizzes.get(i).getName()%></h1>
-	<h1 class="bold-text" style="margin-bottom: 10px"> link </h1>
+	<a href="/takequiz.jsp?quiz=<%=takenQuizzes.get(i).getId()%>" class="bold-text" style="margin-top: 15px"; > Took Quiz: <%=takenQuizzes.get(i).getName()%> </a> </br>
 	<%	}
 	%>
 	<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="activity.jsp?account=<%=account.getUsername()%>">Show All </a></div>
@@ -247,7 +246,8 @@
 	%>
 	<p class="tn">
 		<%=announcements.get(i).getText()%> </br>
-		<%=announcements.get(i).getAuthor().getUsername()%> </br>
+		 Posted by  <a href=<%session.setAttribute("user_account", accManager.getAccount(announcements.get(i).getAuthor().getUsername()));%>"otherUserPage.jsp"><%=announcements.get(i).getAuthor().getUsername()%> </a>
+		 </br>
 	</p>
 
 	<%
