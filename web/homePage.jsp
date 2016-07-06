@@ -232,12 +232,12 @@
     full list of those is accessed via the show all link
 -->
 <div id="Announcements">
-	<div class="tb" style="text-align:center; position:relative; top:15px;"> Announcements </div>
+	<div class="tb" style="text-align:center; position:relative; top:15px; margin-bottom: 15px"> Announcements </div>
 	<% if(adminManager.isAdmin(account)){%>
 	<form action = "/makeAnnouncement" method = "Post">
 
-		<input type="text" name="announcementText" placeholder="announcement" style="width: 100px;"/> </br>
-		<button class="button pr" style="width: 100px;"> Make Announcement </button>
+		<input type="text" name="announcementText" placeholder="announcement" style="width: 200px;"/> </br>
+		<button class="button pr" style="position:relative; left: -25px; top:55px;width: 200px; height: 50px"> Make Announcement </button>
 	</form>
 	<%} else{
 		List<Announcement> announcements = announcementManager.getAnnouncements(10);
