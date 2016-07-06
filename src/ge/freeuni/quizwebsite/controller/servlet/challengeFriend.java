@@ -32,7 +32,7 @@ public class challengeFriend extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
         String quiz_id = (String) request.getParameter("quiz");
         System.out.println(quiz_id);
-        Integer Q_ID = Integer.parseInt(quiz_id);
+        Integer Q_ID = Integer.parseInt(quiz_id.substring(0, quiz_id.length()-1));
 
         QuizManagerDAO qManager = (QuizManagerDAO) session.getServletContext().getAttribute(
                 QuizManagerDAO.ATTRIBUTE_NAME);

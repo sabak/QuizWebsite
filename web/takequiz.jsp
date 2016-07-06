@@ -20,6 +20,11 @@
         <%
             String sPage = " no";
             String quiz_id = (String) request.getParameter("quiz");
+            if (quiz_id.endsWith("/")){
+                quiz_id = quiz_id.substring(0, quiz_id.length()-1);
+
+            }
+            System.out.println(request.getParameter("quiz"));
             System.out.println("quvizicjs " + quiz_id);
             Integer Q_ID = Integer.parseInt(quiz_id);
 
@@ -68,7 +73,7 @@
                 <button class="button pr" onclick="location.href='RemoveQuiz'"> Remove Quiz </button>
             <% }%>
             <form action = "challengeFriend" method = "post">
-                <input type=hidden name="quiz" value=<%=quiz_id%>/>
+                <input type=hidden name="quiz" value=<%=q.getId().toString()%>/>
                 <input type="text" name="Username" placeholder="Enter Friends's Username to challenge" id = "qName" style="position:relative; left:30px;"/>
                 </br>
                 <button class="button pr" > Challenge Friend </button>
