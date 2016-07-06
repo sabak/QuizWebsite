@@ -58,7 +58,7 @@
                 Question: <%=questionList.get(i).getText()%> </br>
 
                 <% for(int k=0; k<questionList.get(i).getAnswers().size(); k++) {%>
-                <input type="radio" name="<%=i%>" value="<%=k%>"> <%=questionList.get(i).getAnswers().get(k).getText()%> </br>
+                <input type="radio" name="<%=i%>" value="<%=questionList.get(i).getAnswers().get(k).getText()%>"> <%=questionList.get(i).getAnswers().get(k).getText()%> </br>
                 <%}%>
 
                 <% } else if(questionList.get(i).getType().equals(QuestionType.PICTURE_RESPONSE)){%>
