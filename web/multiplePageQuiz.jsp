@@ -1,9 +1,10 @@
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO" %>
-<%@ page import="ge.freeuni.quizwebsite.model.PageType" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Question" %>
-<%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
-<%@ page import="java.util.List" %>
 <%@ page import="ge.freeuni.quizwebsite.model.QuestionType" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Random" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -31,6 +32,8 @@
 
             Quiz q = qManager.getQuiz(Q_ID);
             List<Question> questionList = qManager.getQuestions(q);
+            if(q.hasHasRandomOrder())
+                Collections.shuffle(questionList, new Random(System.nanoTime()));
             Integer i = 0;
             if(session.getAttribute("index") != null)
                 i = (Integer) session.getAttribute("index");
@@ -43,6 +46,7 @@
             <input type=hidden name="index" value=<%=i%>/>
             <input type=hidden name="max" value=<%=questionList.size()%>/>
             <input type=hidden name="Q_ID" value=<%=Q_ID%>/>
+            <input type="hidden" name="question" value="<%=questionList.get(i)%>">
             <p class="tb"> Question # <%=count%> <%count++;%></p>
             <div id="question_div_sPage">
                 <% if(questionList.get(i).getType().equals(QuestionType.FILL_IN_THE_BLANK) ||
