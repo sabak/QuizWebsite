@@ -83,7 +83,7 @@
 			<div class="tb" style="text-align:center; position:relative; top:15px; margin-bottom: 30px;"> Your Quizes </div>
 			<%
 				for(int i=0; i<createdQuizzes.size(); i++){ %>
-					<a href="/TakeQuiz?quiz=<%createdQuizzes.get(i);%>" class="bold-text"> Created Quiz: <%=createdQuizzes.get(i).getName()%></a> </br>
+					<a href="/takequiz.jsp?quiz=<%=createdQuizzes.get(i).getId()%>" class="bold-text"> Created Quiz: <%=createdQuizzes.get(i).getName()%></a> </br>
 			<%	}
 			%>
 			<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="userQuizes.jsp?account=<%=account.getUsername()%>">Show All </a> </div>
@@ -180,7 +180,7 @@
 					for(int i=0; i<popularQuizzes.size(); i++){ %>
 						Quiz Name: <%=popularQuizzes.get(i).getName()%> </br>
 						Quiz Description: <%=popularQuizzes.get(i).getDescription()%> </br>
-						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/TakeQuiz?quiz=<%=popularQuizzes.get(i)%>'"> take quiz </button></br>
+						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takequiz.jsp?quiz=<%=popularQuizzes.get(i).getId()%>'"> take quiz </button></br>
 			<%		}
 			%>	<button class="button sub" > show all (popular) </button><%
 				}
@@ -195,7 +195,7 @@
 					for(int i=0; i<recentQuizzes.size(); i=i+2){ %>
 						Quiz Name: <%=recentQuizzes.get(i).getName()%> </br>
 						Quiz Description: <%=recentQuizzes.get(i).getDescription()%> </br>
-						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/TakeQuiz?quiz=<%=recentQuizzes.get(i).getName()%>'"> take quiz </button></br>
+						<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takequiz.jsp?quiz=<%=recentQuizzes.get(i).getId()%>'"> take quiz </button></br>
 				<%	}
 				%><button class="button sub" > show all (recent) </button><%
 				}
