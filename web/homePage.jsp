@@ -8,6 +8,8 @@
 <%@ page import="ge.freeuni.quizwebsite.manager.AdminManager" %>
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.db.DbContract" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Announcement" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.ChallengeManager" %>
+<%@ page import="ge.freeuni.quizwebsite.model.message.Challenge" %>
 <html>
 <head>
 	<%
@@ -22,6 +24,8 @@
 				TextMessageManagerDAO.ATTRIBUTE_NAME);
 		AdminManagerDAO adminManager = (AdminManagerDAO) session.getServletContext().getAttribute(AdminManagerDAO.ATTRIBUTE_NAME);
 		AnnouncementManagerDAO announcementManager = (AnnouncementManagerDAO) session.getServletContext().getAttribute(AnnouncementManagerDAO.ATTRIBUTE_NAME);
+		ChallengeManager challengeManager = (ChallengeManagerDAO)session.getServletContext().getAttribute(
+				ChallengeManagerDAO.ATTRIBUTE_NAME);
 			/*
         		list of variables:
         		details of the user (the one who's logged in)
@@ -135,6 +139,27 @@
 		}
 	%>
 
+
+	<%
+		if (challengeManager.getReceivedChallenges(account) != null) {
+			List<Challenge> challenges = challengeManager.getReceivedChallenges(account);
+			for (int i = 0; i < challenges.size(); i++) {
+				Challenge ch = challenges.get(i);
+				Account sender = ch.getSender();
+				Quiz challenging = ch.getQuiz();
+				int id = challenging.getId();
+				%>
+		<%=sender.getUsername()%> ( <%=sender.getFirstName()%> <%=sender.getLastName()%> ) </br>
+		sent you a challenge!
+
+			<button button class="button pr" style="width:50px" onclick="<%challengeManager.confirmChallenge(ch);%>; location.href='/takequiz.jsp?quiz=<%=id%>'";> accept </button> </br>
+
+
+			<button button class="button pr" style="width:50px" onclick="<% challengeManager.declineChallenge(ch); %>location.href='/homePage.jsp'";> decline </button> </br>
+
+			<%}
+		}
+	%>
 	<%
 		List msgs = messageManager.getReceivedMessages(account);
 		for( int i=0; i < msgs.size(); i++){

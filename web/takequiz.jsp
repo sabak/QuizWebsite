@@ -15,7 +15,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>xax qvizs vaketeb</title>
+        <title>Quiz Creation</title>
         <link rel="stylesheet" type="text/css" href="rules.css"/>
         <%
             String sPage = " no";
@@ -71,6 +71,8 @@
                 <button class="button pr" onclick="location.href='RemoveQuiz'"> Remove Quiz </button>
             <% }%>
             <form action = "challengeFriend" method = "post">
+                <input type=hidden name="quiz" value=<%=quiz_id%>
+                        />
                 <input type="text" name="Username" placeholder="Enter Friends's Username to challenge" id = "qName" style="position:relative; left:10%; top:70px;"/>
 
                 <button class="button pr" > Challenge Friend </button>
