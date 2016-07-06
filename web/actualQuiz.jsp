@@ -1,9 +1,11 @@
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO" %>
 <%@ page import="ge.freeuni.quizwebsite.model.PageType" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Question" %>
+<%@ page import="ge.freeuni.quizwebsite.model.QuestionType" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
+<%@ page import="java.util.Collections" %>
 <%@ page import="java.util.List" %>
-<%@ page import="ge.freeuni.quizwebsite.model.QuestionType" %><%--
+<%@ page import="java.util.Random" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 7/6/2016
@@ -21,14 +23,19 @@
             System.out.println("quvizicjs2 " + quiz_id);
             Integer Q_ID = Integer.parseInt(quiz_id);
 
+
             QuizManagerDAO qManager = (QuizManagerDAO) session.getServletContext().getAttribute(
             QuizManagerDAO.ATTRIBUTE_NAME);
 
             Quiz q = qManager.getQuiz(Q_ID);
+            session.setAttribute("quiz", q);
             List<Question> questionList = qManager.getQuestions(q);
             if(q.getPageType().equals(PageType.ONE_PAGE))
                 sPage = "yes";
             int count = 1; //to number questions
+            if(q.hasHasRandomOrder())
+                Collections.shuffle(questionList, new Random(System.nanoTime()));
+            session.setAttribute("questionList", questionList);
         %>
     </head>
 
@@ -41,17 +48,19 @@
                     <% if(questionList.get(i).getType().equals(QuestionType.FILL_IN_THE_BLANK) ||
                             questionList.get(i).getType().equals(QuestionType.QUESTION_RESPONSE)) {%>
                             Question: <%=questionList.get(i).getText()%> </br>
+                            <input type="hidden" name="question <%=i%>" value="<%=questionList.get(i).getId()%>">
                             <input type="text" name="<%=i%>" placeholder="answer" style="margin-bottom: 10px"/>
 
                     <% } else if(questionList.get(i).getType().equals(QuestionType.MULTIPLE_CHOICE)){%>
                         Question: <%=questionList.get(i).getText()%> </br>
-
+                        <input type="hidden" name="question <%=i%>" value="<%=questionList.get(i).getId()%>">
                         <% for(int k=0; k<questionList.get(i).getAnswers().size(); k++) {%>
                             <input type="radio" name="<%=i%>" value="<%=k%>"> <%=questionList.get(i).getAnswers().get(k).getText()%> </br>
                         <%}%>
 
                     <% } else if(questionList.get(i).getType().equals(QuestionType.PICTURE_RESPONSE)){%>
                         <img src="<%=questionList.get(i).getText()%>" alt="HTML5 Icon" style="width:128px;height:128px;"> </br>
+                        <input type="hidden" name="question <%=i%>" value="<%=questionList.get(i).getId()%>">
                         <input type="text" name="<%=i%>" placeholder="answer" style="margin-bottom: 10px"/>
                     <% }%>
                 </div>
