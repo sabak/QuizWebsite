@@ -69,7 +69,7 @@ public class GradeQuestion extends HttpServlet {
         List<Answer> ans = quest.getAnswers();
         session.setAttribute("lastOneCorrect", false);
         for (int j =0; j < ans.size(); j++){
-               if(ans.get(i).getText().equals(text)){
+               if(ans.get(j).getText().equals(text)){
                    score++;
                    session.setAttribute("lastOneCorrect", true);
                }
