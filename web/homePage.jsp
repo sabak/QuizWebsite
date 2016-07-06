@@ -260,6 +260,15 @@
 -->
 <div id="fAct">
 	<div class="tb" style="text-align:center; position:relative; top:15px;"> Friends' Activities </div>
+	<%
+		List fr = friendManager.getFriends(account);
+
+		for (int i=0; i < fr.size(); i ++){
+			Account f = (Account)fr.get(i);
+
+		}
+
+    %>
 	<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"> <a href="fActivities.jsp?account=<%=account.getUsername()%>">Show All </a> </div>
 </div>
 

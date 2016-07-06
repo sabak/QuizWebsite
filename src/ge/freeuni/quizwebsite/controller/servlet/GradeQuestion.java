@@ -96,6 +96,7 @@ public class GradeQuestion extends HttpServlet {
             QuizResult res = new QuizResult(score,(Account)session.getAttribute("account"), t,sqlTime);
             hManager.submitQuizResult((Account)session.getAttribute("account"),(Quiz) session.getAttribute("quiz"),res);
             session.setAttribute("max", max);
+            session.setAttribute("timetaken", timeTaken);
             RequestDispatcher rd = request.getRequestDispatcher("resultPage.jsp");
             rd.forward(request, response);
         } else {

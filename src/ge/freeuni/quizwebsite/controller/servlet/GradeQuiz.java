@@ -1,10 +1,8 @@
 package ge.freeuni.quizwebsite.controller.servlet;
 
+import ge.freeuni.quizwebsite.manager.dao.HistoryManagerDAO;
 import ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO;
-import ge.freeuni.quizwebsite.model.Account;
-import ge.freeuni.quizwebsite.model.Answer;
-import ge.freeuni.quizwebsite.model.Question;
-import ge.freeuni.quizwebsite.model.Quiz;
+import ge.freeuni.quizwebsite.model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.List;
 
 /**
@@ -28,6 +27,9 @@ public class GradeQuiz extends HttpServlet {
 
         QuizManagerDAO qManager = (QuizManagerDAO) session.getServletContext().getAttribute(
                 QuizManagerDAO.ATTRIBUTE_NAME);
+        HistoryManagerDAO hManager = (HistoryManagerDAO) session.getServletContext().getAttribute(
+                HistoryManagerDAO.ATTRIBUTE_NAME);
+        long starTime = (long) session.getAttribute("start");
 
         Quiz q = (Quiz) session.getAttribute("quiz");
         List<Question> questionList = (List<Question>) session.getAttribute("questionList");
@@ -42,8 +44,19 @@ public class GradeQuiz extends HttpServlet {
             }
         }
 
+        long timeTaken = System.currentTimeMillis();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Timestamp sqlTime = new java.sql.Timestamp(utilDate.getTime());
+
+        long start = (long)session.getAttribute("start");
+        timeTaken -= start;
+        Time t = new Time(timeTaken);
+        QuizResult res = new QuizResult(score,(Account)session.getAttribute("account"), t,sqlTime);
+        hManager.submitQuizResult((Account)session.getAttribute("account"),(Quiz) session.getAttribute("quiz"),res);
+
         session.setAttribute("score", score);
         session.setAttribute("max", questionList.size());
+        session.setAttribute("timetaken", timeTaken);
         RequestDispatcher rd = request.getRequestDispatcher("resultPage.jsp");
         rd.forward(request, response);
 

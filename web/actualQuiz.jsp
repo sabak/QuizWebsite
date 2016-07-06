@@ -36,6 +36,8 @@
             if(q.hasHasRandomOrder())
                 Collections.shuffle(questionList, new Random(System.nanoTime()));
             session.setAttribute("questionList", questionList);
+            long startTime = System.currentTimeMillis();
+            session.setAttribute("start", startTime);
         %>
     </head>
 
