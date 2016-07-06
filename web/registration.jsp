@@ -10,7 +10,7 @@
 
 	<body>
 		<!-- yes, "bob" is a legitimate id -->
-		<form id="bob" action="/Registration" method="post">
+		<form id="bob" action="/Registration" method="post" accept-charset="utf8">
 			<h2 id="bold-text2"> Fill Out The Registration Form</h2>
 			
 			<div class="tb"> Username: </div> <input type="text" name="user" placeholder="Username" id = "un" oninput="checkName()"/>

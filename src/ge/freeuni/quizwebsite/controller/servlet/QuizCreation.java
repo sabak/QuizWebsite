@@ -26,8 +26,7 @@ public class QuizCreation extends HttpServlet {
         AccountManagerDAO accManager = (AccountManagerDAO) getServletContext().getAttribute(
                 AccountManagerDAO.ATTRIBUTE_NAME);
         QuizManagerDAO quizManager = (QuizManagerDAO) getServletContext().getAttribute(
-                QuizManagerDAO.ATTRIBUTE_NAME
-        );
+                QuizManagerDAO.ATTRIBUTE_NAME);
         HttpSession session = request.getSession(true);
         Account account = accManager.getAccount((String) session.getAttribute("account_un"));
         String requetType = request.getParameter("type");
@@ -96,7 +95,7 @@ public class QuizCreation extends HttpServlet {
         }
         if(requetType.equals("-1")){
             quiz = (Quiz)session.getAttribute("quiz");
-            session.setAttribute("quiz", quizManager.createQuiz(quiz , account));
+            session.setAttribute("quiz", quiz);
             List<Question> questionList = quizManager.getQuestions(quiz);
             session.setAttribute("questions", questionList);
             RequestDispatcher rd = request.getRequestDispatcher("quizOverview.jsp");

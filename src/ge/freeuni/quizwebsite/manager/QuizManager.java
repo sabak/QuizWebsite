@@ -163,4 +163,14 @@ public interface QuizManager {
      */
     List<Quiz> getTakenQuizzes(int limitFrom, int limitTo);
 
+    /**
+     * Returns quantity of quizzes
+     *
+     * @
+     * @return number of quizzes
+     */
+    int getQuizQuantity();
+
+
+
 }
