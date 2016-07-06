@@ -10,6 +10,7 @@
 <%@ page import="ge.freeuni.quizwebsite.model.Announcement" %>
 <%@ page import="ge.freeuni.quizwebsite.manager.ChallengeManager" %>
 <%@ page import="ge.freeuni.quizwebsite.model.message.Challenge" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.QuizManager" %>
 <html>
 <head>
 	<%
@@ -25,7 +26,8 @@
 		AdminManagerDAO adminManager = (AdminManagerDAO) session.getServletContext().getAttribute(AdminManagerDAO.ATTRIBUTE_NAME);
 		AnnouncementManagerDAO announcementManager = (AnnouncementManagerDAO) session.getServletContext().getAttribute(AnnouncementManagerDAO.ATTRIBUTE_NAME);
 		ChallengeManager challengeManager = (ChallengeManagerDAO)session.getServletContext().getAttribute(
-				ChallengeManagerDAO.ATTRIBUTE_NAME);
+			ChallengeManagerDAO.ATTRIBUTE_NAME);
+
 			/*
         		list of variables:
         		details of the user (the one who's logged in)
@@ -185,7 +187,7 @@
     Recent displays a certain number of most recent quizzes
 --%>
 <div id="poprec">
-	<button class="button pr" onclick="sortPopular()"> Popular </button>
+	<%--<button class="button pr" onclick="sortPopular()"> Popular </button>--%>
 	<button class="button pr" onclick="sortRecent()"> Recent </button>
 	<button class="button pr" onclick="location.href='newQuiz.jsp'"> Create New </button>
 </div>
@@ -252,19 +254,25 @@
 <!--
     friends' quiz taking activities are displayed here
 -->
-<div id="fAct">
-	<div class="tb" style="text-align:center; position:relative; top:15px;"> Friends' Activities </div>
-	<%
-		List fr = friendManager.getFriends(account);
+<%--<div id="fAct">--%>
+	<%--<div class="tb" style="text-align:center; position:relative; top:15px;"> Friends' Activities </div>--%>
+	<%--<%--%>
+		<%--List fr = friendManager.getFriends(account);--%>
 
-		for (int i=0; i < fr.size(); i ++){
-			Account f = (Account)fr.get(i);
+		<%--for (int i=0; i < fr.size(); i ++){--%>
+			<%--Account f = (Account)fr.get(i);--%>
+			<%--List quizzes = qManager.getRecentlyTakenQuizzes(3);--%>
+			<%--for(int j =0; j < quizzes.size(); j ++){--%>
+				<%--Quiz quiz =(Quiz)quizzes.get(j);--%>
+				<%--if(quiz.get)--%>
+			<%--}--%>
+			<%--if--%>
 
-		}
+		<%--}--%>
 
-    %>
-	<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"> <a href="fActivities.jsp?account=<%=account.getUsername()%>">Show All </a> </div>
-</div>
+    <%--%>--%>
+	<%--<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"> <a href="fActivities.jsp?account=<%=account.getUsername()%>">Show All </a> </div>--%>
+<%--</div>--%>
 
 <script type="text/javascript">
 	function sortPopular(){
