@@ -11,7 +11,7 @@
         <title>Results</title>
         <link rel="stylesheet" type="text/css" href="rules.css"/>
         <%
-            int k = (int) session.getAttribute("score");
+            Integer k = (Integer) session.getAttribute("score");
         %>
     </head>
     <body>
