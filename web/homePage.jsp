@@ -222,7 +222,7 @@
 	Quiz Description: <%=recentQuizzes.get(i).getDescription()%> </br>
 	<button class="button sub" style="margin-bottom: 33px;" onclick="location.href='/takequiz.jsp?quiz=<%=recentQuizzes.get(i).getId()%>'"> take quiz </button></br>
 	<%	}
-	%><button class="button sub" > show all (recent) </button><%
+	%><%
 	}
 %>
 </div>
