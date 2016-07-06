@@ -24,16 +24,14 @@ public class GradeQuestion extends HttpServlet {
         Integer score ;
         if(session.getAttribute("index") != null ){
             i = (Integer) session.getAttribute("index");
-            i++;
         } else{
-            i=1;
+            i=0;
         }
         if(session.getAttribute("score") != null ){
             score = (Integer) session.getAttribute("score");
         } else{
             score=0;
         }
-        session.setAttribute("index", i);
         String id = request.getParameter("Q_ID").substring(0, request.getParameter("Q_ID").length()-1);
         session.setAttribute("Q_ID", Integer.parseInt(id));
         Integer max = Integer.parseInt(request.getParameter("max").substring(0, request.getParameter("max").length()-1));
@@ -53,19 +51,24 @@ public class GradeQuestion extends HttpServlet {
         String text = "";
         switch(type){
             case FILL_IN_THE_BLANK:
-                text = (String) request.getAttribute(i.toString());
+                text = (String) request.getParameter(i.toString());
+                System.out.println("i: " + i);
                 break;
             case QUESTION_RESPONSE:
-                text = (String) request.getAttribute(i.toString());
+                text = (String) request.getParameter(i.toString());
+                System.out.println("i: " + i);
                 break;
             case PICTURE_RESPONSE:
-                text = (String) request.getAttribute(i.toString());
+                text = (String) request.getParameter(i.toString());
+                System.out.println("i: " + i);
                 break;
             case MULTIPLE_CHOICE:
-                text = (String) request.getAttribute(i.toString());
-
+                text = (String) request.getParameter(i.toString());
+                System.out.println("i: " + i);
                 break;
         }
+        i++;
+        session.setAttribute("index", i);
         List<Answer> ans = quest.getAnswers();
         session.setAttribute("lastOneCorrect", false);
         for (int j =0; j < ans.size(); j++){
@@ -78,6 +81,7 @@ public class GradeQuestion extends HttpServlet {
 
         if(i == max){
             session.setAttribute("index", 0);
+            session.setAttribute("max", max);
             RequestDispatcher rd = request.getRequestDispatcher("resultPage.jsp");
             rd.forward(request, response);
         } else {

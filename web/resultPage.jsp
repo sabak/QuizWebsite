@@ -1,4 +1,6 @@
-<%--
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Account" %>
+<%@ page import="ge.freeuni.quizwebsite.model.QuizResult" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 7/6/2016
