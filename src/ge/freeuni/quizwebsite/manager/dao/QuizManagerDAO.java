@@ -455,4 +455,30 @@ public class QuizManagerDAO extends AbstractManagerDAO implements QuizManager {
         }
         return quizzes;
     }
+
+
+    @Override
+    public int getQuizQuantity() {
+        try (Connection con = dataSource.getConnection()) {
+
+            String query = "SELECT * FROM " + DbContract.Quiz.TABLE_NAME + ";";
+            PreparedStatement statement = con.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            if (rs == null) {
+                return 0;
+            } else {
+                int size = 0;
+                while (rs.next()) {
+                    size++;
+                }
+                return size;
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

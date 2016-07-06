@@ -4,6 +4,7 @@
 <%@ page import="ge.freeuni.quizwebsite.model.PageType" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
 <%@ page import="java.util.List" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.AdminManagerDAO" %>
 <%--
   Created by IntelliJ IDEA.
   User: AVTO
@@ -26,8 +27,13 @@
                     QuizManagerDAO.ATTRIBUTE_NAME);
             StatsManagerDAO statsManager = (StatsManagerDAO) session.getServletContext().getAttribute(
                     StatsManagerDAO.ATTRIBUTE_NAME);
+            AdminManagerDAO adminManager = (AdminManagerDAO) session.getServletContext().getAttribute(AdminManagerDAO.ATTRIBUTE_NAME);
+
 
             Quiz q = qManager.getQuiz(Q_ID);
+            session.setAttribute("quiz", q);
+
+            Account account =(Account) session.getAttribute("account");
 
             if(q.getPageType().equals(PageType.ONE_PAGE))
                 sPage = " yes";
@@ -51,6 +57,19 @@
 
             <button class="button sub" id="submit" onclick="location.href='actualQuiz.jsp?quiz=<%=Q_ID%>'" style="margin-left: 25px;"> Take Quiz </button>
             </br>
+            <%
+                int limit = qManager.getQuizQuantity();
+                boolean author = false;
+                List quizzes = qManager.getCreatedQuizzes(account, limit);
+                for (int i=0; i< quizzes.size(); i++){
+                    if (quizzes.get(i).toString().equals(q.toString())) {
+                        author = true;
+                    }
+                }
+                if(adminManager.isAdmin(account) || author ) {%>
+
+                <button class="button pr" onclick="location.href='RemoveQuiz'"> Remove Quiz </button>
+            <% }%>
             <button class="button pr" onclick="location.href='homePage.jsp'"> Cancel </button>
         </div>
     </body>
