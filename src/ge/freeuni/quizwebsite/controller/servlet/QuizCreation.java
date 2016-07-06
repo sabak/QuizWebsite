@@ -72,22 +72,24 @@ public class QuizCreation extends HttpServlet {
             session.setAttribute("quiz", quiz);
         }
         if(requetType.equals("2")){//fill in the blanks
-            Question q = createQuestion(QuestionType.FILL_IN_THE_BLANK, (String) request.getAttribute("q2"),
-                    index, (String) request.getAttribute("a2"), request);
+            Question q = createQuestion(QuestionType.FILL_IN_THE_BLANK, (String) request.getParameter("q2"),
+                    index, (String) request.getParameter("a2"), request);
+            System.out.println((String) request.getAttribute("a2") + "aqd");
             quiz = (Quiz) session.getAttribute("quiz");
             quizManager.addQuestion(quiz, q);
             session.setAttribute("quiz", quiz);
+            System.out.println(quiz + "awedk");
         }
         if(requetType.equals("3")){//multiple choice
-            Question q = createQuestion(QuestionType.MULTIPLE_CHOICE, (String) request.getAttribute("q3"),
-                    index, (String) request.getAttribute("a3"), request);
+            Question q = createQuestion(QuestionType.MULTIPLE_CHOICE, (String) request.getParameter("q3"),
+                    index, (String) request.getParameter("a3"), request);
             quiz = (Quiz) session.getAttribute("quiz");
             quizManager.addQuestion(quiz, q);
             session.setAttribute("quiz", quiz);
         }
         if(requetType.equals("4")){//picture-response
-            Question q = createQuestion(QuestionType.PICTURE_RESPONSE, (String) request.getAttribute("q4"),
-                    index, (String) request.getAttribute("a4"), request);
+            Question q = createQuestion(QuestionType.PICTURE_RESPONSE, (String) request.getParameter("q4"),
+                    index, (String) request.getParameter("a4"), request);
             quiz = (Quiz) session.getAttribute("quiz");
             quizManager.addQuestion(quiz, q);
             session.setAttribute("quiz", quiz);
@@ -130,6 +132,7 @@ public class QuizCreation extends HttpServlet {
     private Question createQuestion(QuestionType qt, String questionText, int index, String ans, HttpServletRequest request){
         //get answers
         //and store them in a list
+        System.out.println(ans + "answers");
         StringTokenizer tk = new StringTokenizer(ans, ";");
         List<Answer> answers = new Vector<>();
         while(tk.hasMoreElements()){

@@ -2,7 +2,8 @@
 <%@ page import="ge.freeuni.quizwebsite.model.PageType" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Question" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="ge.freeuni.quizwebsite.model.QuestionType" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 7/6/2016
@@ -32,13 +33,38 @@
     </head>
 
     <body>
-        <%if (sPage.equals("yes")){%>
-            <div >
+        <%if (sPage.equals("yes")){
+            for(int i=0; i<questionList.size();i++){%>
+            <form id="test" action="/GradeQuiz" method="post">
+                <p class="tb"> Question # <%=count%> <%count++;%></p>
+                <div id="question_div_sPage">
+                    <% if(questionList.get(i).getType().equals(QuestionType.FILL_IN_THE_BLANK) ||
+                            questionList.get(i).getType().equals(QuestionType.QUESTION_RESPONSE)) {%>
+                            Question: <%=questionList.get(i).getText()%> </br>
+                            <input type="text" name="<%=i%>" placeholder="answer" style="margin-bottom: 10px"/>
 
-            </div>
-        <% } else {%>
-            <div >
+                    <% } else if(questionList.get(i).getType().equals(QuestionType.MULTIPLE_CHOICE)){%>
+                        Question: <%=questionList.get(i).getText()%> </br>
 
+                        <% for(int k=0; k<questionList.get(i).getAnswers().size(); k++) {%>
+                            <input type="checkbox" name="<%=i%>" value="<%=k%>"> <%=questionList.get(i).getAnswers().get(k)%>
+                        <%}%>
+
+                    <% } else if(questionList.get(i).getType().equals(QuestionType.PICTURE_RESPONSE)){%>
+                        <img src="<%=questionList.get(i).getText()%>" alt="HTML5 Icon" style="width:128px;height:128px;">
+                        <input type="text" name="<%=i%>" placeholder="answer" style="margin-bottom: 10px"/>
+                    <% }%>
+                </div>
+
+        <% }%>
+                <button class="button sub" onclick="document.getElementById('test').submit();"> Submit </button>
+            </form>
+        <%} else {%>
+            <div >
+                <p class="tb"> Question # <%=count%> <%count++;%></p>
+                <div id="question_div_mPage">
+
+                </div>
             </div>
         <%}%>
     </body>
