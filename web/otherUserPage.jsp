@@ -73,11 +73,10 @@
         with link to complete activity
     -->
     <div id="activity">
-        <div class="tb" style="text-align:center; position:relative; top:15px;"> Their Activity </div>
+        <div class="tb" style="text-align:center; position:relative; top:15px; margin-bottom: 15px;"> Their Activity </div>
         <%
             for(int i=0; i<takenQuizzes.size(); i++){ %>
-                <h1 class="bold-text"> Took Quiz: <%=takenQuizzes.get(i).getName()%></h1>
-                <h1 class="bold-text" style="margin-bottom: 10px"> link </h1>
+                <a class="tn"href="/takequiz.jsp?quiz=<%=takenQuizzes.get(i).getId()%>"> Took Quiz: <%=takenQuizzes.get(i).getName()%></a>
             <%}
         %>
         <div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="activity.jsp?account=<%=account.getUsername()%>">Show All </a></div>
@@ -86,11 +85,10 @@
         quizzes created by this user
     -->
     <div id="mq">
-        <div class="tb" style="text-align:center; position:relative; top:15px;"> Their Quizes </div>
+        <div class="tb" style="text-align:center; position:relative; top:15px; margin-bottom: 15px;"> Their Quizes </div>
         <%
             for(int i=0; i<createdQuizzes.size(); i++){ %>
-                <h1 class="bold-text"> Created Quiz: <%=createdQuizzes.get(i).getName()%></h1>
-                <h1 class="bold-text" style="margin-bottom: 10px"> link </h1>
+                <a href="/takequiz.jsp?quiz=<%=createdQuizzes.get(i).getId()%>" class="tn"> Created Quiz: <%=createdQuizzes.get(i).getName()%></a>
             <%}
         %>
         <div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="userQuizes.jsp?account=<%=account.getUsername()%>">Show All </a> </div>
@@ -99,11 +97,10 @@
         achievements unclocked by this user
     -->
     <div id="achievements">
-        <div class="tb" style="text-align:center; position:relative; top:15px;"> Their Achievements </div>
+        <div class="tb" style="text-align:center; position:relative; top:15px; margin-bottom: 15px;"> Their Achievements </div>
         <%
             for(int i=0; i<achievements.size(); i++){ %>
-                <h1 class="bold-text"> Achievements: <%=achievements.get(i).getAchievementType()%></h1>
-                <h1 class="bold-text" style="margin-bottom: 10px"> link </h1>
+                <a class="tn"> Achievements: <%=achievements.get(i).getAchievementType()%></a>
             <%}
         %>
         <div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="achievements.jsp?account=<%=account.getUsername()%>">Show All </a></div>

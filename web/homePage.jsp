@@ -73,7 +73,7 @@
 	<div class="tb" style="text-align:center; position:relative; top:5px;"> Your Activity </div>
 	<%
 		for(int i=0; i<takenQuizzes.size(); i++){ %>
-	<a href="/takequiz.jsp?quiz=<%=takenQuizzes.get(i).getId()%>" class="bold-text" style="margin-top: 15px"; > Took Quiz: <%=takenQuizzes.get(i).getName()%> </a> </br>
+		<a href="/takequiz.jsp?quiz=<%=takenQuizzes.get(i).getId()%>" class="bold-text" style="margin-top: 15px"; > Took Quiz: <%=takenQuizzes.get(i).getName()%> </a> </br>
 	<%	}
 	%>
 	<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="activity.jsp?account=<%=account.getUsername()%>">Show All </a></div>
