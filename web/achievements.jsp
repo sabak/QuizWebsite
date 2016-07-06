@@ -37,8 +37,8 @@
                 List<Achievement> achievements = achManager.getAchievements(account);
                 for(int i=0; i<achievements.size(); i++){%>
                  <p class="tn" style="margin-bottom: 20px;">
-                  Achievement type:  <% achievements.get(0).getAchievementType();%>
-                  Date Unlocked:  <% achievements.get(i).getDateUnlocked();%>
+                  Achievement type:  <%=achievements.get(i).getAchievementType()%>
+                  Date Unlocked:  <%=achievements.get(i).getDateUnlocked()%>
                  </p>
 
             <%  }%>

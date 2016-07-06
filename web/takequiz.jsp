@@ -60,6 +60,8 @@
             <%
                 int limit = qManager.getQuizQuantity();
                 boolean author = false;
+                System.out.println(account);
+                System.out.println(limit);
                 List quizzes = qManager.getCreatedQuizzes(account, limit);
                 for (int i=0; i< quizzes.size(); i++){
                     if (quizzes.get(i).toString().equals(q.toString())) {

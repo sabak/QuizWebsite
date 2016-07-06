@@ -1,6 +1,7 @@
 package ge.freeuni.quizwebsite.controller.servlet;
 
 import ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO;
+import ge.freeuni.quizwebsite.manager.dao.AchievementManagerDAO;
 import ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO;
 import ge.freeuni.quizwebsite.model.*;
 
@@ -27,6 +28,8 @@ public class QuizCreation extends HttpServlet {
                 AccountManagerDAO.ATTRIBUTE_NAME);
         QuizManagerDAO quizManager = (QuizManagerDAO) getServletContext().getAttribute(
                 QuizManagerDAO.ATTRIBUTE_NAME);
+        AchievementManagerDAO achManager = (AchievementManagerDAO) getServletContext().getAttribute(
+                AchievementManagerDAO.ATTRIBUTE_NAME);
         HttpSession session = request.getSession(true);
         Account account = accManager.getAccount((String) session.getAttribute("account_un"));
         String requetType = request.getParameter("type");
@@ -121,6 +124,7 @@ public class QuizCreation extends HttpServlet {
             quizManager.removeQuiz(quiz);
             finalQuiz = quizManager.createQuiz(finalQuiz, account);
             quizManager.addQuestions(finalQuiz, questionList);
+            achManager.checkForAchievements(account);
             RequestDispatcher rd = request.getRequestDispatcher("homePage.jsp");
             rd.forward(request, response);
         }

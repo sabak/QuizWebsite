@@ -83,7 +83,7 @@
     quizzes created by the user
 -->
 <div id="mq">
-	<div class="tb" style="text-align:center; position:relative; top:15px; margin-bottom: 30px;"> Your Quizes </div>
+	<div class="tb" style="text-align:center; position:relative; top:15px; margin-bottom: 30px;"> Your Quizzes </div>
 	<%
 		for(int i=0; i<createdQuizzes.size(); i++){ %>
 	<a href="/takequiz.jsp?quiz=<%=createdQuizzes.get(i).getId()%>" class="bold-text"> Created Quiz: <%=createdQuizzes.get(i).getName()%></a> </br>
@@ -96,11 +96,10 @@
     user's achievements
 -->
 <div id="achievements">
-	<div class="tb" style="text-align:center; position:relative; top:15px;"> Your Achievements </div>
+	<div class="tb" style="text-align:center; position:relative; top:15px; margin-bottom: 20px;"> Your Achievements </div>
 	<%
 		for(int i=0; i<achievements.size(); i++){ %>
-	<h1 class="bold-text"> Achievements: <%=achievements.get(i).getAchievementType()%></h1>
-	<h1 class="bold-text" style="margin-bottom: 10px"> link </h1>
+			<h class="bold-text" style="margin-top:20px"><%=achievements.get(i).getAchievementType()%></h>
 	<%	}
 	%>
 	<div class="tb" style="text-align:center; position:absolute; left:34%; bottom:5px;"><a href="achievements.jsp?account=<%=account.getUsername()%>">Show All </a></div>

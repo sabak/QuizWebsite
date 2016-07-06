@@ -1,5 +1,6 @@
 package ge.freeuni.quizwebsite.controller.servlet;
 
+import ge.freeuni.quizwebsite.manager.dao.AchievementManagerDAO;
 import ge.freeuni.quizwebsite.manager.dao.HistoryManagerDAO;
 import ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO;
 import ge.freeuni.quizwebsite.model.*;
@@ -29,6 +30,8 @@ public class GradeQuiz extends HttpServlet {
                 QuizManagerDAO.ATTRIBUTE_NAME);
         HistoryManagerDAO hManager = (HistoryManagerDAO) session.getServletContext().getAttribute(
                 HistoryManagerDAO.ATTRIBUTE_NAME);
+        AchievementManagerDAO achManager = (AchievementManagerDAO) getServletContext().getAttribute(
+                AchievementManagerDAO.ATTRIBUTE_NAME);
         long starTime = (long) session.getAttribute("start");
 
         Quiz q = (Quiz) session.getAttribute("quiz");
@@ -57,6 +60,7 @@ public class GradeQuiz extends HttpServlet {
         session.setAttribute("score", score);
         session.setAttribute("max", questionList.size());
         session.setAttribute("timetaken", timeTaken);
+        achManager.checkForAchievements((Account)session.getAttribute("account"),(Quiz)session.getAttribute("quiz"));
         RequestDispatcher rd = request.getRequestDispatcher("resultPage.jsp");
         rd.forward(request, response);
 
