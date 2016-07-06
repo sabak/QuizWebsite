@@ -49,7 +49,7 @@
             <% }%>
             </br>
 
-            <button class="button sub" id="submit" onclick="location.href='actualQuiz.jsp'" style="margin-left: 25px;"> Take Quiz </button>
+            <button class="button sub" id="submit" onclick="location.href='actualQuiz.jsp?quiz=<%=Q_ID%>'" style="margin-left: 25px;"> Take Quiz </button>
             </br>
             <button class="button pr" onclick="location.href='homePage.jsp'"> Cancel </button>
         </div>
