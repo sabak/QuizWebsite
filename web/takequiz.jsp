@@ -47,12 +47,7 @@
             Is in Random Order: <%=q.hasHasRandomOrder()%> </br>
             Is Immediately Corrected: <%=q.isImmediatelyCorrected()%> </br>
             Is On Single Page:<%=sPage%> </br>
-            Highest Score: <%List<Account> gela = statsManager.getHighestPerformers(q, 1);
-                if(gela != null){%>
-                    <%=gela.get(0)%>
-                <%} else {%>
-                    none
-            <% }%>
+
             </br>
 
             <button class="button sub" id="submit" onclick="location.href='actualQuiz.jsp?quiz=<%=Q_ID%>'" style="margin-left: 25px;"> Take Quiz </button>

@@ -1,6 +1,9 @@
 <%@ page import="ge.freeuni.quizwebsite.manager.dao.AccountManagerDAO" %>
 <%@ page import="ge.freeuni.quizwebsite.model.Account" %>
-<%@ page import="ge.freeuni.quizwebsite.model.QuizResult" %><%--
+<%@ page import="ge.freeuni.quizwebsite.model.QuizResult" %>
+<%@ page import="ge.freeuni.quizwebsite.model.Quiz" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.QuizManagerDAO" %>
+<%@ page import="ge.freeuni.quizwebsite.manager.dao.HistoryManagerDAO" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 7/6/2016
@@ -25,6 +28,7 @@
             time taken: </br>
             <%=session.getAttribute("timetaken")%> milliseconds </br>
         </p>
+
         <button class="button pr" onclick="location.href='homePage.jsp'"> Return </button>
     </body>
 </html>
