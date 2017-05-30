@@ -6,6 +6,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="QuizWebsite" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mysql-connector-java-5.1.32" />
+        </element>
       </element>
       <element id="javaee-facet-resources" facet="QuizWebsite/web/Web" />
     </root>

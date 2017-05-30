@@ -30,7 +30,6 @@ public class Registration extends HttpServlet {
 
         AccountManagerDAO accManager = (AccountManagerDAO) getServletContext().getAttribute(
                 AccountManagerDAO.ATTRIBUTE_NAME);
-        System.out.println("varegistrireb");
 
         HttpSession session = request.getSession(true);
         if(!checkParams(username, fn, ln, password, password_confirm, e_mail, accManager)){

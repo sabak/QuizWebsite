@@ -20,8 +20,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8" level="application_server_libraries" />
-    <orderEntry type="module-library" scope="PROVIDED">
+    <orderEntry type="module-library" exported="" scope="PROVIDED">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/mysql-connector-java-5.1.39-bin.jar!/" />
@@ -31,5 +30,8 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.32" level="project" />
+    <orderEntry type="library" name="jdbc" level="project" />
   </component>
 </module>

@@ -1,8 +1,7 @@
 
 body {
 	font-family: Arial;
-	background-color: #3498DB;
-	background-image:url(dbrown.jpg);
+	background: #3498DB url(dbrown.jpg);
 	padding-left: 30px;
 	padding-top:10px;
 }
@@ -48,7 +47,6 @@ body {
 	border-radius: 3px;
 	font-weight: 600;
 	margin-bottom:5px;
-	
 }
 
 .sub{

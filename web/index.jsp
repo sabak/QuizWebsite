@@ -42,7 +42,7 @@
             <%--<button class="button pass" onclick="location.href='prec.html'">Password Recovery</button>--%>
             <br/>
             <!--link to registration page-->
-            <button class="button pass" onclick="location.href='registration.jsp'"> Registration</button>
+            <button class="button pass" onclick="location.href='registration.jsp'"> Registration </button>
         </div>
     </div>
 </body>

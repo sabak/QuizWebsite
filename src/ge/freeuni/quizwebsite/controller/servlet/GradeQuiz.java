@@ -45,6 +45,9 @@ public class GradeQuiz extends HttpServlet {
                 if (answer.equals(answerList.get(j).getText()))
                     score++;
             }
+
+            if(answer.equals("0") && questionList.get(i).getType() == QuestionType.MULTIPLE_CHOICE)
+                score++;
         }
 
         long timeTaken = System.currentTimeMillis();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;

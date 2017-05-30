@@ -26,7 +26,8 @@ public class Login extends HttpServlet {
                 AccountManagerDAO.ATTRIBUTE_NAME);
 
         HttpSession session = request.getSession(true);
-
+        Account acc = accManager.getAccount("tura");
+        System.out.println(acc.getId());
         if(accManager.usernameExists(username)){
             if(password != null && hashText(password).equals(accManager.getAccount(username).getHashedPassword())){
                 session.setAttribute("account_un", username);
